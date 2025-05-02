@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\FaiscaSync.props" />
+</Project>

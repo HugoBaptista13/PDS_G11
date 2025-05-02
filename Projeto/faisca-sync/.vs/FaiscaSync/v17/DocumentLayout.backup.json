@@ -1,0 +1,275 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\services\\interface\\iloginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\interface\\iloginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\dto\\loginrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\dto\\loginrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\models\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\models\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\faiscasync.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\faiscasync.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\controllers\\cargoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\controllers\\cargoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\models\\cargo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\models\\cargo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\services\\interface\\icargoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\interface\\icargoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\services\\cargoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\cargoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\controllers\\aquisicaoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\controllers\\aquisicaoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\services\\interface\\iaquisicaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\interface\\iaquisicaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\users\\luisf\\onedrive\\ambiente de trabalho\\faiscasync\\faiscasync v2\\faiscasync\\services\\aquisicaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\aquisicaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 352,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\appsettings.json",
+              "RelativeDocumentMoniker": "FaiscaSync\\appsettings.json",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\appsettings.json",
+              "RelativeToolTip": "FaiscaSync\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-01T14:28:53.858Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoginRequestDTO.cs",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\DTO\\LoginRequestDTO.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\DTO\\LoginRequestDTO.cs",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\DTO\\LoginRequestDTO.cs",
+              "RelativeToolTip": "FaiscaSync\\DTO\\LoginRequestDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T14:10:01.024Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ILoginService.cs",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Services\\Interface\\ILoginService.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Services\\Interface\\ILoginService.cs",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Services\\Interface\\ILoginService.cs",
+              "RelativeToolTip": "FaiscaSync\\Services\\Interface\\ILoginService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T13:59:07.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Login.cs",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Models\\Login.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Models\\Login.cs",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Models\\Login.cs",
+              "RelativeToolTip": "FaiscaSync\\Models\\Login.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T13:59:00.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "FaiscaSync\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAswCoAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T13:04:07.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Cargo.cs",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Models\\Cargo.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Models\\Cargo.cs",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Models\\Cargo.cs",
+              "RelativeToolTip": "FaiscaSync\\Models\\Cargo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T13:25:06.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ICargoService.cs",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Services\\Interface\\ICargoService.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Services\\Interface\\ICargoService.cs",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Services\\Interface\\ICargoService.cs",
+              "RelativeToolTip": "FaiscaSync\\Services\\Interface\\ICargoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T13:24:53.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CargoService.cs",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Services\\CargoService.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Services\\CargoService.cs",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Services\\CargoService.cs",
+              "RelativeToolTip": "FaiscaSync\\Services\\CargoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T13:24:36.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CargosController.cs",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Controllers\\CargosController.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Controllers\\CargosController.cs",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Controllers\\CargosController.cs",
+              "RelativeToolTip": "FaiscaSync\\Controllers\\CargosController.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAIwAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T13:24:07.582Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Program.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Program.cs",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Program.cs",
+              "RelativeToolTip": "FaiscaSync\\Program.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAFQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T13:10:20.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FaiscaSync",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\FaiscaSync.csproj",
+              "RelativeDocumentMoniker": "FaiscaSync\\FaiscaSync.csproj",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\FaiscaSync.csproj",
+              "RelativeToolTip": "FaiscaSync\\FaiscaSync.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-01T14:20:16.675Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginService.cs",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Services\\LoginService.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Services\\LoginService.cs",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Services\\LoginService.cs",
+              "RelativeToolTip": "FaiscaSync\\Services\\LoginService.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAowDYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T13:03:20.486Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AquisicaosController.cs",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Controllers\\AquisicaosController.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Controllers\\AquisicaosController.cs",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Controllers\\AquisicaosController.cs",
+              "RelativeToolTip": "FaiscaSync\\Controllers\\AquisicaosController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAUwBsAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T09:28:59.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AquisicaoService.cs",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Services\\AquisicaoService.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Services\\AquisicaoService.cs",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Services\\AquisicaoService.cs",
+              "RelativeToolTip": "FaiscaSync\\Services\\AquisicaoService.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowBQAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T09:29:59.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IAquisicaoService.cs",
+              "DocumentMoniker": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Services\\Interface\\IAquisicaoService.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Services\\Interface\\IAquisicaoService.cs",
+              "ToolTip": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\Services\\Interface\\IAquisicaoService.cs",
+              "RelativeToolTip": "FaiscaSync\\Services\\Interface\\IAquisicaoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T09:30:03.623Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
