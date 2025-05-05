@@ -28,8 +28,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "aquisicao",
-        "Type": "FaiscaSync.Models.Aquisicao",
+        "Name": "aquisicaoDto",
+        "Type": "FaiscaSync.DTO.AquisicaoDTO",
         "IsRequired": true
       }
     ],
@@ -75,8 +75,8 @@
         "IsRequired": true
       },
       {
-        "Name": "aquisicao",
-        "Type": "FaiscaSync.Models.Aquisicao",
+        "Name": "aquisicaoDto",
+        "Type": "FaiscaSync.DTO.AquisicaoDTO",
         "IsRequired": true
       }
     ],
@@ -127,8 +127,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "cargo",
-        "Type": "FaiscaSync.Models.Cargo",
+        "Name": "cargoDto",
+        "Type": "FaiscaSync.DTO.CargoDTO",
         "IsRequired": true
       }
     ],
@@ -174,8 +174,8 @@
         "IsRequired": true
       },
       {
-        "Name": "cargo",
-        "Type": "FaiscaSync.Models.Cargo",
+        "Name": "cargoDto",
+        "Type": "FaiscaSync.DTO.CargoDTO",
         "IsRequired": true
       }
     ],
@@ -226,22 +226,12 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "cliente",
-        "Type": "FaiscaSync.Models.Cliente",
+        "Name": "clienteDto",
+        "Type": "FaiscaSync.DTO.ClienteDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.Cliente",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FaiscaSync.Controllers.ClientesController",
@@ -283,8 +273,8 @@
         "IsRequired": true
       },
       {
-        "Name": "cliente",
-        "Type": "FaiscaSync.Models.Cliente",
+        "Name": "clienteDto",
+        "Type": "FaiscaSync.DTO.ClienteDTO",
         "IsRequired": true
       }
     ],
@@ -444,8 +434,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "contato",
-        "Type": "FaiscaSync.Models.Contato",
+        "Name": "contatoDto",
+        "Type": "FaiscaSync.DTO.ContatoDTO",
         "IsRequired": true
       }
     ],
@@ -501,8 +491,8 @@
         "IsRequired": true
       },
       {
-        "Name": "contato",
-        "Type": "FaiscaSync.Models.Contato",
+        "Name": "contatoDto",
+        "Type": "FaiscaSync.DTO.ContatoDTO",
         "IsRequired": true
       }
     ],
@@ -553,8 +543,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "cpostal",
-        "Type": "FaiscaSync.Models.Cpostal",
+        "Name": "cpostalDto",
+        "Type": "FaiscaSync.DTO.CpostalDTO",
         "IsRequired": true
       }
     ],
@@ -610,8 +600,8 @@
         "IsRequired": true
       },
       {
-        "Name": "cpostal",
-        "Type": "FaiscaSync.Models.Cpostal",
+        "Name": "cpostalDto",
+        "Type": "FaiscaSync.DTO.CpostalDTO",
         "IsRequired": true
       }
     ],
@@ -880,8 +870,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "estadoVeiculo",
-        "Type": "FaiscaSync.Models.EstadoVeiculo",
+        "Name": "estadoVeiculoDto",
+        "Type": "FaiscaSync.DTO.EstadoVeiculoDTO",
         "IsRequired": true
       }
     ],
@@ -937,8 +927,8 @@
         "IsRequired": true
       },
       {
-        "Name": "estadoVeiculo",
-        "Type": "FaiscaSync.Models.EstadoVeiculo",
+        "Name": "estadoVeiculoDto",
+        "Type": "FaiscaSync.DTO.EstadoVeiculoDTO",
         "IsRequired": true
       }
     ],
@@ -1098,8 +1088,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "funcionario",
-        "Type": "FaiscaSync.Models.Funcionario",
+        "Name": "funcionarioDto",
+        "Type": "FaiscaSync.DTO.FuncionarioDTO",
         "IsRequired": true
       }
     ],
@@ -1155,8 +1145,8 @@
         "IsRequired": true
       },
       {
-        "Name": "funcionario",
-        "Type": "FaiscaSync.Models.Funcionario",
+        "Name": "funcionarioDto",
+        "Type": "FaiscaSync.DTO.FuncionarioDTO",
         "IsRequired": true
       }
     ],
@@ -1633,8 +1623,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "marca",
-        "Type": "FaiscaSync.Models.Marca",
+        "Name": "marcaDto",
+        "Type": "FaiscaSync.DTO.MarcaDTO",
         "IsRequired": true
       }
     ],
@@ -1690,8 +1680,8 @@
         "IsRequired": true
       },
       {
-        "Name": "marca",
-        "Type": "FaiscaSync.Models.Marca",
+        "Name": "marcaDto",
+        "Type": "FaiscaSync.DTO.MarcaDTO",
         "IsRequired": true
       }
     ],
@@ -1742,8 +1732,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "modelo",
-        "Type": "FaiscaSync.Models.Modelo",
+        "Name": "modeloDto",
+        "Type": "FaiscaSync.DTO.ModeloDTO",
         "IsRequired": true
       }
     ],
@@ -1799,8 +1789,8 @@
         "IsRequired": true
       },
       {
-        "Name": "modelo",
-        "Type": "FaiscaSync.Models.Modelo",
+        "Name": "modeloDto",
+        "Type": "FaiscaSync.DTO.ModeloDTO",
         "IsRequired": true
       }
     ],
@@ -1851,8 +1841,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "morada",
-        "Type": "FaiscaSync.Models.Morada",
+        "Name": "moradaDto",
+        "Type": "FaiscaSync.DTO.MoradaDTO",
         "IsRequired": true
       }
     ],
@@ -1908,8 +1898,8 @@
         "IsRequired": true
       },
       {
-        "Name": "morada",
-        "Type": "FaiscaSync.Models.Morada",
+        "Name": "moradaDto",
+        "Type": "FaiscaSync.DTO.MoradaDTO",
         "IsRequired": true
       }
     ],
@@ -1960,8 +1950,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "motor",
-        "Type": "FaiscaSync.Models.Motor",
+        "Name": "motorDto",
+        "Type": "FaiscaSync.DTO.MotorDTO",
         "IsRequired": true
       }
     ],
@@ -2017,8 +2007,8 @@
         "IsRequired": true
       },
       {
-        "Name": "motor",
-        "Type": "FaiscaSync.Models.Motor",
+        "Name": "motorDto",
+        "Type": "FaiscaSync.DTO.MotorDTO",
         "IsRequired": true
       }
     ],
@@ -2287,8 +2277,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "tipoContato",
-        "Type": "FaiscaSync.Models.TipoContato",
+        "Name": "tipoContatoDto",
+        "Type": "FaiscaSync.DTO.TipoContatoDTO",
         "IsRequired": true
       }
     ],
@@ -2344,8 +2334,8 @@
         "IsRequired": true
       },
       {
-        "Name": "tipoContato",
-        "Type": "FaiscaSync.Models.TipoContato",
+        "Name": "tipoContatoDto",
+        "Type": "FaiscaSync.DTO.TipoContatoDTO",
         "IsRequired": true
       }
     ],
@@ -2505,8 +2495,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "tipoVeiculo",
-        "Type": "FaiscaSync.Models.TipoVeiculo",
+        "Name": "tipoVeiculoDto",
+        "Type": "FaiscaSync.DTO.TipoVeiculoDTO",
         "IsRequired": true
       }
     ],
@@ -2562,8 +2552,8 @@
         "IsRequired": true
       },
       {
-        "Name": "tipoVeiculo",
-        "Type": "FaiscaSync.Models.TipoVeiculo",
+        "Name": "tipoVeiculoDto",
+        "Type": "FaiscaSync.DTO.TipoVeiculoDTO",
         "IsRequired": true
       }
     ],
@@ -2614,8 +2604,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "veiculo",
-        "Type": "FaiscaSync.Models.Veiculo",
+        "Name": "veiculoDto",
+        "Type": "FaiscaSync.DTO.VeiculoDTO",
         "IsRequired": true
       }
     ],
@@ -2671,8 +2661,8 @@
         "IsRequired": true
       },
       {
-        "Name": "veiculo",
-        "Type": "FaiscaSync.Models.Veiculo",
+        "Name": "veiculoDto",
+        "Type": "FaiscaSync.DTO.VeiculoDTO",
         "IsRequired": true
       }
     ],

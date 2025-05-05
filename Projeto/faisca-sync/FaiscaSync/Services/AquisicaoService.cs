@@ -1,4 +1,5 @@
-﻿using FaiscaSync.Models;
+﻿using FaiscaSync.DTO;
+using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
@@ -28,20 +29,32 @@ namespace FaiscaSync.Services
             return await _context.Aquisicaos.FindAsync(id);
         }
 
-        public async Task CriarAsync(Aquisicao aquisicao)
+        public async Task CriarAsync(AquisicaoDTO aquisicaoDto)
         {
+            var aquisicao = new Aquisicao
+            {
+                Fornecedor = aquisicaoDto.Fornecedor,
+                Valorpago = aquisicaoDto.Valorpago,
+                Dataaquisicao = aquisicaoDto.Dataaquisicao,
+                Origemveiculo = aquisicaoDto.Origemveiculo
+            };
             _context.Aquisicaos.Add(aquisicao);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync(Aquisicao aquisicao)
+        public async Task<ResultadoOperacao> AtualizarAsync(int id, AquisicaoDTO aquisicaoDto)
         {
+            var aquisicaoExistente = await _context.Aquisicaos.FindAsync(id);
 
-            var exists = await _context.Aquisicaos.AnyAsync(a => a.IdAquisicao == aquisicao.IdAquisicao);
-            if (!exists)
-                return ResultadoOperacao.Falha("Falha na atualização da Aquisição!");
+            if (aquisicaoExistente == null)
+                return ResultadoOperacao.Falha("Falha na atualização da Aquisição! Aquisição não encontrada.");
 
-            _context.Entry(aquisicao).State = EntityState.Modified;
+            aquisicaoExistente.Fornecedor = aquisicaoDto.Fornecedor;
+            aquisicaoExistente.Valorpago = aquisicaoDto.Valorpago;
+            aquisicaoExistente.Dataaquisicao = aquisicaoDto.Dataaquisicao;
+            aquisicaoExistente.Origemveiculo = aquisicaoDto.Origemveiculo;
+
+            _context.Entry(aquisicaoExistente).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Aquisição atualizada com Sucesso!");
         }

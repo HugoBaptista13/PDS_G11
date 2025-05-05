@@ -9,6 +9,7 @@ using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
 using NuGet.Protocol.Plugins;
+using FaiscaSync.DTO;
 
 namespace FaiscaSync.Controllers
 {
@@ -48,12 +49,12 @@ namespace FaiscaSync.Controllers
         // PUT: api/Aquisicaos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAquisicao(int id, [FromBody] Aquisicao aquisicao)
+        public async Task<IActionResult> UpdateAquisicao(int id, [FromBody] AquisicaoDTO aquisicaoDto)
         {
-            if (id != aquisicao.IdAquisicao)
-                return BadRequest("ID no URL e ID no objeto não coincidem.");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var updated = await _aquisicaoService.AtualizarAsync(aquisicao);
+            var updated = await _aquisicaoService.AtualizarAsync(id, aquisicaoDto);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,13 +64,20 @@ namespace FaiscaSync.Controllers
         // POST: api/Aquisicaos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-   
-        public async Task<IActionResult> PostAquisicao([FromBody] Aquisicao aquisicao)
+        public async Task<IActionResult> PostAquisicao([FromBody] AquisicaoDTO aquisicaoDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _aquisicaoService.CriarAsync(aquisicao);
+            var aquisicao = new Aquisicao
+            {
+                Fornecedor = aquisicaoDto.Fornecedor,
+                Valorpago = aquisicaoDto.Valorpago,
+                Dataaquisicao = aquisicaoDto.Dataaquisicao,
+                Origemveiculo = aquisicaoDto.Origemveiculo
+            };
+
+            await _aquisicaoService.CriarAsync(aquisicaoDto);
             return CreatedAtAction(nameof(GetAquisicao), new { id = aquisicao.IdAquisicao }, aquisicao);
         }
 

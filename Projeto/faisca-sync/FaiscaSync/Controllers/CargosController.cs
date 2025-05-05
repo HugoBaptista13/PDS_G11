@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FaiscaSync.DTO;
 using FaiscaSync.Models;
 using FaiscaSync.Services;
 using FaiscaSync.Services.Interface;
@@ -47,28 +48,32 @@ namespace FaiscaSync.Controllers
         // PUT: api/Cargos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCargo(int id, [FromBody] Cargo cargo)
+        public async Task<IActionResult> PutCargo(int id, [FromBody] CargoDTO cargoDto)
         {
-            if (id != cargo.IdCargo)
-                return BadRequest("ID no URL e ID no objeto não coincidem.");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var updated = await _cargoService.AtualizarAsync(cargo);
+            var resultado = await _cargoService.AtualizarAsync(id, cargoDto);
 
-            if (!updated.Sucesso)
-                return NotFound(new { mensagem = updated.Mensagem });
+            if (!resultado.Sucesso)
+                return NotFound(new { mensagem = resultado.Mensagem });
 
-            return Ok(new { mensagem = updated.Mensagem });
+            return Ok(new { mensagem = resultado.Mensagem });
         }
 
         // POST: api/Cargos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<IActionResult> PostCargo([FromBody]Cargo cargo)
+        public async Task<IActionResult> PostCargo([FromBody]CargoDTO cargoDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _cargoService.CriarAsync(cargo);
+            var cargo = new Cargo
+            {
+                Nomecargo = cargoDto.Nomecargo
+            };
+            await _cargoService.CriarAsync(cargoDto);
             return CreatedAtAction(nameof(GetCargo), new { id = cargo.IdCargo }, cargo);
         }
 
@@ -90,8 +95,8 @@ namespace FaiscaSync.Controllers
         {
             var cargo = await _cargoService.ObterPorIdAsync(id);
             return cargo != null
-                ? ResultadoOperacao.Ok("Aquisição encontrada.")
-        : ResultadoOperacao.Falha("Aquisição não encontrada.");
+                ? ResultadoOperacao.Ok("Cargo encontrado.")
+        : ResultadoOperacao.Falha("Cargo não encontrado.");
         }
     }
 }

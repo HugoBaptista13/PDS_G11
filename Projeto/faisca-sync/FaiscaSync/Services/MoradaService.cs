@@ -1,4 +1,5 @@
-﻿using FaiscaSync.Models;
+﻿using FaiscaSync.DTO;
+using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,19 +26,34 @@ namespace FaiscaSync.Services
             return await _context.Morada.FindAsync(id);
         }
 
-        public async Task CriarAsync(Morada morada)
+        public async Task CriarAsync(MoradaDTO moradaDto)
         {
+            var morada = new Morada
+            {
+                Rua = moradaDto.Rua,
+                Numero = moradaDto.Numero,
+                Descricaomorada = moradaDto.Descricaomorada,
+                Pais = moradaDto.Pais,
+                IdCpostal = moradaDto.IdCpostal
+            };
             _context.Morada.Add(morada);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync( Morada morada)
+        public async Task<ResultadoOperacao> AtualizarAsync(int id, MoradaDTO moradaDto)
         {
-            var exists = await _context.Morada.AnyAsync(a => a.IdMorada == morada.IdMorada);
-            if (!exists)
-                return ResultadoOperacao.Falha("Falha na atualização da Morada!");
+            var moradaExistente = await _context.Morada.FindAsync(id);
 
-            _context.Entry(morada).State = EntityState.Modified;
+            if (moradaExistente == null)
+                return ResultadoOperacao.Falha("Falha na atualização da Morada! Morada não encontrada.");
+
+            moradaExistente.Rua = moradaDto.Rua;
+            moradaExistente.Numero = moradaDto.Numero;
+            moradaExistente.Descricaomorada = moradaDto.Descricaomorada;
+            moradaExistente.Pais = moradaDto.Pais;
+            moradaExistente.IdCpostal = moradaDto.IdCpostal;
+
+            _context.Entry(moradaExistente).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Morada atualizada com Sucesso!");
         }

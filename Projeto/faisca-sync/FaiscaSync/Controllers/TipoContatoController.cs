@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using FaiscaSync.DTO;
 
 namespace FaiscaSync.Controllers
 {
@@ -47,12 +48,12 @@ namespace FaiscaSync.Controllers
         // PUT: api/TipoContato/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTipoContato(int id,[FromBody] TipoContato tipoContato)
+        public async Task<IActionResult> PutTipoContato(int id,[FromBody] TipoContatoDTO tipoContatoDto)
         {
-            if (id != tipoContato.IdTipoContato)
-                return BadRequest("ID no URL e ID no objeto não coincidem.");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var updated = await _tipoContactoService.AtualizarAsync(tipoContato);
+            var updated = await _tipoContactoService.AtualizarAsync(id, tipoContatoDto);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,12 +64,17 @@ namespace FaiscaSync.Controllers
         // POST: api/TipoContato
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TipoContato>> PostTipoContato([FromBody]TipoContato tipoContato)
+        public async Task<ActionResult<TipoContato>> PostTipoContato([FromBody]TipoContatoDTO tipoContatoDto)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _tipoContactoService.CriarAsync(tipoContato);
+            var tipoContato = new TipoContato
+            {
+                Descricaotipocontato = tipoContatoDto.TipoContato,
+            };
+
+            await _tipoContactoService.CriarAsync(tipoContatoDto);
             return CreatedAtAction(nameof(GetTipoContato), new { id = tipoContato.IdTipoContato }, tipoContato);
         }
 

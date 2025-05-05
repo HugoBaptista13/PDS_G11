@@ -50,17 +50,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Aquisicao"
+                "$ref": "#/components/schemas/AquisicaoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Aquisicao"
+                "$ref": "#/components/schemas/AquisicaoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Aquisicao"
+                "$ref": "#/components/schemas/AquisicaoDTO"
               }
             }
           }
@@ -130,17 +130,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Aquisicao"
+                "$ref": "#/components/schemas/AquisicaoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Aquisicao"
+                "$ref": "#/components/schemas/AquisicaoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Aquisicao"
+                "$ref": "#/components/schemas/AquisicaoDTO"
               }
             }
           }
@@ -218,17 +218,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cargo"
+                "$ref": "#/components/schemas/CargoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cargo"
+                "$ref": "#/components/schemas/CargoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Cargo"
+                "$ref": "#/components/schemas/CargoDTO"
               }
             }
           }
@@ -298,17 +298,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cargo"
+                "$ref": "#/components/schemas/CargoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cargo"
+                "$ref": "#/components/schemas/CargoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Cargo"
+                "$ref": "#/components/schemas/CargoDTO"
               }
             }
           }
@@ -386,41 +386,24 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cliente"
+                "$ref": "#/components/schemas/ClienteDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cliente"
+                "$ref": "#/components/schemas/ClienteDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Cliente"
+                "$ref": "#/components/schemas/ClienteDTO"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Cliente"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Cliente"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Cliente"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
@@ -483,17 +466,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cliente"
+                "$ref": "#/components/schemas/ClienteDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cliente"
+                "$ref": "#/components/schemas/ClienteDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Cliente"
+                "$ref": "#/components/schemas/ClienteDTO"
               }
             }
           }
@@ -756,17 +739,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Contato"
+                "$ref": "#/components/schemas/ContatoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Contato"
+                "$ref": "#/components/schemas/ContatoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Contato"
+                "$ref": "#/components/schemas/ContatoDTO"
               }
             }
           }
@@ -853,17 +836,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Contato"
+                "$ref": "#/components/schemas/ContatoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Contato"
+                "$ref": "#/components/schemas/ContatoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Contato"
+                "$ref": "#/components/schemas/ContatoDTO"
               }
             }
           }
@@ -941,17 +924,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cpostal"
+                "$ref": "#/components/schemas/CpostalDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cpostal"
+                "$ref": "#/components/schemas/CpostalDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Cpostal"
+                "$ref": "#/components/schemas/CpostalDTO"
               }
             }
           }
@@ -1038,17 +1021,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cpostal"
+                "$ref": "#/components/schemas/CpostalDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cpostal"
+                "$ref": "#/components/schemas/CpostalDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Cpostal"
+                "$ref": "#/components/schemas/CpostalDTO"
               }
             }
           }
@@ -1496,17 +1479,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EstadoVeiculo"
+                "$ref": "#/components/schemas/EstadoVeiculoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/EstadoVeiculo"
+                "$ref": "#/components/schemas/EstadoVeiculoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/EstadoVeiculo"
+                "$ref": "#/components/schemas/EstadoVeiculoDTO"
               }
             }
           }
@@ -1593,17 +1576,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EstadoVeiculo"
+                "$ref": "#/components/schemas/EstadoVeiculoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/EstadoVeiculo"
+                "$ref": "#/components/schemas/EstadoVeiculoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/EstadoVeiculo"
+                "$ref": "#/components/schemas/EstadoVeiculoDTO"
               }
             }
           }
@@ -1866,17 +1849,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Funcionario"
+                "$ref": "#/components/schemas/FuncionarioDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Funcionario"
+                "$ref": "#/components/schemas/FuncionarioDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Funcionario"
+                "$ref": "#/components/schemas/FuncionarioDTO"
               }
             }
           }
@@ -1963,17 +1946,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Funcionario"
+                "$ref": "#/components/schemas/FuncionarioDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Funcionario"
+                "$ref": "#/components/schemas/FuncionarioDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Funcionario"
+                "$ref": "#/components/schemas/FuncionarioDTO"
               }
             }
           }
@@ -2776,17 +2759,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Marca"
+                "$ref": "#/components/schemas/MarcaDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Marca"
+                "$ref": "#/components/schemas/MarcaDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Marca"
+                "$ref": "#/components/schemas/MarcaDTO"
               }
             }
           }
@@ -2873,17 +2856,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Marca"
+                "$ref": "#/components/schemas/MarcaDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Marca"
+                "$ref": "#/components/schemas/MarcaDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Marca"
+                "$ref": "#/components/schemas/MarcaDTO"
               }
             }
           }
@@ -2961,17 +2944,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Modelo"
+                "$ref": "#/components/schemas/ModeloDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Modelo"
+                "$ref": "#/components/schemas/ModeloDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Modelo"
+                "$ref": "#/components/schemas/ModeloDTO"
               }
             }
           }
@@ -3058,17 +3041,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Modelo"
+                "$ref": "#/components/schemas/ModeloDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Modelo"
+                "$ref": "#/components/schemas/ModeloDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Modelo"
+                "$ref": "#/components/schemas/ModeloDTO"
               }
             }
           }
@@ -3146,17 +3129,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Morada"
+                "$ref": "#/components/schemas/MoradaDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Morada"
+                "$ref": "#/components/schemas/MoradaDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Morada"
+                "$ref": "#/components/schemas/MoradaDTO"
               }
             }
           }
@@ -3243,17 +3226,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Morada"
+                "$ref": "#/components/schemas/MoradaDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Morada"
+                "$ref": "#/components/schemas/MoradaDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Morada"
+                "$ref": "#/components/schemas/MoradaDTO"
               }
             }
           }
@@ -3331,17 +3314,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Motor"
+                "$ref": "#/components/schemas/MotorDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Motor"
+                "$ref": "#/components/schemas/MotorDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Motor"
+                "$ref": "#/components/schemas/MotorDTO"
               }
             }
           }
@@ -3428,17 +3411,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Motor"
+                "$ref": "#/components/schemas/MotorDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Motor"
+                "$ref": "#/components/schemas/MotorDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Motor"
+                "$ref": "#/components/schemas/MotorDTO"
               }
             }
           }
@@ -3886,17 +3869,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoContato"
+                "$ref": "#/components/schemas/TipoContatoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoContato"
+                "$ref": "#/components/schemas/TipoContatoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoContato"
+                "$ref": "#/components/schemas/TipoContatoDTO"
               }
             }
           }
@@ -3983,17 +3966,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoContato"
+                "$ref": "#/components/schemas/TipoContatoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoContato"
+                "$ref": "#/components/schemas/TipoContatoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoContato"
+                "$ref": "#/components/schemas/TipoContatoDTO"
               }
             }
           }
@@ -4256,17 +4239,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoVeiculo"
+                "$ref": "#/components/schemas/TipoVeiculoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoVeiculo"
+                "$ref": "#/components/schemas/TipoVeiculoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoVeiculo"
+                "$ref": "#/components/schemas/TipoVeiculoDTO"
               }
             }
           }
@@ -4353,17 +4336,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoVeiculo"
+                "$ref": "#/components/schemas/TipoVeiculoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoVeiculo"
+                "$ref": "#/components/schemas/TipoVeiculoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoVeiculo"
+                "$ref": "#/components/schemas/TipoVeiculoDTO"
               }
             }
           }
@@ -4441,17 +4424,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Veiculo"
+                "$ref": "#/components/schemas/VeiculoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Veiculo"
+                "$ref": "#/components/schemas/VeiculoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Veiculo"
+                "$ref": "#/components/schemas/VeiculoDTO"
               }
             }
           }
@@ -4538,17 +4521,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Veiculo"
+                "$ref": "#/components/schemas/VeiculoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Veiculo"
+                "$ref": "#/components/schemas/VeiculoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Veiculo"
+                "$ref": "#/components/schemas/VeiculoDTO"
               }
             }
           }
@@ -4785,6 +4768,37 @@
         },
         "additionalProperties": false
       },
+      "AquisicaoDTO": {
+        "required": [
+          "dataaquisicao",
+          "fornecedor",
+          "origemveiculo",
+          "valorpago"
+        ],
+        "type": "object",
+        "properties": {
+          "fornecedor": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "valorpago": {
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "dataaquisicao": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "origemveiculo": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "Cargo": {
         "type": "object",
         "properties": {
@@ -4802,6 +4816,20 @@
               "$ref": "#/components/schemas/Funcionario"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CargoDTO": {
+        "required": [
+          "nomecargo"
+        ],
+        "type": "object",
+        "properties": {
+          "nomecargo": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -4845,6 +4873,36 @@
               "$ref": "#/components/schemas/Venda"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClienteDTO": {
+        "required": [
+          "datanasc",
+          "idMorada",
+          "nif",
+          "nome"
+        ],
+        "type": "object",
+        "properties": {
+          "nome": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "datanasc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "nif": {
+            "maxLength": 9,
+            "minLength": 0,
+            "type": "string"
+          },
+          "idMorada": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -4908,6 +4966,35 @@
         },
         "additionalProperties": false
       },
+      "ContatoDTO": {
+        "required": [
+          "contato",
+          "idCliente",
+          "idFuncionario",
+          "idTipoContato"
+        ],
+        "type": "object",
+        "properties": {
+          "contato": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "idCliente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idFuncionario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idTipoContato": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "Cpostal": {
         "type": "object",
         "properties": {
@@ -4925,6 +5012,20 @@
               "$ref": "#/components/schemas/Morada"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CpostalDTO": {
+        "required": [
+          "localidade"
+        ],
+        "type": "object",
+        "properties": {
+          "localidade": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -4995,6 +5096,20 @@
               "$ref": "#/components/schemas/Veiculo"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EstadoVeiculoDTO": {
+        "required": [
+          "estado"
+        ],
+        "type": "object",
+        "properties": {
+          "estado": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -5091,6 +5206,35 @@
               "$ref": "#/components/schemas/Venda"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FuncionarioDTO": {
+        "required": [
+          "dataContrato",
+          "dataNasc",
+          "idCargo",
+          "nome"
+        ],
+        "type": "object",
+        "properties": {
+          "nome": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "dataContrato": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dataNasc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "idCargo": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -5290,6 +5434,20 @@
         },
         "additionalProperties": false
       },
+      "MarcaDTO": {
+        "required": [
+          "marca"
+        ],
+        "type": "object",
+        "properties": {
+          "marca": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "Modelo": {
         "type": "object",
         "properties": {
@@ -5314,6 +5472,25 @@
               "$ref": "#/components/schemas/Veiculo"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ModeloDTO": {
+        "required": [
+          "idMarca",
+          "nomeModelo"
+        ],
+        "type": "object",
+        "properties": {
+          "nomeModelo": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "idMarca": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -5358,6 +5535,43 @@
         },
         "additionalProperties": false
       },
+      "MoradaDTO": {
+        "required": [
+          "idCpostal",
+          "numero",
+          "pais",
+          "rua"
+        ],
+        "type": "object",
+        "properties": {
+          "rua": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "numero": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string"
+          },
+          "descricaomorada": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "pais": {
+            "maxLength": 30,
+            "minLength": 0,
+            "type": "string"
+          },
+          "idCpostal": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "Motor": {
         "type": "object",
         "properties": {
@@ -5383,6 +5597,32 @@
               "$ref": "#/components/schemas/Veiculo"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MotorDTO": {
+        "required": [
+          "combustivel",
+          "potencia",
+          "tipoMotor"
+        ],
+        "type": "object",
+        "properties": {
+          "tipoMotor": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "potencia": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "combustivel": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -5471,6 +5711,20 @@
         },
         "additionalProperties": false
       },
+      "TipoContatoDTO": {
+        "required": [
+          "tipoContato"
+        ],
+        "type": "object",
+        "properties": {
+          "tipoContato": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "TipoPagamento": {
         "type": "object",
         "properties": {
@@ -5509,6 +5763,20 @@
               "$ref": "#/components/schemas/Veiculo"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TipoVeiculoDTO": {
+        "required": [
+          "tipo"
+        ],
+        "type": "object",
+        "properties": {
+          "tipo": {
+            "maxLength": 30,
+            "minLength": 0,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -5599,6 +5867,74 @@
               "$ref": "#/components/schemas/Venda"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VeiculoDTO": {
+        "required": [
+          "anoFabrico",
+          "chassi",
+          "cor",
+          "idAquisicao",
+          "idEstadoVeiculo",
+          "idModelo",
+          "idMotor",
+          "idTipoVeiculo",
+          "matricula",
+          "preco",
+          "quilometragem"
+        ],
+        "type": "object",
+        "properties": {
+          "matricula": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string"
+          },
+          "chassi": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "anoFabrico": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cor": {
+            "maxLength": 30,
+            "minLength": 0,
+            "type": "string"
+          },
+          "quilometragem": {
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "preco": {
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "idMotor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idEstadoVeiculo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idTipoVeiculo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idModelo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idAquisicao": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

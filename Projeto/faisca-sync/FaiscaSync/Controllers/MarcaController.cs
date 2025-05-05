@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using FaiscaSync.DTO;
 
 namespace FaiscaSync.Controllers
 {
@@ -47,12 +48,12 @@ namespace FaiscaSync.Controllers
         // PUT: api/Marca/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMarca(int id, [FromBody]Marca marca)
+        public async Task<IActionResult> PutMarca(int id, [FromBody]MarcaDTO marcaDto)
         {
-            if (id !=  marca.IdMarca)
-                return BadRequest("ID no URL e ID no objeto não coincidem.");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var updated = await _marcaService.AtualizarAsync(marca);
+            var updated = await _marcaService.AtualizarAsync(id, marcaDto);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,12 +64,17 @@ namespace FaiscaSync.Controllers
         // POST: api/Marca
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Marca>> PostMarca([FromBody]Marca marca)
+        public async Task<ActionResult<Marca>> PostMarca([FromBody]MarcaDTO marcaDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _marcaService.CriarAsync(marca);
+            var marca = new Marca
+            {
+                Descricaomarca = marcaDto.Marca
+            };
+
+            await _marcaService.CriarAsync(marcaDto);
             return CreatedAtAction(nameof(GetMarca), new { id = marca.IdMarca }, marca);
         }
 

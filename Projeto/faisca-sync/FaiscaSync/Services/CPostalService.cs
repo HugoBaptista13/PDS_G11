@@ -1,4 +1,5 @@
-﻿using FaiscaSync.Models;
+﻿using FaiscaSync.DTO;
+using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,19 +27,29 @@ namespace FaiscaSync.Services
             return await _context.Cpostals.FindAsync(id);
         }
 
-        public async Task CriarAsync(Cpostal cpostal)
+        public async Task CriarAsync(CpostalDTO cpostalDto)
         {
+            // Converte o DTO para a entidade Cpostal
+            var cpostal = new Cpostal
+            {
+                Localidade = cpostalDto.Localidade
+            };
+
+            // Adiciona a entidade ao contexto e salva as alterações
             _context.Cpostals.Add(cpostal);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync(Cpostal cpostal)
+        public async Task<ResultadoOperacao> AtualizarAsync(int id, CpostalDTO cpostalDto)
         {
-            var exists = await _context.Cpostals.AnyAsync(cp => cp.IdCpostal == cpostal.IdCpostal);
-            if (!exists)
-                return ResultadoOperacao.Falha("Falha na atualização do Codigo Postal!");
 
-            _context.Entry(cpostal).State = EntityState.Modified;
+            var codPostExistente = await _context.Cpostals.FindAsync(id);
+            if (codPostExistente == null)
+                return ResultadoOperacao.Falha("Falha na atualização do Codigo Postal! Codigo Postal não encontrado.");
+
+            codPostExistente.Localidade = cpostalDto.Localidade;
+
+            _context.Entry(codPostExistente).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Código Postal atualizado com Sucesso!");
         }

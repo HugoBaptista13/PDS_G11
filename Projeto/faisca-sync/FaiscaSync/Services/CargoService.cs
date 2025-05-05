@@ -1,4 +1,5 @@
-﻿using FaiscaSync.Models;
+﻿using FaiscaSync.DTO;
+using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
@@ -29,19 +30,29 @@ namespace FaiscaSync.Services
             return await _context.Cargos.FindAsync(id);
         }
 
-        public async Task CriarAsync(Cargo cargo)
+        public async Task CriarAsync(CargoDTO cargoDto)
         {
+            // Converter o DTO para a entidade Cargo
+            var cargo = new Cargo
+            {
+                Nomecargo = cargoDto.Nomecargo
+            };
             _context.Cargos.Add(cargo);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync(Cargo cargo)
+        public async Task<ResultadoOperacao> AtualizarAsync(int id, CargoDTO cargoDto)
         {
-            var exists = await _context.Cargos.AnyAsync(c => c.IdCargo == cargo.IdCargo);
-            if (!exists)
-                return ResultadoOperacao.Falha("Falha na atualização do Cargo!");
+            var cargoExistente = await _context.Cargos.FindAsync(id);
+            if (cargoExistente == null)
+                return ResultadoOperacao.Falha("Falha na atualização do Cargo! Cargo não encontrado.");
 
-            _context.Entry(cargo).State = EntityState.Modified;
+            // Atualizar os campos do cargo com os valores do DTO
+            cargoExistente.Nomecargo = cargoDto.Nomecargo;
+
+            // Marcar a entidade como modificada
+            _context.Entry(cargoExistente).State = EntityState.Modified;
+
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Cargo atualizado com Sucesso!");
         }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using FaiscaSync.DTO;
 
 namespace FaiscaSync.Controllers
 {
@@ -47,12 +48,12 @@ namespace FaiscaSync.Controllers
         // PUT: api/Clientes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCliente(int id,[FromBody] Cliente cliente)
+        public async Task<IActionResult> PutCliente(int id,[FromBody] ClienteDTO clienteDto)
         {
-            if (id != cliente.IdCliente)
-                return BadRequest("ID no URL e ID no objeto não coincidem.");
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var updated = await _clienteService.AtualizarAsync(cliente);
+            var updated = await _clienteService.AtualizarAsync(id, clienteDto);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,12 +64,21 @@ namespace FaiscaSync.Controllers
         // POST: api/Clientes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Cliente>> PostCliente([FromBody] Cliente cliente)
+        public async Task<IActionResult> PostCliente([FromBody] ClienteDTO clienteDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _clienteService.CriarAsync(cliente);
+            // Converter o DTO para a entidade Cliente
+            var cliente = new Cliente
+            {
+                Nome = clienteDto.Nome,
+                Datanasc = clienteDto.Datanasc,
+                Nif = clienteDto.Nif,
+                IdMorada = clienteDto.IdMorada
+            };
+
+            await _clienteService.CriarAsync(clienteDto);
             return CreatedAtAction(nameof(GetCliente), new { id = cliente.IdCliente }, cliente);
         }
 
@@ -89,8 +99,8 @@ namespace FaiscaSync.Controllers
         {
             var cliente = await _clienteService.ObterPorIdAsync(id);
             return cliente != null
-                ? ResultadoOperacao.Ok("Aquisição encontrada.")
-        : ResultadoOperacao.Falha("Aquisição não encontrada.");
+                ? ResultadoOperacao.Ok("Cliente encontrado.")
+        : ResultadoOperacao.Falha("Cliente não encontrado.");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FaiscaSync.Models;
+﻿using FaiscaSync.DTO;
+using FaiscaSync.Models;
 namespace FaiscaSync.Services.Interface
 
 {
@@ -6,8 +7,8 @@ namespace FaiscaSync.Services.Interface
     {
         Task<List<Contato>> ObterTodosAsync();
         Task<Contato?> ObterPorIdAsync(int id);
-        Task CriarAsync(Contato contato);
-        Task<ResultadoOperacao> AtualizarAsync(Contato contato);
+        Task CriarAsync(ContatoDTO contatoDto);
+        Task<ResultadoOperacao> AtualizarAsync(int id, ContatoDTO contatoDto);
         Task<ResultadoOperacao> RemoverAsync(int id);
     }
 }

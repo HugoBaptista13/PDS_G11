@@ -1,4 +1,5 @@
-﻿using FaiscaSync.Models;
+﻿using FaiscaSync.DTO;
+using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,19 +25,27 @@ namespace FaiscaSync.Services
             return await _context.TipoVeiculos.FindAsync(id);
         }
 
-        public async Task CriarAsync(TipoVeiculo tipoVeiculo)
+        public async Task CriarAsync(TipoVeiculoDTO tipoVeiculoDto)
         {
+            var tipoVeiculo = new TipoVeiculo
+            {
+                Descricaotveiculo = tipoVeiculoDto.Tipo
+            };
+
             _context.TipoVeiculos.Add(tipoVeiculo);
             await _context.SaveChangesAsync();
         }
 
-        public async  Task<ResultadoOperacao> AtualizarAsync( TipoVeiculo tipoVeiculo)
+        public async  Task<ResultadoOperacao> AtualizarAsync(int id, TipoVeiculoDTO tipoVeiculoDto)
         {
-            var exists = await _context.TipoVeiculos.AnyAsync(a => a.IdTipoVeiculo == tipoVeiculo.IdTipoVeiculo);
-            if (!exists)
-                return ResultadoOperacao.Falha("Falha na atualização do Tipo de Veiculo!");
+            var tipoVeiculoExistente = await _context.TipoVeiculos.FindAsync(id);
 
-            _context.Entry(tipoVeiculo).State = EntityState.Modified;
+            if (tipoVeiculoExistente == null)
+                return ResultadoOperacao.Falha("Falha na atualização do Tipo de Veiculo! Tipo de Veiculo não encontrado.");
+
+            tipoVeiculoExistente.Descricaotveiculo = tipoVeiculoDto.Tipo;
+
+            _context.Entry(tipoVeiculoExistente).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Tipo de Veiculo atualizado com Sucesso!");
         }

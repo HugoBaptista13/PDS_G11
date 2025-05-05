@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using FaiscaSync.DTO;
 
 namespace FaiscaSync.Controllers
 {
@@ -47,12 +48,12 @@ namespace FaiscaSync.Controllers
         // PUT: api/Modelo/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutModelo(int id, [FromBody] Modelo modelo)
+        public async Task<IActionResult> PutModelo(int id, [FromBody] ModeloDTO modeloDto)
         {
-            if (id != modelo.IdModelo)
-                return BadRequest("ID no URL e ID no objeto não coincidem.");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var updated = await _modeloService.AtualizarAsync(modelo);
+            var updated = await _modeloService.AtualizarAsync(id, modeloDto);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,12 +64,18 @@ namespace FaiscaSync.Controllers
         // POST: api/Modelo
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Modelo>> PostModelo([FromBody]Modelo modelo)
+        public async Task<ActionResult<Modelo>> PostModelo([FromBody]ModeloDTO modeloDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _modeloService.CriarAsync(modelo);
+            var modelo = new Modelo
+            {
+                Nomemodelo = modeloDto.NomeModelo,
+                IdMarca = modeloDto.IdMarca
+            };
+
+            await _modeloService.CriarAsync(modeloDto);
             return CreatedAtAction(nameof(GetModelo), new { id = modelo.IdModelo }, modelo);
         }
 

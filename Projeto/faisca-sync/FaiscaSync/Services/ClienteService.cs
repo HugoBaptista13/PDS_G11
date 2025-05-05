@@ -1,4 +1,5 @@
-﻿using FaiscaSync.Models;
+﻿using FaiscaSync.DTO;
+using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
@@ -28,19 +29,33 @@ namespace FaiscaSync.Services
             return await _context.Clientes.FindAsync(id);
         }
 
-        public async Task CriarAsync(Cliente cliente)
+        public async Task CriarAsync(ClienteDTO clienteDto)
         {
+            var cliente = new Cliente
+            {
+                Nome = clienteDto.Nome,
+                Datanasc = clienteDto.Datanasc,
+                Nif = clienteDto.Nif,
+                IdMorada = clienteDto.IdMorada
+            };
+
             _context.Clientes.Add(cliente);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync( Cliente cliente)
+        public async Task<ResultadoOperacao> AtualizarAsync(int id, ClienteDTO clienteDto)
         {
-            var exists = await _context.Clientes.AnyAsync(c => c.IdCliente == cliente.IdCliente);
-            if (!exists)
-                return ResultadoOperacao.Falha("Falha na atualização do Cliente!");
+            var clienteExistente = await _context.Clientes.FindAsync(id);
 
-            _context.Entry(cliente).State = EntityState.Modified;
+            if (clienteExistente == null)
+                return ResultadoOperacao.Falha("Falha na atualização do Cliente! Cliente não encontrado.");
+
+            clienteExistente.Nome = clienteDto.Nome;
+            clienteExistente.Datanasc = clienteDto.Datanasc;
+            clienteExistente.Nif = clienteDto.Nif;
+            clienteExistente.IdMorada = clienteDto.IdMorada;
+            
+            _context.Entry(clienteExistente).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Cliente atualizado com Sucesso!");
         }

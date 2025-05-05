@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using FaiscaSync.DTO;
 
 namespace FaiscaSync.Controllers
 {
@@ -47,12 +48,12 @@ namespace FaiscaSync.Controllers
         // PUT: api/Morada/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMoradum(int id, [FromBody]Morada morada)
+        public async Task<IActionResult> PutMoradum(int id, [FromBody]MoradaDTO moradaDto)
         {
-            if (id != morada.IdMorada)
-                return BadRequest("ID no URL e ID no objeto não coincidem.");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var updated = await _moradaService.AtualizarAsync(morada);
+            var updated = await _moradaService.AtualizarAsync(id, moradaDto);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,12 +64,21 @@ namespace FaiscaSync.Controllers
         // POST: api/Morada
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Morada>> PostMorada([FromBody]Morada morada)
+        public async Task<ActionResult<Morada>> PostMorada([FromBody]MoradaDTO moradaDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _moradaService.CriarAsync(morada);
+            var morada = new Morada
+            {
+                Rua = moradaDto.Rua,
+                Numero = moradaDto.Numero,
+                Descricaomorada = moradaDto.Descricaomorada,
+                Pais = moradaDto.Pais,
+                IdCpostal = moradaDto.IdCpostal
+            };
+
+            await _moradaService.CriarAsync(moradaDto);
             return CreatedAtAction(nameof(GetMorada), new { id = morada.IdMorada }, morada);
         }
 

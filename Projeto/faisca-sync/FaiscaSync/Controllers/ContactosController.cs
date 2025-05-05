@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using FaiscaSync.DTO;
 
 namespace FaiscaSync.Controllers
 {
@@ -47,12 +48,12 @@ namespace FaiscaSync.Controllers
         // PUT: api/Contactos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutContato(int id, [FromBody]Contato contato)
+        public async Task<IActionResult> PutContato(int id, [FromBody]ContatoDTO contatoDto)
         {
-            if (id != contato.Idcontato)
-                return BadRequest("ID no URL e ID no objeto não coincidem.");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var updated = await _contactoService.AtualizarAsync(contato);
+            var updated = await _contactoService.AtualizarAsync(id, contatoDto);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,12 +64,20 @@ namespace FaiscaSync.Controllers
         // POST: api/Contactos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Contato>> PostContato(Contato contato)
+        public async Task<ActionResult<Contato>> PostContato(ContatoDTO contatoDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _contactoService.CriarAsync(contato);
+            var contato = new Contato
+            {
+                Detalhescontato = contatoDto.Contato,
+                IdCliente = contatoDto.IdCliente,
+                IdTipoContato = contatoDto.IdTipoContato,
+                IdFuncionario = contatoDto.IdFuncionario
+            };
+
+            await _contactoService.CriarAsync(contatoDto);
             return CreatedAtAction(nameof(GetContato), new { id = contato.Idcontato }, contato);
         }
 
@@ -89,8 +98,8 @@ namespace FaiscaSync.Controllers
         {
             var contato = await _contactoService.ObterPorIdAsync(id);
             return contato != null
-                ? ResultadoOperacao.Ok("Aquisição encontrada.")
-        : ResultadoOperacao.Falha("Aquisição não encontrada.");
+                ? ResultadoOperacao.Ok("Contato encontrado.")
+        : ResultadoOperacao.Falha("Contato não encontrado.");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FaiscaSync.Models;
+﻿using FaiscaSync.DTO;
+using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,19 +26,48 @@ namespace FaiscaSync.Services
             return await _context.Veiculos.FindAsync(id);
         }
 
-        public async Task CriarAsync(Veiculo veiculo)
+        public async Task CriarAsync(VeiculoDTO veiculoDto)
         {
+            var veiculo = new Veiculo
+            {
+                Matricula = veiculoDto.Matricula,
+                Chassi = veiculoDto.Chassi,
+                Anofabrico = veiculoDto.AnoFabrico,
+                Cor = veiculoDto.Cor,
+                Quilometros = veiculoDto.Quilometragem,
+                Preco = veiculoDto.Preco,
+                IdMotor = veiculoDto.IdMotor,
+                IdEstadoVeiculo = veiculoDto.IdEstadoVeiculo,
+                IdTipoVeiculo = veiculoDto.IdTipoVeiculo,
+                IdModelo = veiculoDto.IdModelo,
+                IdAquisicao = veiculoDto.IdAquisicao
+
+            };
+
             _context.Veiculos.Add(veiculo);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync( Veiculo veiculo)
+        public async Task<ResultadoOperacao> AtualizarAsync(int id, VeiculoDTO veiculoDto)
         {
-            var exists = await _context.Veiculos.AnyAsync(a => a.IdVeiculo == veiculo.IdVeiculo);
-            if (!exists)
-                return ResultadoOperacao.Falha("Falha na atualização do Veiculo!");
+            var veiculoExistente = await _context.Veiculos.FindAsync(id);
 
-            _context.Entry(veiculo).State = EntityState.Modified;
+            if (veiculoExistente == null)
+                return ResultadoOperacao.Falha("Falha na atualização do Veiculo! Veiculo não encontrado.");
+
+            veiculoExistente.Matricula = veiculoDto.Matricula;
+            veiculoExistente.Chassi = veiculoDto.Chassi;
+            veiculoExistente.Anofabrico = veiculoDto.AnoFabrico;
+            veiculoExistente.Cor = veiculoDto.Cor;
+            veiculoExistente.Quilometros = veiculoDto.Quilometragem;
+            veiculoExistente.Preco = veiculoDto.Preco;
+            veiculoExistente.IdMotor = veiculoDto.IdMotor;
+            veiculoExistente.IdEstadoVeiculo = veiculoDto.IdEstadoVeiculo;
+            veiculoExistente.IdTipoVeiculo = veiculoDto.IdTipoVeiculo;
+            veiculoExistente.IdModelo = veiculoDto.IdModelo;
+            veiculoExistente.IdAquisicao = veiculoDto.IdAquisicao;
+
+            _context.Entry(veiculoExistente).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Veiculo atualizado com Sucesso!");
         }

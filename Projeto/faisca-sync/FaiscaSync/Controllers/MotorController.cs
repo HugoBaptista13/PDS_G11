@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using FaiscaSync.DTO;
 
 namespace FaiscaSync.Controllers
 {
@@ -47,12 +48,12 @@ namespace FaiscaSync.Controllers
         // PUT: api/Motor/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMotor(int id,[FromBody] Motor motor)
+        public async Task<IActionResult> PutMotor(int id,[FromBody] MotorDTO motorDto)
         {
-            if (id != motor.IdMotor)
-                return BadRequest("ID no URL e ID no objeto não coincidem.");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var updated = await _motorService.AtualizarAsync(motor);
+            var updated = await _motorService.AtualizarAsync(id, motorDto);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,12 +64,19 @@ namespace FaiscaSync.Controllers
         // POST: api/Motor
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Motor>> PostMotor([FromBody]Motor motor)
+        public async Task<ActionResult<Motor>> PostMotor([FromBody]MotorDTO motorDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _motorService.CriarAsync(motor);
+            var motor = new Motor
+            {
+                Tipomotor = motorDto.TipoMotor,
+                Potencia = motorDto.Potencia,
+                Combustivel = motorDto.Combustivel
+            };
+
+            await _motorService.CriarAsync(motorDto);
             return CreatedAtAction(nameof(GetMotor), new { id = motor.IdMotor }, motor);
         }
 

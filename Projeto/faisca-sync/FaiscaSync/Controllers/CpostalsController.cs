@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using FaiscaSync.DTO;
 
 namespace FaiscaSync.Controllers
 {
@@ -47,12 +48,12 @@ namespace FaiscaSync.Controllers
         // PUT: api/Cpostals/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCpostal(int id, [FromBody]Cpostal cpostal)
+        public async Task<IActionResult> PutCpostal(int id, [FromBody]CpostalDTO cpostalDto)
         {
-            if (id != cpostal.IdCpostal)
-                return BadRequest("ID no URL e ID no objeto não coincidem.");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var updated = await _cPostalService.AtualizarAsync(cpostal);
+            var updated = await _cPostalService.AtualizarAsync(id, cpostalDto);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,12 +64,20 @@ namespace FaiscaSync.Controllers
         // POST: api/Cpostals
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Cpostal>> PostCpostal([FromBody]Cpostal cpostal)
+        public async Task<ActionResult<Cpostal>> PostCpostal([FromBody] CpostalDTO cpostalDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _cPostalService.CriarAsync(cpostal);
+            // Cria o objeto no banco de dados
+            var cpostal = new Cpostal
+            {
+                Localidade = cpostalDto.Localidade
+            };
+
+            await _cPostalService.CriarAsync(cpostalDto);
+
+            // Retorna o objeto criado com o ID gerado
             return CreatedAtAction(nameof(GetCpostal), new { id = cpostal.IdCpostal }, cpostal);
         }
 

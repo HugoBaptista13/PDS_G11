@@ -1,10 +1,11 @@
-﻿using FaiscaSync.Models;
+﻿using FaiscaSync.DTO;
+using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace FaiscaSync.Services
 {
-    public class EstadoVeiculoService : IEstadoVeiucloService
+    public class EstadoVeiculoService : IEstadoVeiculoService
     {
         private readonly FsContext _context;
         private readonly IConfiguration _configuration;
@@ -25,21 +26,28 @@ namespace FaiscaSync.Services
             return await _context.EstadoVeiculos.FindAsync(id);
         }
 
-        public async Task CriarAsync(EstadoVeiculo estadoVeiculo)
+        public async Task CriarAsync(EstadoVeiculoDTO estadoVeiculoDto)
         {
+            var estadoVeiculo = new EstadoVeiculo
+            {
+                Descricaoestadoveiculo = estadoVeiculoDto.Estado
+            };
             _context.EstadoVeiculos.Add(estadoVeiculo);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync( EstadoVeiculo estadoVeiculo)
+        public async Task<ResultadoOperacao> AtualizarAsync(int id, EstadoVeiculoDTO estadoVeiculoDto)
         {
-            var exists = await _context.EstadoVeiculos.AnyAsync(a => a.IdEstadoVeiculo == estadoVeiculo.IdEstadoVeiculo);
-            if (!exists)
-                return ResultadoOperacao.Falha("Falha na atualização do Estado Veiculo!");
+            var estadoVeiculoExistente = await _context.EstadoVeiculos.FindAsync(id);
 
-            _context.Entry(estadoVeiculo).State = EntityState.Modified;
+            if (estadoVeiculoExistente == null)
+                return ResultadoOperacao.Falha("Falha na atualização do estado Veiculo! Estado Veiculo não encontrado.");
+
+            estadoVeiculoExistente.Descricaoestadoveiculo = estadoVeiculoDto.Estado;
+
+            _context.Entry(estadoVeiculoExistente).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return ResultadoOperacao.Ok("Estado Veiculo atualizada com Sucesso!");
+            return ResultadoOperacao.Ok("Estado Veiculo atualizado com Sucesso!");
         }
 
         public async Task<ResultadoOperacao> RemoverAsync(int id)

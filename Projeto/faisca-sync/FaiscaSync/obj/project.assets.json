@@ -8243,23 +8243,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\luisf\\.nuget\\packages\\": {},
+    "C:\\Users\\Baptista\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\FaiscaSync.csproj",
+      "projectUniqueName": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FaiscaSync.csproj",
       "projectName": "FaiscaSync",
-      "projectPath": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\FaiscaSync.csproj",
-      "packagesPath": "C:\\Users\\luisf\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v2\\FaiscaSync\\obj\\",
+      "projectPath": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FaiscaSync.csproj",
+      "packagesPath": "C:\\Users\\Baptista\\.nuget\\packages\\",
+      "outputPath": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\luisf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Baptista\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -8268,7 +8268,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8347,7 +8346,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

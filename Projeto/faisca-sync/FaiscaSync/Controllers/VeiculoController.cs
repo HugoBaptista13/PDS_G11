@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using FaiscaSync.DTO;
 
 namespace FaiscaSync.Controllers
 {
@@ -47,12 +48,12 @@ namespace FaiscaSync.Controllers
         // PUT: api/Veiculo/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutVeiculo(int id, [FromBody]Veiculo veiculo)
+        public async Task<IActionResult> PutVeiculo(int id, [FromBody]VeiculoDTO veiculoDto)
         {
-            if (id != veiculo.IdVeiculo)
-                return BadRequest("ID no URL e ID no objeto não coincidem.");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var updated = await _veiculoService.AtualizarAsync(veiculo);
+            var updated = await _veiculoService.AtualizarAsync(id, veiculoDto);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,12 +64,27 @@ namespace FaiscaSync.Controllers
         // POST: api/Veiculo
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Veiculo>> PostVeiculo([FromBody]Veiculo veiculo)
+        public async Task<ActionResult<Veiculo>> PostVeiculo([FromBody]VeiculoDTO veiculoDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _veiculoService.CriarAsync(veiculo);
+            var veiculo = new Veiculo
+            {
+                Matricula = veiculoDto.Matricula,
+                Chassi = veiculoDto.Chassi,
+                Anofabrico = veiculoDto.AnoFabrico,
+                Cor = veiculoDto.Cor,
+                Quilometros = veiculoDto.Quilometragem,
+                Preco = veiculoDto.Preco,
+                IdMotor = veiculoDto.IdMotor,
+                IdEstadoVeiculo = veiculoDto.IdEstadoVeiculo,
+                IdTipoVeiculo = veiculoDto.IdTipoVeiculo,
+                IdModelo = veiculoDto.IdModelo,
+                IdAquisicao = veiculoDto.IdAquisicao
+            };
+
+            await _veiculoService.CriarAsync(veiculoDto);
             return CreatedAtAction(nameof(GetVeiculo), new { id = veiculo.IdVeiculo }, veiculo);
         }
 

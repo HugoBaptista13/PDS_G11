@@ -48,7 +48,7 @@ builder.Services.AddScoped<IContatoService,ContatoService>();
 builder.Services.AddScoped<ICPostalService,CPostalService>();
 builder.Services.AddScoped<IEstadoGarantiaService,EstadoGarantiaService>();
 builder.Services.AddScoped<IEstadoManutencaoService,EstadoManutencaoService>();
-builder.Services.AddScoped<IEstadoVeiucloService,EstadoVeiculoService>();
+builder.Services.AddScoped<IEstadoVeiculoService,EstadoVeiculoService>();
 builder.Services.AddScoped<IFaturaService,FaturaService>();
 builder.Services.AddScoped<IFuncionarioService,FuncionarioService>();
 builder.Services.AddScoped<IGarantiaService,GarantiaService>();

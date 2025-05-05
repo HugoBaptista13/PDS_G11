@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using FaiscaSync.DTO;
 
 namespace FaiscaSync.Controllers
 {
@@ -47,12 +48,12 @@ namespace FaiscaSync.Controllers
         // PUT: api/TipoVeiculo/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTipoVeiculo(int id, [FromBody]TipoVeiculo tipoVeiculo)
+        public async Task<IActionResult> PutTipoVeiculo(int id, [FromBody]TipoVeiculoDTO tipoVeiculoDto)
         {
-            if (id != tipoVeiculo.IdTipoVeiculo)
-                return BadRequest("ID no URL e ID no objeto não coincidem.");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var updated = await _tipoVeiculoService.AtualizarAsync(tipoVeiculo);
+            var updated = await _tipoVeiculoService.AtualizarAsync(id, tipoVeiculoDto);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,12 +64,17 @@ namespace FaiscaSync.Controllers
         // POST: api/TipoVeiculo
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TipoVeiculo>> PostTipoVeiculo([FromBody]TipoVeiculo tipoVeiculo)
+        public async Task<ActionResult<TipoVeiculo>> PostTipoVeiculo([FromBody]TipoVeiculoDTO tipoVeiculoDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _tipoVeiculoService.CriarAsync(tipoVeiculo);
+            var tipoVeiculo = new TipoVeiculo
+            {
+                Descricaotveiculo = tipoVeiculoDto.Tipo
+            };
+
+            await _tipoVeiculoService.CriarAsync(tipoVeiculoDto);
             return CreatedAtAction(nameof(GetTipoVeiculo), new { id = tipoVeiculo.IdTipoVeiculo }, tipoVeiculo);
         }
 
