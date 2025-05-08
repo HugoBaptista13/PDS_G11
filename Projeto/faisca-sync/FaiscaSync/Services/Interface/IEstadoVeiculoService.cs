@@ -1,14 +1,13 @@
-﻿using FaiscaSync.DTO;
-using FaiscaSync.Models;
+﻿using FaiscaSync.Models;
 namespace FaiscaSync.Services.Interface
 
 {
-    public interface IEstadoVeiculoService
+    public interface IEstadoVeiucloService
     {
         Task<List<EstadoVeiculo>> ObterTodosAsync();
         Task<EstadoVeiculo?> ObterPorIdAsync(int id);
-        Task CriarAsync(EstadoVeiculoDTO estadoVeiculo);
-        Task<ResultadoOperacao> AtualizarAsync(int id, EstadoVeiculoDTO estadoVeiculoDto);
+        Task CriarAsync(EstadoVeiculo estadoVeiculo);
+        Task<ResultadoOperacao> AtualizarAsync(EstadoVeiculo estadoVeiculo);
         Task<ResultadoOperacao> RemoverAsync(int id);
     }
 }

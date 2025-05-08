@@ -1,4 +1,5 @@
-﻿using FaiscaSync.Models;
+﻿using FaiscaSync.DTO;
+using FaiscaSync.Models;
 namespace FaiscaSync.Services.Interface
 {
     public interface IPosVendaService
@@ -8,6 +9,9 @@ namespace FaiscaSync.Services.Interface
         Task CriarAsync(PosVenda posVenda);
         Task<ResultadoOperacao> AtualizarAsync( PosVenda posVenda);
         Task<ResultadoOperacao> RemoverAsync(int id);
+
+        Task<ResultadoOperacao> CriarSolicitacaoAsync(CriarPosVendaDTO dto);
+ 
     }
 }
 

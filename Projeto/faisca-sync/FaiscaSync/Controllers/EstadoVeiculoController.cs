@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
-using FaiscaSync.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -16,26 +16,28 @@ namespace FaiscaSync.Controllers
     [ApiController]
     public class EstadoVeiculoController : ControllerBase
     {
-        private readonly IEstadoVeiculoService _estadoVeiculoService;
+        private readonly IEstadoVeiucloService _estadoVeiucloService;
 
-        public EstadoVeiculoController(IEstadoVeiculoService estadoVeiculoService)
+        public EstadoVeiculoController(IEstadoVeiucloService estadoVeiucloService)
         {
-            _estadoVeiculoService = estadoVeiculoService;
+            _estadoVeiucloService = estadoVeiucloService;
         }
 
         // GET: api/EstadoVeiculo
-        [HttpGet]
+        [Authorize(Roles = "Administrador")]
+        [HttpGet("mostrar-estados-veiculo")]
         public async Task<ActionResult<IEnumerable<EstadoVeiculo>>> GetEstadoVeiculos()
         {
-            var estadoVeiculo = await _estadoVeiculoService.ObterTodosAsync();
+            var estadoVeiculo = await _estadoVeiucloService.ObterTodosAsync();
             return Ok(estadoVeiculo);
         }
 
         // GET: api/EstadoVeiculo/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpGet("mostrar-estado-veiculo-{id}")]
         public async Task<ActionResult<EstadoVeiculo>> GetEstadoVeiculo(int id)
         {
-            var estadoVeiculo = await _estadoVeiculoService.ObterPorIdAsync(id);
+            var estadoVeiculo = await _estadoVeiucloService.ObterPorIdAsync(id);
 
             if (estadoVeiculo == null)
             {
@@ -47,13 +49,14 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/EstadoVeiculo/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutEstadoVeiculo(int id, [FromBody] EstadoVeiculoDTO estadoVeiculoDto)
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpPut("atualizar-estado-veiculo-{id}")]
+        public async Task<IActionResult> PutEstadoVeiculo(int id, [FromBody] EstadoVeiculo estadoVeiculo)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (id != estadoVeiculo.IdEstadoVeiculo)
+                return BadRequest("ID no URL e ID no objeto não coincidem.");
 
-            var updated = await _estadoVeiculoService.AtualizarAsync(id, estadoVeiculoDto);
+            var updated = await _estadoVeiucloService.AtualizarAsync(estadoVeiculo);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,26 +66,23 @@ namespace FaiscaSync.Controllers
 
         // POST: api/EstadoVeiculo
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<EstadoVeiculo>> PostEstadoVeiculo([FromBody]EstadoVeiculoDTO estadoVeiculoDto)
+        [Authorize(Roles = "Administrador")]
+        [HttpPost("criar-estado-veiculo")]
+        public async Task<ActionResult<EstadoVeiculo>> PostEstadoVeiculo([FromBody]EstadoVeiculo estadoVeiculo)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var estadoVeiculo = new EstadoVeiculo
-            {
-                Descricaoestadoveiculo = estadoVeiculoDto.Estado
-            };
-
-            await _estadoVeiculoService.CriarAsync(estadoVeiculoDto);
+            await _estadoVeiucloService.CriarAsync(estadoVeiculo);
             return CreatedAtAction(nameof(GetEstadoVeiculo), new { id = estadoVeiculo.IdEstadoVeiculo }, estadoVeiculo);
         }
 
         // DELETE: api/EstadoVeiculo/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("apagar-estado-veiuclo{id}")]
         public async Task<IActionResult> DeleteEstadoVeiculo(int id)
         {
-            var deleted = await _estadoVeiculoService.RemoverAsync(id);
+            var deleted = await _estadoVeiucloService.RemoverAsync(id);
             if (!deleted.Sucesso)
             {
                 return NotFound(new { mensagem = deleted.Mensagem });
@@ -91,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> EstadoVeiculoExists(int id)
-        {
-            var estadoVeiculo = await _estadoVeiculoService.ObterPorIdAsync(id);
-            return estadoVeiculo != null
-                ? ResultadoOperacao.Ok("Estado Veiculo encontrado.")
-        : ResultadoOperacao.Falha("Estado Veiculo não encontrado.");
-        }
     }
 }

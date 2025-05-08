@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FaiscaSync.DTO;
 using FaiscaSync.Models;
 using FaiscaSync.Services;
 using FaiscaSync.Services.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Cargos
-        [HttpGet]
+        [Authorize(Roles = "Administrador")]
+        [HttpGet("mostrar-todos-cargos")]
         public async Task<ActionResult<IEnumerable<Cargo>>> GetCargos()
         {
            var cargo =  await _cargoService.ObterTodosAsync();
@@ -32,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Cargos/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpGet("mostrar-cargo-{id}")]
         public async Task<ActionResult<Cargo>> GetCargo(int id)
         {
             var cargo = await _cargoService.ObterPorIdAsync(id);
@@ -47,38 +49,37 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/Cargos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCargo(int id, [FromBody] CargoDTO cargoDto)
+        [Authorize(Roles = "Administrador")]
+        [HttpPut("atualizar-cargo-{id}")]
+        public async Task<IActionResult> PutCargo(int id, [FromBody] Cargo cargo)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (id != cargo.IdCargo)
+                return BadRequest("ID no URL e ID no objeto não coincidem.");
 
-            var resultado = await _cargoService.AtualizarAsync(id, cargoDto);
+            var updated = await _cargoService.AtualizarAsync(cargo);
 
-            if (!resultado.Sucesso)
-                return NotFound(new { mensagem = resultado.Mensagem });
+            if (!updated.Sucesso)
+                return NotFound(new { mensagem = updated.Mensagem });
 
-            return Ok(new { mensagem = resultado.Mensagem });
+            return Ok(new { mensagem = updated.Mensagem });
         }
 
         // POST: api/Cargos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<IActionResult> PostCargo([FromBody]CargoDTO cargoDto)
+        [Authorize(Roles = "Administrador")]
+        [HttpPost ("criar-cargo")]
+        public async Task<IActionResult> PostCargo([FromBody]Cargo cargo)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var cargo = new Cargo
-            {
-                Nomecargo = cargoDto.Nomecargo
-            };
-            await _cargoService.CriarAsync(cargoDto);
+            await _cargoService.CriarAsync(cargo);
             return CreatedAtAction(nameof(GetCargo), new { id = cargo.IdCargo }, cargo);
         }
 
         // DELETE: api/Cargos/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("apagar-cargo-{id}")]
         public async Task<IActionResult> DeleteCargo(int id)
         {
             var deleted = await _cargoService.RemoverAsync(id);
@@ -89,14 +90,6 @@ namespace FaiscaSync.Controllers
 
             return NotFound(new { mensagem = deleted.Mensagem });
 
-        }
-
-        private async Task<ResultadoOperacao> CargoExists(int id)
-        {
-            var cargo = await _cargoService.ObterPorIdAsync(id);
-            return cargo != null
-                ? ResultadoOperacao.Ok("Cargo encontrado.")
-        : ResultadoOperacao.Falha("Cargo não encontrado.");
         }
     }
 }

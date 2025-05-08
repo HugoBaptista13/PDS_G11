@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
-using FaiscaSync.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -24,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/TipoContato
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-tipos-contacto")]
         public async Task<ActionResult<IEnumerable<TipoContato>>> GetTipoContatos()
         {
             var tipoContato = await _tipoContactoService.ObterTodosAsync();
@@ -32,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/TipoContato/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-tipo-contacto-{id}")]
         public async Task<ActionResult<TipoContato>> GetTipoContato(int id)
         {
             var tipoContato = await _tipoContactoService.ObterPorIdAsync(id);
@@ -47,13 +49,14 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/TipoContato/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTipoContato(int id,[FromBody] TipoContatoDTO tipoContatoDto)
+        [Authorize(Roles = "Administrador")]
+        [HttpPut("atualizar-tipo-contacto-{id}")]
+        public async Task<IActionResult> PutTipoContato(int id,[FromBody] TipoContato tipoContato)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (id != tipoContato.IdTipoContato)
+                return BadRequest("ID no URL e ID no objeto não coincidem.");
 
-            var updated = await _tipoContactoService.AtualizarAsync(id, tipoContatoDto);
+            var updated = await _tipoContactoService.AtualizarAsync(tipoContato);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,23 +66,20 @@ namespace FaiscaSync.Controllers
 
         // POST: api/TipoContato
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<TipoContato>> PostTipoContato([FromBody]TipoContatoDTO tipoContatoDto)
+        [Authorize(Roles = "Administrador")]
+        [HttpPost("criar-tipo-contacto")]
+        public async Task<ActionResult<TipoContato>> PostTipoContato([FromBody]TipoContato tipoContato)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var tipoContato = new TipoContato
-            {
-                Descricaotipocontato = tipoContatoDto.TipoContato,
-            };
-
-            await _tipoContactoService.CriarAsync(tipoContatoDto);
+            await _tipoContactoService.CriarAsync(tipoContato);
             return CreatedAtAction(nameof(GetTipoContato), new { id = tipoContato.IdTipoContato }, tipoContato);
         }
 
         // DELETE: api/TipoContato/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("apagar-tipo-contacto-{id}")]
         public async Task<IActionResult> DeleteTipoContato(int id)
         {
             var deleted = await _tipoContactoService.RemoverAsync(id);
@@ -91,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> TipoContatoExists(int id)
-        {
-            var tipoContato = await _tipoContactoService.ObterPorIdAsync(id);
-            return tipoContato != null
-                ? ResultadoOperacao.Ok("Tipo de Contacto encontrado.")
-        : ResultadoOperacao.Falha("Tipo de Contacto não encontrado.");
-        }
     }
 }

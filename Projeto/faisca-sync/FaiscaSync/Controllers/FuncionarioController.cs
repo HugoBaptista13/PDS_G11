@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
-using FaiscaSync.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -24,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Funcionario
-        [HttpGet]
+        [Authorize(Roles = "Administrador")]
+        [HttpGet("mostrar-todos-funcionarios")]
         public async Task<ActionResult<IEnumerable<Funcionario>>> GetFuncionarios()
         {
             var funcionario = await _funcionarioService.ObterTodosAsync();
@@ -32,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Funcionario/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpGet("mostrar-funcionario-{id}")]
         public async Task<ActionResult<Funcionario>> GetFuncionario(int id)
         {
             var funcionario = await _funcionarioService.ObterPorIdAsync(id);
@@ -47,13 +49,14 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/Funcionario/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutFuncionario(int id, FuncionarioDTO funcionarioDto)
+        [Authorize(Roles = "Administrador")]
+        [HttpPut("atualizar-funcionario-{id}")]
+        public async Task<IActionResult> PutFuncionario(int id, Funcionario funcionario)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (id != funcionario.IdFuncionario)
+                return BadRequest("ID no URL e ID no objeto não coincidem.");
 
-            var updated = await _funcionarioService.AtualizarAsync(id, funcionarioDto);
+            var updated = await _funcionarioService.AtualizarAsync(funcionario);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,26 +66,20 @@ namespace FaiscaSync.Controllers
 
         // POST: api/Funcionario
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Funcionario>> PostFuncionario(FuncionarioDTO funcionarioDto)
+        [Authorize(Roles = "Administrador")]
+        [HttpPost("criar-funcionario")]
+        public async Task<ActionResult<Funcionario>> PostFuncionario(Funcionario funcionario)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var funcionario = new Funcionario
-            {
-                Nome = funcionarioDto.Nome,
-                Datacontratacao = funcionarioDto.DataContrato,
-                Datanascimento = funcionarioDto.DataNasc,
-                IdCargo = funcionarioDto.IdCargo
-            };
-
-            await _funcionarioService.CriarAsync(funcionarioDto);
+            await _funcionarioService.CriarAsync(funcionario);
             return CreatedAtAction(nameof(GetFuncionario), new { id = funcionario.IdFuncionario }, funcionario);
         }
 
         // DELETE: api/Funcionario/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("apagar-funcionario-{id}")]
         public async Task<IActionResult> DeleteFuncionario(int id)
         {
             var deleted = await _funcionarioService.RemoverAsync(id);
@@ -94,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> FuncionarioExists(int id)
-        {
-            var funcionario = await _funcionarioService.ObterPorIdAsync(id);
-            return funcionario != null
-                ? ResultadoOperacao.Ok("Funcionário encontrado.")
-        : ResultadoOperacao.Falha("Funcionário não encontrado.");
-        }
     }
 }

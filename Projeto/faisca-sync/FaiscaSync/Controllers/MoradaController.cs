@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
-using FaiscaSync.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -24,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Morada
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-todas-moradas")]
         public async Task<ActionResult<IEnumerable<Morada>>> GetMorada()
         {
             var morada = await _moradaService.ObterTodosAsync();
@@ -32,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Morada/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-morada-{id}")]
         public async Task<ActionResult<Morada>> GetMorada(int id)
         {
             var morada = await _moradaService.ObterPorIdAsync(id);
@@ -47,13 +49,14 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/Morada/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutMoradum(int id, [FromBody]MoradaDTO moradaDto)
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPut("atualizar-morada{id}")]
+        public async Task<IActionResult> PutMoradum(int id, [FromBody]Morada morada)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (id != morada.IdMorada)
+                return BadRequest("ID no URL e ID no objeto não coincidem.");
 
-            var updated = await _moradaService.AtualizarAsync(id, moradaDto);
+            var updated = await _moradaService.AtualizarAsync(morada);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,27 +66,20 @@ namespace FaiscaSync.Controllers
 
         // POST: api/Morada
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Morada>> PostMorada([FromBody]MoradaDTO moradaDto)
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpPost("criar-morada")]
+        public async Task<ActionResult<Morada>> PostMorada([FromBody]Morada morada)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var morada = new Morada
-            {
-                Rua = moradaDto.Rua,
-                Numero = moradaDto.Numero,
-                Descricaomorada = moradaDto.Descricaomorada,
-                Pais = moradaDto.Pais,
-                IdCpostal = moradaDto.IdCpostal
-            };
-
-            await _moradaService.CriarAsync(moradaDto);
+            await _moradaService.CriarAsync(morada);
             return CreatedAtAction(nameof(GetMorada), new { id = morada.IdMorada }, morada);
         }
 
         // DELETE: api/Morada/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpDelete("eliminar-morada-{id}")]
         public async Task<IActionResult> DeleteMorada(int id)
         {
             var deleted = await _moradaService.RemoverAsync(id);
@@ -95,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> MoradaExists(int id){
-        
-            var morada = await _moradaService.ObterPorIdAsync(id);
-            return  morada != null
-                ? ResultadoOperacao.Ok("Morada encontrada.")
-        : ResultadoOperacao.Falha("Morada não encontrada.");
-        }
     }
 }

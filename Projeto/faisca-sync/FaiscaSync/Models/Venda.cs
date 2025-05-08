@@ -17,6 +17,10 @@ public partial class Venda
 
     public int IdFuncionario { get; set; }
 
+    public DateTime DataProposta { get; set; }
+    public bool AprovadoFinanceiro { get; set; }
+    public bool Concluida { get; set; }
+
     public virtual ICollection<Fatura> Faturas { get; set; } = new List<Fatura>();
 
     public virtual Cliente IdClienteNavigation { get; set; } = null!;

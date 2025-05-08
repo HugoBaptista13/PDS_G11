@@ -2,10 +2,10 @@
   "openapi": "3.0.1",
   "info": {
     "title": "FaiscaSync",
-    "version": "1.0"
+    "version": "v1"
   },
   "paths": {
-    "/api/Aquisicaos": {
+    "/api/Aquisicaos/mostrar-aquisicoes": {
       "get": {
         "tags": [
           "Aquisicaos"
@@ -41,38 +41,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Aquisicaos"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AquisicaoDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AquisicaoDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AquisicaoDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
       }
     },
-    "/api/Aquisicaos/{id}": {
+    "/api/Aquisicaos/mostrar-aquisicao-{id}": {
       "get": {
         "tags": [
           "Aquisicaos"
@@ -110,7 +81,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Aquisicaos/atualizar-{id}": {
       "put": {
         "tags": [
           "Aquisicaos"
@@ -130,17 +103,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AquisicaoDTO"
+                "$ref": "#/components/schemas/Aquisicao"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AquisicaoDTO"
+                "$ref": "#/components/schemas/Aquisicao"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AquisicaoDTO"
+                "$ref": "#/components/schemas/Aquisicao"
               }
             }
           }
@@ -150,7 +123,9 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Aquisicaos/apagar-{id}": {
       "delete": {
         "tags": [
           "Aquisicaos"
@@ -173,7 +148,126 @@
         }
       }
     },
-    "/api/Cargos": {
+    "/api/Aquisicaos/nova-aquisicao": {
+      "post": {
+        "tags": [
+          "Aquisicaos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aquisicao"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aquisicao"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aquisicao"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Aquisicaos/submeter/{funcionarioId}": {
+      "post": {
+        "tags": [
+          "Aquisicaos"
+        ],
+        "parameters": [
+          {
+            "name": "funcionarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Aquisicaos/aprovar-financeiro/{id}": {
+      "put": {
+        "tags": [
+          "Aquisicaos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Aquisicaos/{aquisicaoId}/aprovar-admin": {
+      "post": {
+        "tags": [
+          "Aquisicaos"
+        ],
+        "parameters": [
+          {
+            "name": "aquisicaoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NovoVeiculoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NovoVeiculoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NovoVeiculoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cargos/mostrar-todos-cargos": {
       "get": {
         "tags": [
           "Cargos"
@@ -209,38 +303,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Cargos"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CargoDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CargoDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CargoDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
       }
     },
-    "/api/Cargos/{id}": {
+    "/api/Cargos/mostrar-cargo-{id}": {
       "get": {
         "tags": [
           "Cargos"
@@ -278,7 +343,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Cargos/atualizar-cargo-{id}": {
       "put": {
         "tags": [
           "Cargos"
@@ -298,17 +365,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CargoDTO"
+                "$ref": "#/components/schemas/Cargo"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CargoDTO"
+                "$ref": "#/components/schemas/Cargo"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CargoDTO"
+                "$ref": "#/components/schemas/Cargo"
               }
             }
           }
@@ -318,7 +385,40 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Cargos/criar-cargo": {
+      "post": {
+        "tags": [
+          "Cargos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cargo"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cargo"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cargo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cargos/apagar-cargo-{id}": {
       "delete": {
         "tags": [
           "Cargos"
@@ -341,7 +441,7 @@
         }
       }
     },
-    "/api/Clientes": {
+    "/api/Clientes/mostrar-todos-clientes": {
       "get": {
         "tags": [
           "Clientes"
@@ -377,38 +477,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Clientes"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ClienteDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ClienteDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ClienteDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
       }
     },
-    "/api/Clientes/{id}": {
+    "/api/Clientes/mostrar-cliente-{id}": {
       "get": {
         "tags": [
           "Clientes"
@@ -446,7 +517,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Clientes/atualizar-cliente-{id}": {
       "put": {
         "tags": [
           "Clientes"
@@ -466,17 +539,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ClienteDTO"
+                "$ref": "#/components/schemas/Cliente"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ClienteDTO"
+                "$ref": "#/components/schemas/Cliente"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ClienteDTO"
+                "$ref": "#/components/schemas/Cliente"
               }
             }
           }
@@ -486,7 +559,57 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Clientes/criar-cliente": {
+      "post": {
+        "tags": [
+          "Clientes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Clientes/apagar-cliente-{id}": {
       "delete": {
         "tags": [
           "Clientes"
@@ -509,7 +632,7 @@
         }
       }
     },
-    "/api/CoberturaGarantia": {
+    "/api/CoberturaGarantia/mostrar-coberturas-garantia": {
       "get": {
         "tags": [
           "CoberturaGarantia"
@@ -545,7 +668,91 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/CoberturaGarantia/mostrar-cobertura-garantia-{id}": {
+      "get": {
+        "tags": [
+          "CoberturaGarantia"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoberturaGarantia"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoberturaGarantia"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoberturaGarantia"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CoberturaGarantia/atualizar-cobertura-{id}": {
+      "put": {
+        "tags": [
+          "CoberturaGarantia"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoberturaGarantia"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoberturaGarantia"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoberturaGarantia"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CoberturaGarantia/Criar Cobertura Garantia": {
       "post": {
         "tags": [
           "CoberturaGarantia"
@@ -593,85 +800,7 @@
         }
       }
     },
-    "/api/CoberturaGarantia/{id}": {
-      "get": {
-        "tags": [
-          "CoberturaGarantia"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoberturaGarantia"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoberturaGarantia"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CoberturaGarantia"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "CoberturaGarantia"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CoberturaGarantia"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CoberturaGarantia"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CoberturaGarantia"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/CoberturaGarantia/apagar-cobertura-{id}": {
       "delete": {
         "tags": [
           "CoberturaGarantia"
@@ -694,7 +823,7 @@
         }
       }
     },
-    "/api/Contactos": {
+    "/api/Contactos/mostrar-todos-contactos": {
       "get": {
         "tags": [
           "Contactos"
@@ -730,55 +859,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Contactos"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContatoDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContatoDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContatoDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Contato"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Contato"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Contato"
-                }
-              }
-            }
-          }
-        }
       }
     },
-    "/api/Contactos/{id}": {
+    "/api/Contactos/mostrar-contacto-{id}": {
       "get": {
         "tags": [
           "Contactos"
@@ -816,7 +899,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Contactos/atualizar-contacto-{id}": {
       "put": {
         "tags": [
           "Contactos"
@@ -836,17 +921,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ContatoDTO"
+                "$ref": "#/components/schemas/Contato"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ContatoDTO"
+                "$ref": "#/components/schemas/Contato"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ContatoDTO"
+                "$ref": "#/components/schemas/Contato"
               }
             }
           }
@@ -856,7 +941,57 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Contactos/criar-contacto": {
+      "post": {
+        "tags": [
+          "Contactos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contato"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contato"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contato"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contato"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contato"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contato"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Contactos/apagar-contacto-{id}": {
       "delete": {
         "tags": [
           "Contactos"
@@ -879,7 +1014,7 @@
         }
       }
     },
-    "/api/Cpostals": {
+    "/api/Cpostals/mostrar-codigos-postais": {
       "get": {
         "tags": [
           "Cpostals"
@@ -915,55 +1050,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Cpostals"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CpostalDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CpostalDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CpostalDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Cpostal"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Cpostal"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Cpostal"
-                }
-              }
-            }
-          }
-        }
       }
     },
-    "/api/Cpostals/{id}": {
+    "/api/Cpostals/mostrar-codigo-postal-{id}": {
       "get": {
         "tags": [
           "Cpostals"
@@ -1001,7 +1090,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Cpostals/atualizar-codigo-postal-{id}": {
       "put": {
         "tags": [
           "Cpostals"
@@ -1021,17 +1112,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CpostalDTO"
+                "$ref": "#/components/schemas/Cpostal"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CpostalDTO"
+                "$ref": "#/components/schemas/Cpostal"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CpostalDTO"
+                "$ref": "#/components/schemas/Cpostal"
               }
             }
           }
@@ -1041,7 +1132,57 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Cpostals/criar-codigo-postal": {
+      "post": {
+        "tags": [
+          "Cpostals"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cpostal"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cpostal"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cpostal"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cpostal"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cpostal"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cpostal"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Cpostals/apagar-codigo-postal-{id}": {
       "delete": {
         "tags": [
           "Cpostals"
@@ -1064,7 +1205,7 @@
         }
       }
     },
-    "/api/EstadoGarantia": {
+    "/api/EstadoGarantia/mostrar-estados-garantia": {
       "get": {
         "tags": [
           "EstadoGarantia"
@@ -1100,7 +1241,91 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/EstadoGarantia/mostrar-estado-garantia-{id}": {
+      "get": {
+        "tags": [
+          "EstadoGarantia"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadoGarantia"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadoGarantia"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadoGarantia"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/EstadoGarantia/atualizar-estado-garantia-{id}": {
+      "put": {
+        "tags": [
+          "EstadoGarantia"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstadoGarantia"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstadoGarantia"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstadoGarantia"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/EstadoGarantia/criar-estado-garantia": {
       "post": {
         "tags": [
           "EstadoGarantia"
@@ -1148,85 +1373,7 @@
         }
       }
     },
-    "/api/EstadoGarantia/{id}": {
-      "get": {
-        "tags": [
-          "EstadoGarantia"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EstadoGarantia"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EstadoGarantia"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EstadoGarantia"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "EstadoGarantia"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EstadoGarantia"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EstadoGarantia"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/EstadoGarantia"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/EstadoGarantia/apagar-estado-garantia-{id}": {
       "delete": {
         "tags": [
           "EstadoGarantia"
@@ -1249,7 +1396,7 @@
         }
       }
     },
-    "/api/EstadoManutencao": {
+    "/api/EstadoManutencao/mostrar-estados-manutencao": {
       "get": {
         "tags": [
           "EstadoManutencao"
@@ -1285,7 +1432,91 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/EstadoManutencao/mostrar-estado-manutencao-{id}": {
+      "get": {
+        "tags": [
+          "EstadoManutencao"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadoManutencao"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadoManutencao"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadoManutencao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/EstadoManutencao/atualizar-estado-manutencao-{id}": {
+      "put": {
+        "tags": [
+          "EstadoManutencao"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstadoManutencao"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstadoManutencao"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstadoManutencao"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/EstadoManutencao/criar-estado-manutencao": {
       "post": {
         "tags": [
           "EstadoManutencao"
@@ -1333,85 +1564,7 @@
         }
       }
     },
-    "/api/EstadoManutencao/{id}": {
-      "get": {
-        "tags": [
-          "EstadoManutencao"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EstadoManutencao"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EstadoManutencao"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EstadoManutencao"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "EstadoManutencao"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EstadoManutencao"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EstadoManutencao"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/EstadoManutencao"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/EstadoManutencao/apagar-estado-manutencao{id}": {
       "delete": {
         "tags": [
           "EstadoManutencao"
@@ -1434,7 +1587,7 @@
         }
       }
     },
-    "/api/EstadoVeiculo": {
+    "/api/EstadoVeiculo/mostrar-estados-veiculo": {
       "get": {
         "tags": [
           "EstadoVeiculo"
@@ -1470,55 +1623,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "EstadoVeiculo"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EstadoVeiculoDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EstadoVeiculoDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/EstadoVeiculoDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EstadoVeiculo"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EstadoVeiculo"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EstadoVeiculo"
-                }
-              }
-            }
-          }
-        }
       }
     },
-    "/api/EstadoVeiculo/{id}": {
+    "/api/EstadoVeiculo/mostrar-estado-veiculo-{id}": {
       "get": {
         "tags": [
           "EstadoVeiculo"
@@ -1556,7 +1663,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/EstadoVeiculo/atualizar-estado-veiculo-{id}": {
       "put": {
         "tags": [
           "EstadoVeiculo"
@@ -1576,17 +1685,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EstadoVeiculoDTO"
+                "$ref": "#/components/schemas/EstadoVeiculo"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/EstadoVeiculoDTO"
+                "$ref": "#/components/schemas/EstadoVeiculo"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/EstadoVeiculoDTO"
+                "$ref": "#/components/schemas/EstadoVeiculo"
               }
             }
           }
@@ -1596,7 +1705,57 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/EstadoVeiculo/criar-estado-veiculo": {
+      "post": {
+        "tags": [
+          "EstadoVeiculo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstadoVeiculo"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstadoVeiculo"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstadoVeiculo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadoVeiculo"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadoVeiculo"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadoVeiculo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/EstadoVeiculo/apagar-estado-veiuclo{id}": {
       "delete": {
         "tags": [
           "EstadoVeiculo"
@@ -1619,7 +1778,7 @@
         }
       }
     },
-    "/api/Fatura": {
+    "/api/Fatura/mostrar-todas-faturas": {
       "get": {
         "tags": [
           "Fatura"
@@ -1655,7 +1814,91 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Fatura/mostrar-fatura-{id}": {
+      "get": {
+        "tags": [
+          "Fatura"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fatura"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fatura"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Fatura"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Fatura/atualizar-fatura-{id}": {
+      "put": {
+        "tags": [
+          "Fatura"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Fatura"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Fatura"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Fatura"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Fatura/criar-fatura": {
       "post": {
         "tags": [
           "Fatura"
@@ -1703,85 +1946,7 @@
         }
       }
     },
-    "/api/Fatura/{id}": {
-      "get": {
-        "tags": [
-          "Fatura"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Fatura"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Fatura"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Fatura"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Fatura"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Fatura"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Fatura"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Fatura"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/Fatura/eliminar-fatura-{id}": {
       "delete": {
         "tags": [
           "Fatura"
@@ -1804,7 +1969,7 @@
         }
       }
     },
-    "/api/Funcionario": {
+    "/api/Funcionario/mostrar-todos-funcionarios": {
       "get": {
         "tags": [
           "Funcionario"
@@ -1840,55 +2005,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Funcionario"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FuncionarioDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FuncionarioDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/FuncionarioDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Funcionario"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Funcionario"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Funcionario"
-                }
-              }
-            }
-          }
-        }
       }
     },
-    "/api/Funcionario/{id}": {
+    "/api/Funcionario/mostrar-funcionario-{id}": {
       "get": {
         "tags": [
           "Funcionario"
@@ -1926,7 +2045,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Funcionario/atualizar-funcionario-{id}": {
       "put": {
         "tags": [
           "Funcionario"
@@ -1946,17 +2067,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/FuncionarioDTO"
+                "$ref": "#/components/schemas/Funcionario"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/FuncionarioDTO"
+                "$ref": "#/components/schemas/Funcionario"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/FuncionarioDTO"
+                "$ref": "#/components/schemas/Funcionario"
               }
             }
           }
@@ -1966,7 +2087,57 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Funcionario/criar-funcionario": {
+      "post": {
+        "tags": [
+          "Funcionario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Funcionario"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Funcionario"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Funcionario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Funcionario"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Funcionario"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Funcionario"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Funcionario/apagar-funcionario-{id}": {
       "delete": {
         "tags": [
           "Funcionario"
@@ -1989,7 +2160,7 @@
         }
       }
     },
-    "/api/Garantia": {
+    "/api/Garantia/mostrar-todas-garantias": {
       "get": {
         "tags": [
           "Garantia"
@@ -2025,55 +2196,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Garantia"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Garantia"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Garantia"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Garantia"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Garantia"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Garantia"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Garantia"
-                }
-              }
-            }
-          }
-        }
       }
     },
-    "/api/Garantia/{id}": {
+    "/api/Garantia/mostrar-garantia-{id}": {
       "get": {
         "tags": [
           "Garantia"
@@ -2111,7 +2236,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Garantia/atualizar-garantia-{id}": {
       "put": {
         "tags": [
           "Garantia"
@@ -2151,7 +2278,57 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Garantia/criar-garantia": {
+      "post": {
+        "tags": [
+          "Garantia"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Garantia"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Garantia"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Garantia"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Garantia"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Garantia"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Garantia"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Garantia/apagar-garantia-{id}": {
       "delete": {
         "tags": [
           "Garantia"
@@ -2174,7 +2351,7 @@
         }
       }
     },
-    "/api/HistoricoEstadoVeiculo": {
+    "/api/HistoricoEstadoVeiculo/mostrar-todos-HEV": {
       "get": {
         "tags": [
           "HistoricoEstadoVeiculo"
@@ -2210,7 +2387,91 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/HistoricoEstadoVeiculo/mostrar-HEV-{id}": {
+      "get": {
+        "tags": [
+          "HistoricoEstadoVeiculo"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricoEstadoVeiculo"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricoEstadoVeiculo"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricoEstadoVeiculo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/HistoricoEstadoVeiculo/atualizar-HEV-{id}": {
+      "put": {
+        "tags": [
+          "HistoricoEstadoVeiculo"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HistoricoEstadoVeiculo"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HistoricoEstadoVeiculo"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HistoricoEstadoVeiculo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/HistoricoEstadoVeiculo/criar-HEV": {
       "post": {
         "tags": [
           "HistoricoEstadoVeiculo"
@@ -2258,85 +2519,7 @@
         }
       }
     },
-    "/api/HistoricoEstadoVeiculo/{id}": {
-      "get": {
-        "tags": [
-          "HistoricoEstadoVeiculo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoricoEstadoVeiculo"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoricoEstadoVeiculo"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoricoEstadoVeiculo"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "HistoricoEstadoVeiculo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/HistoricoEstadoVeiculo"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/HistoricoEstadoVeiculo"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/HistoricoEstadoVeiculo"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/HistoricoEstadoVeiculo/eliminar-HEV-{id}": {
       "delete": {
         "tags": [
           "HistoricoEstadoVeiculo"
@@ -2359,7 +2542,7 @@
         }
       }
     },
-    "/api/Login": {
+    "/api/Login/autenticar-login": {
       "post": {
         "tags": [
           "Login"
@@ -2390,7 +2573,38 @@
         }
       }
     },
-    "/api/Login/autorizado": {
+    "/api/Login/criar-login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NovoLoginDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NovoLoginDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NovoLoginDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Login/mostrar-todos-logins": {
       "get": {
         "tags": [
           "Login"
@@ -2428,7 +2642,7 @@
         }
       }
     },
-    "/api/Login/{id}": {
+    "/api/Login/mostrar-{id}": {
       "get": {
         "tags": [
           "Login"
@@ -2466,7 +2680,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Login/atualizar-{id}": {
       "put": {
         "tags": [
           "Login"
@@ -2506,7 +2722,9 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Login/apagar-{id}": {
       "delete": {
         "tags": [
           "Login"
@@ -2529,7 +2747,7 @@
         }
       }
     },
-    "/api/Manutencao": {
+    "/api/Manutencao/mostrar-todas-manutencoes": {
       "get": {
         "tags": [
           "Manutencao"
@@ -2565,7 +2783,91 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Manutencao/mostrar-manutencao-{id}": {
+      "get": {
+        "tags": [
+          "Manutencao"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Manutencao"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Manutencao"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Manutencao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Manutencao/atualizar-manutencao-{id}": {
+      "put": {
+        "tags": [
+          "Manutencao"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Manutencao"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Manutencao"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Manutencao"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Manutencao/criar-manutencao": {
       "post": {
         "tags": [
           "Manutencao"
@@ -2613,85 +2915,7 @@
         }
       }
     },
-    "/api/Manutencao/{id}": {
-      "get": {
-        "tags": [
-          "Manutencao"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Manutencao"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Manutencao"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Manutencao"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Manutencao"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Manutencao"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Manutencao"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Manutencao"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/Manutencao/apagar-manutencao-{id}": {
       "delete": {
         "tags": [
           "Manutencao"
@@ -2714,7 +2938,117 @@
         }
       }
     },
-    "/api/Marca": {
+    "/api/Manutencao/iniciar-diagnostico/{manutencaoId}": {
+      "post": {
+        "tags": [
+          "Manutencao"
+        ],
+        "parameters": [
+          {
+            "name": "manutencaoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Manutencao/realizar-reparacao/{manutencaoId}": {
+      "put": {
+        "tags": [
+          "Manutencao"
+        ],
+        "parameters": [
+          {
+            "name": "manutencaoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Manutencao/agendar/{manutencaoId}": {
+      "put": {
+        "tags": [
+          "Manutencao"
+        ],
+        "parameters": [
+          {
+            "name": "manutencaoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Marca/mostrar-todas-marcas": {
       "get": {
         "tags": [
           "Marca"
@@ -2750,55 +3084,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Marca"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MarcaDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MarcaDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/MarcaDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Marca"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Marca"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Marca"
-                }
-              }
-            }
-          }
-        }
       }
     },
-    "/api/Marca/{id}": {
+    "/api/Marca/mostrar-marca-{id}": {
       "get": {
         "tags": [
           "Marca"
@@ -2836,7 +3124,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Marca/atualizar-marca-{id}": {
       "put": {
         "tags": [
           "Marca"
@@ -2856,17 +3146,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MarcaDTO"
+                "$ref": "#/components/schemas/Marca"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/MarcaDTO"
+                "$ref": "#/components/schemas/Marca"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/MarcaDTO"
+                "$ref": "#/components/schemas/Marca"
               }
             }
           }
@@ -2876,7 +3166,57 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Marca/criar-marca": {
+      "post": {
+        "tags": [
+          "Marca"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Marca"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Marca"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Marca"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Marca"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Marca"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Marca"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Marca/apagar-marca-{id}": {
       "delete": {
         "tags": [
           "Marca"
@@ -2899,7 +3239,7 @@
         }
       }
     },
-    "/api/Modelo": {
+    "/api/Modelo/mostrar-todos-modelos": {
       "get": {
         "tags": [
           "Modelo"
@@ -2935,55 +3275,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Modelo"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ModeloDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ModeloDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ModeloDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Modelo"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Modelo"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Modelo"
-                }
-              }
-            }
-          }
-        }
       }
     },
-    "/api/Modelo/{id}": {
+    "/api/Modelo/mostrar-modelo-{id}": {
       "get": {
         "tags": [
           "Modelo"
@@ -3021,7 +3315,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Modelo/atualizar-modelo-{id}": {
       "put": {
         "tags": [
           "Modelo"
@@ -3041,17 +3337,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ModeloDTO"
+                "$ref": "#/components/schemas/Modelo"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ModeloDTO"
+                "$ref": "#/components/schemas/Modelo"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ModeloDTO"
+                "$ref": "#/components/schemas/Modelo"
               }
             }
           }
@@ -3061,7 +3357,57 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Modelo/criar-modelo": {
+      "post": {
+        "tags": [
+          "Modelo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Modelo"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Modelo"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Modelo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Modelo"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Modelo"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Modelo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Modelo/apagar-modelo-{id}": {
       "delete": {
         "tags": [
           "Modelo"
@@ -3084,7 +3430,7 @@
         }
       }
     },
-    "/api/Morada": {
+    "/api/Morada/mostrar-todas-moradas": {
       "get": {
         "tags": [
           "Morada"
@@ -3120,55 +3466,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Morada"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MoradaDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MoradaDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/MoradaDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Morada"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Morada"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Morada"
-                }
-              }
-            }
-          }
-        }
       }
     },
-    "/api/Morada/{id}": {
+    "/api/Morada/mostrar-morada-{id}": {
       "get": {
         "tags": [
           "Morada"
@@ -3206,7 +3506,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Morada/atualizar-morada{id}": {
       "put": {
         "tags": [
           "Morada"
@@ -3226,17 +3528,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MoradaDTO"
+                "$ref": "#/components/schemas/Morada"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/MoradaDTO"
+                "$ref": "#/components/schemas/Morada"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/MoradaDTO"
+                "$ref": "#/components/schemas/Morada"
               }
             }
           }
@@ -3246,7 +3548,57 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Morada/criar-morada": {
+      "post": {
+        "tags": [
+          "Morada"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Morada"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Morada"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Morada"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Morada"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Morada"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Morada"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Morada/eliminar-morada-{id}": {
       "delete": {
         "tags": [
           "Morada"
@@ -3269,7 +3621,7 @@
         }
       }
     },
-    "/api/Motor": {
+    "/api/Motor/mostar-todos-motores": {
       "get": {
         "tags": [
           "Motor"
@@ -3305,55 +3657,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Motor"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MotorDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MotorDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/MotorDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Motor"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Motor"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Motor"
-                }
-              }
-            }
-          }
-        }
       }
     },
-    "/api/Motor/{id}": {
+    "/api/Motor/mostrar-motor-{id}": {
       "get": {
         "tags": [
           "Motor"
@@ -3391,7 +3697,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Motor/atualizar-motor-{id}": {
       "put": {
         "tags": [
           "Motor"
@@ -3411,17 +3719,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MotorDTO"
+                "$ref": "#/components/schemas/Motor"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/MotorDTO"
+                "$ref": "#/components/schemas/Motor"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/MotorDTO"
+                "$ref": "#/components/schemas/Motor"
               }
             }
           }
@@ -3431,7 +3739,57 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Motor/criar-motor": {
+      "post": {
+        "tags": [
+          "Motor"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Motor"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Motor"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Motor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Motor"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Motor"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Motor"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Motor/eliminar-motor-{id}": {
       "delete": {
         "tags": [
           "Motor"
@@ -3454,7 +3812,7 @@
         }
       }
     },
-    "/api/Pagamento": {
+    "/api/Pagamento/mostrar-todos-pagamentos": {
       "get": {
         "tags": [
           "Pagamento"
@@ -3490,7 +3848,91 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Pagamento/mostrar-pagamento-{id}": {
+      "get": {
+        "tags": [
+          "Pagamento"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pagamento"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pagamento"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pagamento"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Pagamento/atualizar-pagamento-{id}": {
+      "put": {
+        "tags": [
+          "Pagamento"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pagamento"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pagamento"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pagamento"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pagamento/criar-pagamento": {
       "post": {
         "tags": [
           "Pagamento"
@@ -3538,85 +3980,7 @@
         }
       }
     },
-    "/api/Pagamento/{id}": {
-      "get": {
-        "tags": [
-          "Pagamento"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pagamento"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pagamento"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Pagamento"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Pagamento"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Pagamento"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Pagamento"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Pagamento"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/Pagamento/apagar-pagamento-{id}": {
       "delete": {
         "tags": [
           "Pagamento"
@@ -3639,7 +4003,7 @@
         }
       }
     },
-    "/api/PosVenda": {
+    "/api/PosVenda/mostrar-todos-pos-vendas": {
       "get": {
         "tags": [
           "PosVenda"
@@ -3675,7 +4039,91 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/PosVenda/mostrar-pos-venda-{id}": {
+      "get": {
+        "tags": [
+          "PosVenda"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PosVenda"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PosVenda"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PosVenda"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PosVenda/atualizar-pos-venda-{id}": {
+      "put": {
+        "tags": [
+          "PosVenda"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PosVenda"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PosVenda"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PosVenda"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PosVenda/criar-pos-venda": {
       "post": {
         "tags": [
           "PosVenda"
@@ -3723,85 +4171,7 @@
         }
       }
     },
-    "/api/PosVenda/{id}": {
-      "get": {
-        "tags": [
-          "PosVenda"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/PosVenda"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PosVenda"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PosVenda"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "PosVenda"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PosVenda"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PosVenda"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/PosVenda"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/PosVenda/apagar-pos-venda-{id}": {
       "delete": {
         "tags": [
           "PosVenda"
@@ -3824,7 +4194,38 @@
         }
       }
     },
-    "/api/TipoContato": {
+    "/api/PosVenda/criar-solicitacao": {
+      "post": {
+        "tags": [
+          "PosVenda"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarPosVendaDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarPosVendaDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarPosVendaDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TipoContato/mostrar-tipos-contacto": {
       "get": {
         "tags": [
           "TipoContato"
@@ -3860,55 +4261,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "TipoContato"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TipoContatoDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TipoContatoDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TipoContatoDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/TipoContato"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TipoContato"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TipoContato"
-                }
-              }
-            }
-          }
-        }
       }
     },
-    "/api/TipoContato/{id}": {
+    "/api/TipoContato/mostrar-tipo-contacto-{id}": {
       "get": {
         "tags": [
           "TipoContato"
@@ -3946,7 +4301,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/TipoContato/atualizar-tipo-contacto-{id}": {
       "put": {
         "tags": [
           "TipoContato"
@@ -3966,17 +4323,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoContatoDTO"
+                "$ref": "#/components/schemas/TipoContato"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoContatoDTO"
+                "$ref": "#/components/schemas/TipoContato"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoContatoDTO"
+                "$ref": "#/components/schemas/TipoContato"
               }
             }
           }
@@ -3986,7 +4343,57 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/TipoContato/criar-tipo-contacto": {
+      "post": {
+        "tags": [
+          "TipoContato"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoContato"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoContato"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoContato"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoContato"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoContato"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoContato"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TipoContato/apagar-tipo-contacto-{id}": {
       "delete": {
         "tags": [
           "TipoContato"
@@ -4009,7 +4416,7 @@
         }
       }
     },
-    "/api/TipoPagamento": {
+    "/api/TipoPagamento/mostrat-tipos-pagamento": {
       "get": {
         "tags": [
           "TipoPagamento"
@@ -4045,7 +4452,91 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/TipoPagamento/mostrar-tipo-pagamento-{id}": {
+      "get": {
+        "tags": [
+          "TipoPagamento"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoPagamento"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoPagamento"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoPagamento"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TipoPagamento/atualizar-pagamento-{id}": {
+      "put": {
+        "tags": [
+          "TipoPagamento"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoPagamento"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoPagamento"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoPagamento"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TipoPagamento/criar-tipo-pagamento": {
       "post": {
         "tags": [
           "TipoPagamento"
@@ -4093,85 +4584,7 @@
         }
       }
     },
-    "/api/TipoPagamento/{id}": {
-      "get": {
-        "tags": [
-          "TipoPagamento"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/TipoPagamento"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TipoPagamento"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TipoPagamento"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "TipoPagamento"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TipoPagamento"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TipoPagamento"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TipoPagamento"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/TipoPagamento/apagar-tipo-pagamento{id}": {
       "delete": {
         "tags": [
           "TipoPagamento"
@@ -4194,7 +4607,7 @@
         }
       }
     },
-    "/api/TipoVeiculo": {
+    "/api/TipoVeiculo/mostar-tipos-veiculos": {
       "get": {
         "tags": [
           "TipoVeiculo"
@@ -4230,7 +4643,91 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/TipoVeiculo/mostrar-tipo-veiculo-{id}": {
+      "get": {
+        "tags": [
+          "TipoVeiculo"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoVeiculo"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoVeiculo"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoVeiculo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TipoVeiculo/atualizar-tipo-pagamento{id}": {
+      "put": {
+        "tags": [
+          "TipoVeiculo"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoVeiculo"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoVeiculo"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoVeiculo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TipoVeiculo/criar-tipo-pagamento": {
       "post": {
         "tags": [
           "TipoVeiculo"
@@ -4239,17 +4736,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoVeiculoDTO"
+                "$ref": "#/components/schemas/TipoVeiculo"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoVeiculoDTO"
+                "$ref": "#/components/schemas/TipoVeiculo"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoVeiculoDTO"
+                "$ref": "#/components/schemas/TipoVeiculo"
               }
             }
           }
@@ -4278,85 +4775,7 @@
         }
       }
     },
-    "/api/TipoVeiculo/{id}": {
-      "get": {
-        "tags": [
-          "TipoVeiculo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/TipoVeiculo"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TipoVeiculo"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TipoVeiculo"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "TipoVeiculo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TipoVeiculoDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TipoVeiculoDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TipoVeiculoDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/TipoVeiculo/apagar-tipo-pagamento{id}": {
       "delete": {
         "tags": [
           "TipoVeiculo"
@@ -4379,7 +4798,7 @@
         }
       }
     },
-    "/api/Veiculo": {
+    "/api/Veiculo/mostrar-veiculos": {
       "get": {
         "tags": [
           "Veiculo"
@@ -4415,7 +4834,198 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Veiculo/pesquisa-avancada": {
+      "get": {
+        "tags": [
+          "Veiculo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PesquisaVeiculoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PesquisaVeiculoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PesquisaVeiculoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Veiculo"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Veiculo"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Veiculo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Veiculo/adicionado-recente": {
+      "get": {
+        "tags": [
+          "Veiculo"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Veiculo/catalogo": {
+      "get": {
+        "tags": [
+          "Veiculo"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Veiculo"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Veiculo"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Veiculo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Veiculo/mostrar-veiculo-{id}": {
+      "get": {
+        "tags": [
+          "Veiculo"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Veiculo/atualizar-veiculo-{id}": {
+      "put": {
+        "tags": [
+          "Veiculo"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Veiculo"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Veiculo"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Veiculo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Veiculo/criar-veiculo": {
       "post": {
         "tags": [
           "Veiculo"
@@ -4424,17 +5034,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/VeiculoDTO"
+                "$ref": "#/components/schemas/Veiculo"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/VeiculoDTO"
+                "$ref": "#/components/schemas/Veiculo"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/VeiculoDTO"
+                "$ref": "#/components/schemas/Veiculo"
               }
             }
           }
@@ -4463,85 +5073,7 @@
         }
       }
     },
-    "/api/Veiculo/{id}": {
-      "get": {
-        "tags": [
-          "Veiculo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Veiculo"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Veiculo"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Veiculo"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Veiculo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VeiculoDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VeiculoDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/VeiculoDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/Veiculo/apagar-veiculo-{id}": {
       "delete": {
         "tags": [
           "Veiculo"
@@ -4564,7 +5096,7 @@
         }
       }
     },
-    "/api/Venda": {
+    "/api/Venda/mostrar-vendas": {
       "get": {
         "tags": [
           "Venda"
@@ -4600,38 +5132,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Venda"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Venda"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Venda"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Venda"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
       }
     },
-    "/api/Venda/{id}": {
+    "/api/Venda/mostrar-venda-{id}": {
       "get": {
         "tags": [
           "Venda"
@@ -4669,7 +5172,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Venda/atualizar-venda-{id}": {
       "put": {
         "tags": [
           "Venda"
@@ -4709,7 +5214,40 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Venda/criar-venda": {
+      "post": {
+        "tags": [
+          "Venda"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Venda"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Venda"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Venda"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Venda/apagar-venda-{id}": {
       "delete": {
         "tags": [
           "Venda"
@@ -4717,6 +5255,116 @@
         "parameters": [
           {
             "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Venda/reservar/{veiculoId}/{funcionarioId}": {
+      "put": {
+        "tags": [
+          "Venda"
+        ],
+        "parameters": [
+          {
+            "name": "veiculoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "funcionarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Venda/submeter-venda/{veiculoId}/{funcionarioId}": {
+      "post": {
+        "tags": [
+          "Venda"
+        ],
+        "parameters": [
+          {
+            "name": "veiculoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "funcionarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Venda/aprovar-financeiro/{vendaId}": {
+      "put": {
+        "tags": [
+          "Venda"
+        ],
+        "parameters": [
+          {
+            "name": "vendaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Venda/finalizar-venda/{vendaId}": {
+      "put": {
+        "tags": [
+          "Venda"
+        ],
+        "parameters": [
+          {
+            "name": "vendaId",
             "in": "path",
             "required": true,
             "schema": {
@@ -4746,6 +5394,13 @@
             "type": "string",
             "nullable": true
           },
+          "funcionarioId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idfuncionarioidNavegation": {
+            "$ref": "#/components/schemas/Funcionario"
+          },
           "valorpago": {
             "type": "number",
             "format": "double"
@@ -4757,6 +5412,15 @@
           "origemveiculo": {
             "type": "string",
             "nullable": true
+          },
+          "aprovadoFinanceiro": {
+            "type": "boolean"
+          },
+          "aprovadoAdmin": {
+            "type": "boolean"
+          },
+          "finalizada": {
+            "type": "boolean"
           },
           "veiculos": {
             "type": "array",
@@ -4764,37 +5428,6 @@
               "$ref": "#/components/schemas/Veiculo"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "AquisicaoDTO": {
-        "required": [
-          "dataaquisicao",
-          "fornecedor",
-          "origemveiculo",
-          "valorpago"
-        ],
-        "type": "object",
-        "properties": {
-          "fornecedor": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "valorpago": {
-            "minimum": 0,
-            "type": "number",
-            "format": "double"
-          },
-          "dataaquisicao": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "origemveiculo": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string"
           }
         },
         "additionalProperties": false
@@ -4816,20 +5449,6 @@
               "$ref": "#/components/schemas/Funcionario"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CargoDTO": {
-        "required": [
-          "nomecargo"
-        ],
-        "type": "object",
-        "properties": {
-          "nomecargo": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
           }
         },
         "additionalProperties": false
@@ -4873,36 +5492,6 @@
               "$ref": "#/components/schemas/Venda"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ClienteDTO": {
-        "required": [
-          "datanasc",
-          "idMorada",
-          "nif",
-          "nome"
-        ],
-        "type": "object",
-        "properties": {
-          "nome": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
-          },
-          "datanasc": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "nif": {
-            "maxLength": 9,
-            "minLength": 0,
-            "type": "string"
-          },
-          "idMorada": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -4966,35 +5555,6 @@
         },
         "additionalProperties": false
       },
-      "ContatoDTO": {
-        "required": [
-          "contato",
-          "idCliente",
-          "idFuncionario",
-          "idTipoContato"
-        ],
-        "type": "object",
-        "properties": {
-          "contato": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
-          },
-          "idCliente": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "idFuncionario": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "idTipoContato": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
       "Cpostal": {
         "type": "object",
         "properties": {
@@ -5016,16 +5576,16 @@
         },
         "additionalProperties": false
       },
-      "CpostalDTO": {
-        "required": [
-          "localidade"
-        ],
+      "CriarPosVendaDTO": {
         "type": "object",
         "properties": {
-          "localidade": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
+          "idVendas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idGarantia": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -5096,20 +5656,6 @@
               "$ref": "#/components/schemas/Veiculo"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "EstadoVeiculoDTO": {
-        "required": [
-          "estado"
-        ],
-        "type": "object",
-        "properties": {
-          "estado": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
           }
         },
         "additionalProperties": false
@@ -5206,35 +5752,6 @@
               "$ref": "#/components/schemas/Venda"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "FuncionarioDTO": {
-        "required": [
-          "dataContrato",
-          "dataNasc",
-          "idCargo",
-          "nome"
-        ],
-        "type": "object",
-        "properties": {
-          "nome": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
-          },
-          "dataContrato": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "dataNasc": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "idCargo": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -5372,8 +5889,8 @@
             "format": "double"
           },
           "descricaomanutencao": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "idVeiculo": {
             "type": "integer",
@@ -5386,6 +5903,11 @@
           "idEstadoManutencao": {
             "type": "integer",
             "format": "int32"
+          },
+          "dataAgendada": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           },
           "faturaIdFatura": {
             "type": "integer",
@@ -5434,20 +5956,6 @@
         },
         "additionalProperties": false
       },
-      "MarcaDTO": {
-        "required": [
-          "marca"
-        ],
-        "type": "object",
-        "properties": {
-          "marca": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
       "Modelo": {
         "type": "object",
         "properties": {
@@ -5472,25 +5980,6 @@
               "$ref": "#/components/schemas/Veiculo"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ModeloDTO": {
-        "required": [
-          "idMarca",
-          "nomeModelo"
-        ],
-        "type": "object",
-        "properties": {
-          "nomeModelo": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "idMarca": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -5535,43 +6024,6 @@
         },
         "additionalProperties": false
       },
-      "MoradaDTO": {
-        "required": [
-          "idCpostal",
-          "numero",
-          "pais",
-          "rua"
-        ],
-        "type": "object",
-        "properties": {
-          "rua": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
-          },
-          "numero": {
-            "maxLength": 10,
-            "minLength": 0,
-            "type": "string"
-          },
-          "descricaomorada": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "pais": {
-            "maxLength": 30,
-            "minLength": 0,
-            "type": "string"
-          },
-          "idCpostal": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
       "Motor": {
         "type": "object",
         "properties": {
@@ -5601,28 +6053,66 @@
         },
         "additionalProperties": false
       },
-      "MotorDTO": {
-        "required": [
-          "combustivel",
-          "potencia",
-          "tipoMotor"
-        ],
+      "NovoLoginDTO": {
         "type": "object",
         "properties": {
-          "tipoMotor": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string"
+          "username": {
+            "type": "string",
+            "nullable": true
           },
-          "potencia": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string"
+          "password": {
+            "type": "string",
+            "nullable": true
           },
-          "combustivel": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string"
+          "idFuncionario": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NovoVeiculoDTO": {
+        "type": "object",
+        "properties": {
+          "idModelo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idTipoVeiculo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idMotor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idEstadoVeiculo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "matricula": {
+            "type": "string",
+            "nullable": true
+          },
+          "cor": {
+            "type": "string",
+            "nullable": true
+          },
+          "chassi": {
+            "type": "string",
+            "nullable": true
+          },
+          "anoFabrico": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "preco": {
+            "type": "number",
+            "format": "double"
+          },
+          "quilometros": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -5659,6 +6149,58 @@
         },
         "additionalProperties": false
       },
+      "PesquisaVeiculoDTO": {
+        "type": "object",
+        "properties": {
+          "marca": {
+            "type": "string",
+            "nullable": true
+          },
+          "modelo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoVeiculo": {
+            "type": "string",
+            "nullable": true
+          },
+          "anoDe": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "anoAte": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "precoDe": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "precoAte": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "quilometrosDe": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "quilometrosAte": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "combustivel": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PosVenda": {
         "type": "object",
         "properties": {
@@ -5674,8 +6216,15 @@
             "type": "integer",
             "format": "int32"
           },
+          "idVeiculo": {
+            "type": "integer",
+            "format": "int32"
+          },
           "idGarantiaNavigation": {
             "$ref": "#/components/schemas/Garantia"
+          },
+          "idVeiculoNavigation": {
+            "$ref": "#/components/schemas/Veiculo"
           },
           "idVendasNavigation": {
             "$ref": "#/components/schemas/Venda"
@@ -5707,20 +6256,6 @@
               "$ref": "#/components/schemas/Contato"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TipoContatoDTO": {
-        "required": [
-          "tipoContato"
-        ],
-        "type": "object",
-        "properties": {
-          "tipoContato": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
           }
         },
         "additionalProperties": false
@@ -5763,20 +6298,6 @@
               "$ref": "#/components/schemas/Veiculo"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TipoVeiculoDTO": {
-        "required": [
-          "tipo"
-        ],
-        "type": "object",
-        "properties": {
-          "tipo": {
-            "maxLength": 30,
-            "minLength": 0,
-            "type": "string"
           }
         },
         "additionalProperties": false
@@ -5832,6 +6353,17 @@
             "type": "integer",
             "format": "int32"
           },
+          "fotoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "descricaoExtras": {
+            "type": "string",
+            "nullable": true
+          },
+          "aquisicao": {
+            "$ref": "#/components/schemas/Aquisicao"
+          },
           "historicoEstadoVeiculos": {
             "type": "array",
             "items": {
@@ -5871,74 +6403,6 @@
         },
         "additionalProperties": false
       },
-      "VeiculoDTO": {
-        "required": [
-          "anoFabrico",
-          "chassi",
-          "cor",
-          "idAquisicao",
-          "idEstadoVeiculo",
-          "idModelo",
-          "idMotor",
-          "idTipoVeiculo",
-          "matricula",
-          "preco",
-          "quilometragem"
-        ],
-        "type": "object",
-        "properties": {
-          "matricula": {
-            "maxLength": 10,
-            "minLength": 0,
-            "type": "string"
-          },
-          "chassi": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string"
-          },
-          "anoFabrico": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "cor": {
-            "maxLength": 30,
-            "minLength": 0,
-            "type": "string"
-          },
-          "quilometragem": {
-            "minimum": 0,
-            "type": "number",
-            "format": "double"
-          },
-          "preco": {
-            "minimum": 0,
-            "type": "number",
-            "format": "double"
-          },
-          "idMotor": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "idEstadoVeiculo": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "idTipoVeiculo": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "idModelo": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "idAquisicao": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
       "Venda": {
         "type": "object",
         "properties": {
@@ -5966,6 +6430,16 @@
             "type": "integer",
             "format": "int32"
           },
+          "dataProposta": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "aprovadoFinanceiro": {
+            "type": "boolean"
+          },
+          "concluida": {
+            "type": "boolean"
+          },
           "faturas": {
             "type": "array",
             "items": {
@@ -5992,6 +6466,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Coloca o Token:",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }

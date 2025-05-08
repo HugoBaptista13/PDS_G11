@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -23,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/HistoricoEstadoVeiculo
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpGet("mostrar-todos-HEV")]
         public async Task<ActionResult<IEnumerable<HistoricoEstadoVeiculo>>> GetHistoricoEstadoVeiculos()
         {
             var historicoEstadoVeiculos = await _historicoEstadoVeiculoService.ObterTodosAsync();
@@ -31,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/HistoricoEstadoVeiculo/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpGet("mostrar-HEV-{id}")]
         public async Task<ActionResult<HistoricoEstadoVeiculo>> GetHistoricoEstadoVeiculo(int id)
         {
             var historicoEstadoVeiculo = await _historicoEstadoVeiculoService.ObterPorIdAsync(id);
@@ -46,7 +49,8 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/HistoricoEstadoVeiculo/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPut("atualizar-HEV-{id}")]
         public async Task<IActionResult> PutHistoricoEstadoVeiculo(int id, [FromBody] HistoricoEstadoVeiculo historicoEstadoVeiculo)
         {
             if (id != historicoEstadoVeiculo.IdHistEstadoVeiculo)
@@ -62,7 +66,8 @@ namespace FaiscaSync.Controllers
 
         // POST: api/HistoricoEstadoVeiculo
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPost("criar-HEV")]
         public async Task<ActionResult<HistoricoEstadoVeiculo>> PostHistoricoEstadoVeiculo([FromBody] HistoricoEstadoVeiculo historicoEstadoVeiculo)
         {
             if (!ModelState.IsValid)
@@ -73,7 +78,8 @@ namespace FaiscaSync.Controllers
         }
 
         // DELETE: api/HistoricoEstadoVeiculo/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpDelete("eliminar-HEV-{id}")]
         public async Task<IActionResult> DeleteHistoricoEstadoVeiculo(int id)
         {
             var deleted = await _historicoEstadoVeiculoService.RemoverAsync(id);
@@ -85,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> HistoricoEstadoVeiculoExists(int id)
-        {
-            var historicoEstadoVeiculo = await _historicoEstadoVeiculoService.ObterPorIdAsync(id);
-            return historicoEstadoVeiculo != null
-                ? ResultadoOperacao.Ok("Histórico Estado Veiculo encontrado.")
-        : ResultadoOperacao.Falha("Histórico Estado Veiculo não encontrado.");
-        }
     }
 }

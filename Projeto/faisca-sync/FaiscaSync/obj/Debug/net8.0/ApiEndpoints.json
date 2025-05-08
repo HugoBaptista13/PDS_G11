@@ -1,35 +1,73 @@
 [
   {
     "ContainingType": "FaiscaSync.Controllers.AquisicaosController",
-    "Method": "GetAquisicaos",
-    "RelativePath": "api/Aquisicaos",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Aquisicao, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.AquisicaosController",
-    "Method": "PostAquisicao",
-    "RelativePath": "api/Aquisicaos",
+    "Method": "AprovarAdmin",
+    "RelativePath": "api/Aquisicaos/{aquisicaoId}/aprovar-admin",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "aquisicaoDto",
-        "Type": "FaiscaSync.DTO.AquisicaoDTO",
+        "Name": "aquisicaoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "FaiscaSync.DTO.NovoVeiculoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.AquisicaosController",
+    "Method": "DeleteAquisicao",
+    "RelativePath": "api/Aquisicaos/apagar-{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.AquisicaosController",
+    "Method": "RejeitarFinanceiroAsync",
+    "RelativePath": "api/Aquisicaos/aprovar-financeiro/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.AquisicaosController",
+    "Method": "UpdateAquisicao",
+    "RelativePath": "api/Aquisicaos/atualizar-{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "aquisicao",
+        "Type": "FaiscaSync.Models.Aquisicao",
         "IsRequired": true
       }
     ],
@@ -38,7 +76,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.AquisicaosController",
     "Method": "GetAquisicao",
-    "RelativePath": "api/Aquisicaos/{id}",
+    "RelativePath": "api/Aquisicaos/mostrar-aquisicao-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -63,20 +101,35 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.AquisicaosController",
-    "Method": "UpdateAquisicao",
-    "RelativePath": "api/Aquisicaos/{id}",
-    "HttpMethod": "PUT",
+    "Method": "GetAquisicaos",
+    "RelativePath": "api/Aquisicaos/mostrar-aquisicoes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Aquisicao, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.AquisicaosController",
+    "Method": "PostAquisicao",
+    "RelativePath": "api/Aquisicaos/nova-aquisicao",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "aquisicaoDto",
-        "Type": "FaiscaSync.DTO.AquisicaoDTO",
+        "Name": "aquisicao",
+        "Type": "FaiscaSync.Models.Aquisicao",
         "IsRequired": true
       }
     ],
@@ -84,8 +137,24 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.AquisicaosController",
-    "Method": "DeleteAquisicao",
-    "RelativePath": "api/Aquisicaos/{id}",
+    "Method": "Submeter",
+    "RelativePath": "api/Aquisicaos/submeter/{funcionarioId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "funcionarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.CargosController",
+    "Method": "DeleteCargo",
+    "RelativePath": "api/Cargos/apagar-cargo-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -100,35 +169,36 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.CargosController",
-    "Method": "GetCargos",
-    "RelativePath": "api/Cargos",
-    "HttpMethod": "GET",
+    "Method": "PutCargo",
+    "RelativePath": "api/Cargos/atualizar-cargo-{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Cargo, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "cargo",
+        "Type": "FaiscaSync.Models.Cargo",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FaiscaSync.Controllers.CargosController",
     "Method": "PostCargo",
-    "RelativePath": "api/Cargos",
+    "RelativePath": "api/Cargos/criar-cargo",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "cargoDto",
-        "Type": "FaiscaSync.DTO.CargoDTO",
+        "Name": "cargo",
+        "Type": "FaiscaSync.Models.Cargo",
         "IsRequired": true
       }
     ],
@@ -137,7 +207,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.CargosController",
     "Method": "GetCargo",
-    "RelativePath": "api/Cargos/{id}",
+    "RelativePath": "api/Cargos/mostrar-cargo-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -162,29 +232,28 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.CargosController",
-    "Method": "PutCargo",
-    "RelativePath": "api/Cargos/{id}",
-    "HttpMethod": "PUT",
+    "Method": "GetCargos",
+    "RelativePath": "api/Cargos/mostrar-todos-cargos",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
+    "Parameters": [],
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "cargoDto",
-        "Type": "FaiscaSync.DTO.CargoDTO",
-        "IsRequired": true
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Cargo, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.CargosController",
-    "Method": "DeleteCargo",
-    "RelativePath": "api/Cargos/{id}",
+    "ContainingType": "FaiscaSync.Controllers.ClientesController",
+    "Method": "DeleteCliente",
+    "RelativePath": "api/Clientes/apagar-cliente-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -199,15 +268,42 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.ClientesController",
-    "Method": "GetClientes",
-    "RelativePath": "api/Clientes",
-    "HttpMethod": "GET",
+    "Method": "PutCliente",
+    "RelativePath": "api/Clientes/atualizar-cliente-{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "cliente",
+        "Type": "FaiscaSync.Models.Cliente",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.ClientesController",
+    "Method": "PostCliente",
+    "RelativePath": "api/Clientes/criar-cliente",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cliente",
+        "Type": "FaiscaSync.Models.Cliente",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Cliente, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "FaiscaSync.Models.Cliente",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -219,24 +315,8 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.ClientesController",
-    "Method": "PostCliente",
-    "RelativePath": "api/Clientes",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "clienteDto",
-        "Type": "FaiscaSync.DTO.ClienteDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.ClientesController",
     "Method": "GetCliente",
-    "RelativePath": "api/Clientes/{id}",
+    "RelativePath": "api/Clientes/mostrar-cliente-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -261,29 +341,28 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.ClientesController",
-    "Method": "PutCliente",
-    "RelativePath": "api/Clientes/{id}",
-    "HttpMethod": "PUT",
+    "Method": "GetClientes",
+    "RelativePath": "api/Clientes/mostrar-todos-clientes",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
+    "Parameters": [],
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "clienteDto",
-        "Type": "FaiscaSync.DTO.ClienteDTO",
-        "IsRequired": true
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Cliente, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.ClientesController",
-    "Method": "DeleteCliente",
-    "RelativePath": "api/Clientes/{id}",
+    "ContainingType": "FaiscaSync.Controllers.CoberturaGarantiaController",
+    "Method": "DeleteCoberturaGarantium",
+    "RelativePath": "api/CoberturaGarantia/apagar-cobertura-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -298,8 +377,81 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.CoberturaGarantiaController",
+    "Method": "PutCoberturaGarantium",
+    "RelativePath": "api/CoberturaGarantia/atualizar-cobertura-{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "coberturaGarantium",
+        "Type": "FaiscaSync.Models.CoberturaGarantia",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.CoberturaGarantiaController",
+    "Method": "PostCoberturaGarantium",
+    "RelativePath": "api/CoberturaGarantia/Criar Cobertura Garantia",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "coberturaGarantium",
+        "Type": "FaiscaSync.Models.CoberturaGarantia",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.CoberturaGarantia",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.CoberturaGarantiaController",
     "Method": "GetCoberturaGarantium",
-    "RelativePath": "api/CoberturaGarantia",
+    "RelativePath": "api/CoberturaGarantia/mostrar-cobertura-garantia-{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.CoberturaGarantia",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.CoberturaGarantiaController",
+    "Method": "GetCoberturaGarantium",
+    "RelativePath": "api/CoberturaGarantia/mostrar-coberturas-garantia",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -317,82 +469,9 @@
     ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.CoberturaGarantiaController",
-    "Method": "PostCoberturaGarantium",
-    "RelativePath": "api/CoberturaGarantia",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "coberturaGarantium",
-        "Type": "FaiscaSync.Models.CoberturaGarantia",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.CoberturaGarantia",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.CoberturaGarantiaController",
-    "Method": "GetCoberturaGarantium",
-    "RelativePath": "api/CoberturaGarantia/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.CoberturaGarantia",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.CoberturaGarantiaController",
-    "Method": "PutCoberturaGarantium",
-    "RelativePath": "api/CoberturaGarantia/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "coberturaGarantium",
-        "Type": "FaiscaSync.Models.CoberturaGarantia",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.CoberturaGarantiaController",
-    "Method": "DeleteCoberturaGarantium",
-    "RelativePath": "api/CoberturaGarantia/{id}",
+    "ContainingType": "FaiscaSync.Controllers.ContactosController",
+    "Method": "DeleteContato",
+    "RelativePath": "api/Contactos/apagar-contacto-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -407,35 +486,36 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.ContactosController",
-    "Method": "GetContatos",
-    "RelativePath": "api/Contactos",
-    "HttpMethod": "GET",
+    "Method": "PutContato",
+    "RelativePath": "api/Contactos/atualizar-contacto-{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Contato, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "contato",
+        "Type": "FaiscaSync.Models.Contato",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FaiscaSync.Controllers.ContactosController",
     "Method": "PostContato",
-    "RelativePath": "api/Contactos",
+    "RelativePath": "api/Contactos/criar-contacto",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "contatoDto",
-        "Type": "FaiscaSync.DTO.ContatoDTO",
+        "Name": "contato",
+        "Type": "FaiscaSync.Models.Contato",
         "IsRequired": true
       }
     ],
@@ -454,7 +534,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.ContactosController",
     "Method": "GetContato",
-    "RelativePath": "api/Contactos/{id}",
+    "RelativePath": "api/Contactos/mostrar-contacto-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -479,29 +559,28 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.ContactosController",
-    "Method": "PutContato",
-    "RelativePath": "api/Contactos/{id}",
-    "HttpMethod": "PUT",
+    "Method": "GetContatos",
+    "RelativePath": "api/Contactos/mostrar-todos-contactos",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
+    "Parameters": [],
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "contatoDto",
-        "Type": "FaiscaSync.DTO.ContatoDTO",
-        "IsRequired": true
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Contato, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.ContactosController",
-    "Method": "DeleteContato",
-    "RelativePath": "api/Contactos/{id}",
+    "ContainingType": "FaiscaSync.Controllers.CpostalsController",
+    "Method": "DeleteCpostal",
+    "RelativePath": "api/Cpostals/apagar-codigo-postal-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -516,35 +595,36 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.CpostalsController",
-    "Method": "GetCpostals",
-    "RelativePath": "api/Cpostals",
-    "HttpMethod": "GET",
+    "Method": "PutCpostal",
+    "RelativePath": "api/Cpostals/atualizar-codigo-postal-{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Cpostal, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "cpostal",
+        "Type": "FaiscaSync.Models.Cpostal",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FaiscaSync.Controllers.CpostalsController",
     "Method": "PostCpostal",
-    "RelativePath": "api/Cpostals",
+    "RelativePath": "api/Cpostals/criar-codigo-postal",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "cpostalDto",
-        "Type": "FaiscaSync.DTO.CpostalDTO",
+        "Name": "cpostal",
+        "Type": "FaiscaSync.Models.Cpostal",
         "IsRequired": true
       }
     ],
@@ -563,7 +643,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.CpostalsController",
     "Method": "GetCpostal",
-    "RelativePath": "api/Cpostals/{id}",
+    "RelativePath": "api/Cpostals/mostrar-codigo-postal-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -588,29 +668,28 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.CpostalsController",
-    "Method": "PutCpostal",
-    "RelativePath": "api/Cpostals/{id}",
-    "HttpMethod": "PUT",
+    "Method": "GetCpostals",
+    "RelativePath": "api/Cpostals/mostrar-codigos-postais",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
+    "Parameters": [],
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "cpostalDto",
-        "Type": "FaiscaSync.DTO.CpostalDTO",
-        "IsRequired": true
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Cpostal, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.CpostalsController",
-    "Method": "DeleteCpostal",
-    "RelativePath": "api/Cpostals/{id}",
+    "ContainingType": "FaiscaSync.Controllers.EstadoGarantiaController",
+    "Method": "DeleteEstadoGarantium",
+    "RelativePath": "api/EstadoGarantia/apagar-estado-garantia-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -625,28 +704,29 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.EstadoGarantiaController",
-    "Method": "GetEstadoGarantia",
-    "RelativePath": "api/EstadoGarantia",
-    "HttpMethod": "GET",
+    "Method": "PutEstadoGarantium",
+    "RelativePath": "api/EstadoGarantia/atualizar-estado-garantia-{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.EstadoGarantia, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "estadoGarantium",
+        "Type": "FaiscaSync.Models.EstadoGarantia",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FaiscaSync.Controllers.EstadoGarantiaController",
     "Method": "PostEstadoGarantium",
-    "RelativePath": "api/EstadoGarantia",
+    "RelativePath": "api/EstadoGarantia/criar-estado-garantia",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -672,7 +752,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.EstadoGarantiaController",
     "Method": "GetEstadoGarantium",
-    "RelativePath": "api/EstadoGarantia/{id}",
+    "RelativePath": "api/EstadoGarantia/mostrar-estado-garantia-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -697,29 +777,28 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.EstadoGarantiaController",
-    "Method": "PutEstadoGarantium",
-    "RelativePath": "api/EstadoGarantia/{id}",
-    "HttpMethod": "PUT",
+    "Method": "GetEstadoGarantia",
+    "RelativePath": "api/EstadoGarantia/mostrar-estados-garantia",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
+    "Parameters": [],
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "estadoGarantium",
-        "Type": "FaiscaSync.Models.EstadoGarantia",
-        "IsRequired": true
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.EstadoGarantia, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.EstadoGarantiaController",
-    "Method": "DeleteEstadoGarantium",
-    "RelativePath": "api/EstadoGarantia/{id}",
+    "ContainingType": "FaiscaSync.Controllers.EstadoManutencaoController",
+    "Method": "DeleteEstadoManutencao",
+    "RelativePath": "api/EstadoManutencao/apagar-estado-manutencao{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -734,28 +813,29 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.EstadoManutencaoController",
-    "Method": "GetEstadoManutencaos",
-    "RelativePath": "api/EstadoManutencao",
-    "HttpMethod": "GET",
+    "Method": "PutEstadoManutencao",
+    "RelativePath": "api/EstadoManutencao/atualizar-estado-manutencao-{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.EstadoManutencao, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "estadoManutencao",
+        "Type": "FaiscaSync.Models.EstadoManutencao",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FaiscaSync.Controllers.EstadoManutencaoController",
     "Method": "PostEstadoManutencao",
-    "RelativePath": "api/EstadoManutencao",
+    "RelativePath": "api/EstadoManutencao/criar-estado-manutencao",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -781,7 +861,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.EstadoManutencaoController",
     "Method": "GetEstadoManutencao",
-    "RelativePath": "api/EstadoManutencao/{id}",
+    "RelativePath": "api/EstadoManutencao/mostrar-estado-manutencao-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -806,29 +886,28 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.EstadoManutencaoController",
-    "Method": "PutEstadoManutencao",
-    "RelativePath": "api/EstadoManutencao/{id}",
-    "HttpMethod": "PUT",
+    "Method": "GetEstadoManutencaos",
+    "RelativePath": "api/EstadoManutencao/mostrar-estados-manutencao",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
+    "Parameters": [],
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "estadoManutencao",
-        "Type": "FaiscaSync.Models.EstadoManutencao",
-        "IsRequired": true
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.EstadoManutencao, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.EstadoManutencaoController",
-    "Method": "DeleteEstadoManutencao",
-    "RelativePath": "api/EstadoManutencao/{id}",
+    "ContainingType": "FaiscaSync.Controllers.EstadoVeiculoController",
+    "Method": "DeleteEstadoVeiculo",
+    "RelativePath": "api/EstadoVeiculo/apagar-estado-veiuclo{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -843,35 +922,36 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.EstadoVeiculoController",
-    "Method": "GetEstadoVeiculos",
-    "RelativePath": "api/EstadoVeiculo",
-    "HttpMethod": "GET",
+    "Method": "PutEstadoVeiculo",
+    "RelativePath": "api/EstadoVeiculo/atualizar-estado-veiculo-{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.EstadoVeiculo, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "estadoVeiculo",
+        "Type": "FaiscaSync.Models.EstadoVeiculo",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FaiscaSync.Controllers.EstadoVeiculoController",
     "Method": "PostEstadoVeiculo",
-    "RelativePath": "api/EstadoVeiculo",
+    "RelativePath": "api/EstadoVeiculo/criar-estado-veiculo",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "estadoVeiculoDto",
-        "Type": "FaiscaSync.DTO.EstadoVeiculoDTO",
+        "Name": "estadoVeiculo",
+        "Type": "FaiscaSync.Models.EstadoVeiculo",
         "IsRequired": true
       }
     ],
@@ -890,7 +970,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.EstadoVeiculoController",
     "Method": "GetEstadoVeiculo",
-    "RelativePath": "api/EstadoVeiculo/{id}",
+    "RelativePath": "api/EstadoVeiculo/mostrar-estado-veiculo-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -915,8 +995,28 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.EstadoVeiculoController",
-    "Method": "PutEstadoVeiculo",
-    "RelativePath": "api/EstadoVeiculo/{id}",
+    "Method": "GetEstadoVeiculos",
+    "RelativePath": "api/EstadoVeiculo/mostrar-estados-veiculo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.EstadoVeiculo, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.FaturaController",
+    "Method": "PutFatura",
+    "RelativePath": "api/Fatura/atualizar-fatura-{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -927,17 +1027,43 @@
         "IsRequired": true
       },
       {
-        "Name": "estadoVeiculoDto",
-        "Type": "FaiscaSync.DTO.EstadoVeiculoDTO",
+        "Name": "fatura",
+        "Type": "FaiscaSync.Models.Fatura",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.EstadoVeiculoController",
-    "Method": "DeleteEstadoVeiculo",
-    "RelativePath": "api/EstadoVeiculo/{id}",
+    "ContainingType": "FaiscaSync.Controllers.FaturaController",
+    "Method": "PostFatura",
+    "RelativePath": "api/Fatura/criar-fatura",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fatura",
+        "Type": "FaiscaSync.Models.Fatura",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.Fatura",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.FaturaController",
+    "Method": "DeleteFatura",
+    "RelativePath": "api/Fatura/eliminar-fatura-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -952,8 +1078,34 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.FaturaController",
+    "Method": "GetFatura",
+    "RelativePath": "api/Fatura/mostrar-fatura-{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.Fatura",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.FaturaController",
     "Method": "GetFaturas",
-    "RelativePath": "api/Fatura",
+    "RelativePath": "api/Fatura/mostrar-todas-faturas",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -971,82 +1123,9 @@
     ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.FaturaController",
-    "Method": "PostFatura",
-    "RelativePath": "api/Fatura",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "fatura",
-        "Type": "FaiscaSync.Models.Fatura",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.Fatura",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.FaturaController",
-    "Method": "GetFatura",
-    "RelativePath": "api/Fatura/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.Fatura",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.FaturaController",
-    "Method": "PutFatura",
-    "RelativePath": "api/Fatura/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "fatura",
-        "Type": "FaiscaSync.Models.Fatura",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.FaturaController",
-    "Method": "DeleteFatura",
-    "RelativePath": "api/Fatura/{id}",
+    "ContainingType": "FaiscaSync.Controllers.FuncionarioController",
+    "Method": "DeleteFuncionario",
+    "RelativePath": "api/Funcionario/apagar-funcionario-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1061,35 +1140,36 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.FuncionarioController",
-    "Method": "GetFuncionarios",
-    "RelativePath": "api/Funcionario",
-    "HttpMethod": "GET",
+    "Method": "PutFuncionario",
+    "RelativePath": "api/Funcionario/atualizar-funcionario-{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Funcionario, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "funcionario",
+        "Type": "FaiscaSync.Models.Funcionario",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FaiscaSync.Controllers.FuncionarioController",
     "Method": "PostFuncionario",
-    "RelativePath": "api/Funcionario",
+    "RelativePath": "api/Funcionario/criar-funcionario",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "funcionarioDto",
-        "Type": "FaiscaSync.DTO.FuncionarioDTO",
+        "Name": "funcionario",
+        "Type": "FaiscaSync.Models.Funcionario",
         "IsRequired": true
       }
     ],
@@ -1108,7 +1188,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.FuncionarioController",
     "Method": "GetFuncionario",
-    "RelativePath": "api/Funcionario/{id}",
+    "RelativePath": "api/Funcionario/mostrar-funcionario-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1133,29 +1213,28 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.FuncionarioController",
-    "Method": "PutFuncionario",
-    "RelativePath": "api/Funcionario/{id}",
-    "HttpMethod": "PUT",
+    "Method": "GetFuncionarios",
+    "RelativePath": "api/Funcionario/mostrar-todos-funcionarios",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
+    "Parameters": [],
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "funcionarioDto",
-        "Type": "FaiscaSync.DTO.FuncionarioDTO",
-        "IsRequired": true
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Funcionario, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.FuncionarioController",
-    "Method": "DeleteFuncionario",
-    "RelativePath": "api/Funcionario/{id}",
+    "ContainingType": "FaiscaSync.Controllers.GarantiaController",
+    "Method": "DeleteGarantia",
+    "RelativePath": "api/Garantia/apagar-garantia-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1170,8 +1249,81 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.GarantiaController",
+    "Method": "PutGarantia",
+    "RelativePath": "api/Garantia/atualizar-garantia-{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "garantia",
+        "Type": "FaiscaSync.Models.Garantia",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.GarantiaController",
+    "Method": "PostGarantia",
+    "RelativePath": "api/Garantia/criar-garantia",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "garantia",
+        "Type": "FaiscaSync.Models.Garantia",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.Garantia",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.GarantiaController",
     "Method": "GetGarantia",
-    "RelativePath": "api/Garantia",
+    "RelativePath": "api/Garantia/mostrar-garantia-{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.Garantia",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.GarantiaController",
+    "Method": "GetGarantia",
+    "RelativePath": "api/Garantia/mostrar-todas-garantias",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1189,61 +1341,9 @@
     ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.GarantiaController",
-    "Method": "PostGarantia",
-    "RelativePath": "api/Garantia",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "garantia",
-        "Type": "FaiscaSync.Models.Garantia",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.Garantia",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.GarantiaController",
-    "Method": "GetGarantia",
-    "RelativePath": "api/Garantia/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.Garantia",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.GarantiaController",
-    "Method": "PutGarantia",
-    "RelativePath": "api/Garantia/{id}",
+    "ContainingType": "FaiscaSync.Controllers.HistoricoEstadoVeiculoController",
+    "Method": "PutHistoricoEstadoVeiculo",
+    "RelativePath": "api/HistoricoEstadoVeiculo/atualizar-HEV-{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -1254,17 +1354,43 @@
         "IsRequired": true
       },
       {
-        "Name": "garantia",
-        "Type": "FaiscaSync.Models.Garantia",
+        "Name": "historicoEstadoVeiculo",
+        "Type": "FaiscaSync.Models.HistoricoEstadoVeiculo",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.GarantiaController",
-    "Method": "DeleteGarantia",
-    "RelativePath": "api/Garantia/{id}",
+    "ContainingType": "FaiscaSync.Controllers.HistoricoEstadoVeiculoController",
+    "Method": "PostHistoricoEstadoVeiculo",
+    "RelativePath": "api/HistoricoEstadoVeiculo/criar-HEV",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "historicoEstadoVeiculo",
+        "Type": "FaiscaSync.Models.HistoricoEstadoVeiculo",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.HistoricoEstadoVeiculo",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.HistoricoEstadoVeiculoController",
+    "Method": "DeleteHistoricoEstadoVeiculo",
+    "RelativePath": "api/HistoricoEstadoVeiculo/eliminar-HEV-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1279,8 +1405,34 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.HistoricoEstadoVeiculoController",
+    "Method": "GetHistoricoEstadoVeiculo",
+    "RelativePath": "api/HistoricoEstadoVeiculo/mostrar-HEV-{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.HistoricoEstadoVeiculo",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.HistoricoEstadoVeiculoController",
     "Method": "GetHistoricoEstadoVeiculos",
-    "RelativePath": "api/HistoricoEstadoVeiculo",
+    "RelativePath": "api/HistoricoEstadoVeiculo/mostrar-todos-HEV",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1298,82 +1450,9 @@
     ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.HistoricoEstadoVeiculoController",
-    "Method": "PostHistoricoEstadoVeiculo",
-    "RelativePath": "api/HistoricoEstadoVeiculo",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "historicoEstadoVeiculo",
-        "Type": "FaiscaSync.Models.HistoricoEstadoVeiculo",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.HistoricoEstadoVeiculo",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.HistoricoEstadoVeiculoController",
-    "Method": "GetHistoricoEstadoVeiculo",
-    "RelativePath": "api/HistoricoEstadoVeiculo/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.HistoricoEstadoVeiculo",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.HistoricoEstadoVeiculoController",
-    "Method": "PutHistoricoEstadoVeiculo",
-    "RelativePath": "api/HistoricoEstadoVeiculo/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "historicoEstadoVeiculo",
-        "Type": "FaiscaSync.Models.HistoricoEstadoVeiculo",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.HistoricoEstadoVeiculoController",
-    "Method": "DeleteHistoricoEstadoVeiculo",
-    "RelativePath": "api/HistoricoEstadoVeiculo/{id}",
+    "ContainingType": "FaiscaSync.Controllers.LoginController",
+    "Method": "DeleteLogin",
+    "RelativePath": "api/Login/apagar-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1388,50 +1467,8 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.LoginController",
-    "Method": "Login",
-    "RelativePath": "api/Login",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "loginDto",
-        "Type": "FaiscaSync.DTO.LoginRequestDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.LoginController",
-    "Method": "GetLogin",
-    "RelativePath": "api/Login/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.Login",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.LoginController",
     "Method": "UpdateLogin",
-    "RelativePath": "api/Login/{id}",
+    "RelativePath": "api/Login/atualizar-{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -1451,9 +1488,41 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.LoginController",
-    "Method": "DeleteLogin",
-    "RelativePath": "api/Login/{id}",
-    "HttpMethod": "DELETE",
+    "Method": "Login",
+    "RelativePath": "api/Login/autenticar-login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "FaiscaSync.DTO.LoginRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.LoginController",
+    "Method": "CriarLogin",
+    "RelativePath": "api/Login/criar-login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "novoLogin",
+        "Type": "FaiscaSync.DTO.NovoLoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.LoginController",
+    "Method": "GetLogin",
+    "RelativePath": "api/Login/mostrar-{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -1463,12 +1532,22 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.Login",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "FaiscaSync.Controllers.LoginController",
     "Method": "GetLogins",
-    "RelativePath": "api/Login/autorizado",
+    "RelativePath": "api/Login/mostrar-todos-logins",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1487,8 +1566,139 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.ManutencaoController",
+    "Method": "AgendarManutencao",
+    "RelativePath": "api/Manutencao/agendar/{manutencaoId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "manutencaoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dataAgendada",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.ManutencaoController",
+    "Method": "DeleteManutencao",
+    "RelativePath": "api/Manutencao/apagar-manutencao-{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.ManutencaoController",
+    "Method": "PutManutencao",
+    "RelativePath": "api/Manutencao/atualizar-manutencao-{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "manutencao",
+        "Type": "FaiscaSync.Models.Manutencao",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.ManutencaoController",
+    "Method": "PostManutencao",
+    "RelativePath": "api/Manutencao/criar-manutencao",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "manutencao",
+        "Type": "FaiscaSync.Models.Manutencao",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.Manutencao",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.ManutencaoController",
+    "Method": "IniciarDiagnostico",
+    "RelativePath": "api/Manutencao/iniciar-diagnostico/{manutencaoId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "manutencaoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "descricao",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.ManutencaoController",
+    "Method": "GetManutencao",
+    "RelativePath": "api/Manutencao/mostrar-manutencao-{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.Manutencao",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.ManutencaoController",
     "Method": "GetManutencaos",
-    "RelativePath": "api/Manutencao",
+    "RelativePath": "api/Manutencao/mostrar-todas-manutencoes",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1507,81 +1717,24 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.ManutencaoController",
-    "Method": "PostManutencao",
-    "RelativePath": "api/Manutencao",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "manutencao",
-        "Type": "FaiscaSync.Models.Manutencao",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.Manutencao",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.ManutencaoController",
-    "Method": "GetManutencao",
-    "RelativePath": "api/Manutencao/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.Manutencao",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.ManutencaoController",
-    "Method": "PutManutencao",
-    "RelativePath": "api/Manutencao/{id}",
+    "Method": "RealizarReparacao",
+    "RelativePath": "api/Manutencao/realizar-reparacao/{manutencaoId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "manutencaoId",
         "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "manutencao",
-        "Type": "FaiscaSync.Models.Manutencao",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.ManutencaoController",
-    "Method": "DeleteManutencao",
-    "RelativePath": "api/Manutencao/{id}",
+    "ContainingType": "FaiscaSync.Controllers.MarcaController",
+    "Method": "DeleteMarca",
+    "RelativePath": "api/Marca/apagar-marca-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1596,35 +1749,36 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.MarcaController",
-    "Method": "GetMarcas",
-    "RelativePath": "api/Marca",
-    "HttpMethod": "GET",
+    "Method": "PutMarca",
+    "RelativePath": "api/Marca/atualizar-marca-{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Marca, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "marca",
+        "Type": "FaiscaSync.Models.Marca",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FaiscaSync.Controllers.MarcaController",
     "Method": "PostMarca",
-    "RelativePath": "api/Marca",
+    "RelativePath": "api/Marca/criar-marca",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "marcaDto",
-        "Type": "FaiscaSync.DTO.MarcaDTO",
+        "Name": "marca",
+        "Type": "FaiscaSync.Models.Marca",
         "IsRequired": true
       }
     ],
@@ -1643,7 +1797,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.MarcaController",
     "Method": "GetMarca",
-    "RelativePath": "api/Marca/{id}",
+    "RelativePath": "api/Marca/mostrar-marca-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1668,29 +1822,28 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.MarcaController",
-    "Method": "PutMarca",
-    "RelativePath": "api/Marca/{id}",
-    "HttpMethod": "PUT",
+    "Method": "GetMarcas",
+    "RelativePath": "api/Marca/mostrar-todas-marcas",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
+    "Parameters": [],
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "marcaDto",
-        "Type": "FaiscaSync.DTO.MarcaDTO",
-        "IsRequired": true
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Marca, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.MarcaController",
-    "Method": "DeleteMarca",
-    "RelativePath": "api/Marca/{id}",
+    "ContainingType": "FaiscaSync.Controllers.ModeloController",
+    "Method": "DeleteModelo",
+    "RelativePath": "api/Modelo/apagar-modelo-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1705,35 +1858,36 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.ModeloController",
-    "Method": "GetModelos",
-    "RelativePath": "api/Modelo",
-    "HttpMethod": "GET",
+    "Method": "PutModelo",
+    "RelativePath": "api/Modelo/atualizar-modelo-{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Modelo, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "modelo",
+        "Type": "FaiscaSync.Models.Modelo",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FaiscaSync.Controllers.ModeloController",
     "Method": "PostModelo",
-    "RelativePath": "api/Modelo",
+    "RelativePath": "api/Modelo/criar-modelo",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "modeloDto",
-        "Type": "FaiscaSync.DTO.ModeloDTO",
+        "Name": "modelo",
+        "Type": "FaiscaSync.Models.Modelo",
         "IsRequired": true
       }
     ],
@@ -1752,7 +1906,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.ModeloController",
     "Method": "GetModelo",
-    "RelativePath": "api/Modelo/{id}",
+    "RelativePath": "api/Modelo/mostrar-modelo-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1777,8 +1931,28 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.ModeloController",
-    "Method": "PutModelo",
-    "RelativePath": "api/Modelo/{id}",
+    "Method": "GetModelos",
+    "RelativePath": "api/Modelo/mostrar-todos-modelos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Modelo, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.MoradaController",
+    "Method": "PutMoradum",
+    "RelativePath": "api/Morada/atualizar-morada{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -1789,17 +1963,43 @@
         "IsRequired": true
       },
       {
-        "Name": "modeloDto",
-        "Type": "FaiscaSync.DTO.ModeloDTO",
+        "Name": "morada",
+        "Type": "FaiscaSync.Models.Morada",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.ModeloController",
-    "Method": "DeleteModelo",
-    "RelativePath": "api/Modelo/{id}",
+    "ContainingType": "FaiscaSync.Controllers.MoradaController",
+    "Method": "PostMorada",
+    "RelativePath": "api/Morada/criar-morada",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "morada",
+        "Type": "FaiscaSync.Models.Morada",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.Morada",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.MoradaController",
+    "Method": "DeleteMorada",
+    "RelativePath": "api/Morada/eliminar-morada-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1815,7 +2015,33 @@
   {
     "ContainingType": "FaiscaSync.Controllers.MoradaController",
     "Method": "GetMorada",
-    "RelativePath": "api/Morada",
+    "RelativePath": "api/Morada/mostrar-morada-{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.Morada",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.MoradaController",
+    "Method": "GetMorada",
+    "RelativePath": "api/Morada/mostrar-todas-moradas",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1833,61 +2059,9 @@
     ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.MoradaController",
-    "Method": "PostMorada",
-    "RelativePath": "api/Morada",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "moradaDto",
-        "Type": "FaiscaSync.DTO.MoradaDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.Morada",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.MoradaController",
-    "Method": "GetMorada",
-    "RelativePath": "api/Morada/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.Morada",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.MoradaController",
-    "Method": "PutMoradum",
-    "RelativePath": "api/Morada/{id}",
+    "ContainingType": "FaiscaSync.Controllers.MotorController",
+    "Method": "PutMotor",
+    "RelativePath": "api/Motor/atualizar-motor-{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -1898,17 +2072,43 @@
         "IsRequired": true
       },
       {
-        "Name": "moradaDto",
-        "Type": "FaiscaSync.DTO.MoradaDTO",
+        "Name": "motor",
+        "Type": "FaiscaSync.Models.Motor",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.MoradaController",
-    "Method": "DeleteMorada",
-    "RelativePath": "api/Morada/{id}",
+    "ContainingType": "FaiscaSync.Controllers.MotorController",
+    "Method": "PostMotor",
+    "RelativePath": "api/Motor/criar-motor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "motor",
+        "Type": "FaiscaSync.Models.Motor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.Motor",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.MotorController",
+    "Method": "DeleteMotor",
+    "RelativePath": "api/Motor/eliminar-motor-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1924,7 +2124,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.MotorController",
     "Method": "GetMotors",
-    "RelativePath": "api/Motor",
+    "RelativePath": "api/Motor/mostar-todos-motores",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1943,34 +2143,8 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.MotorController",
-    "Method": "PostMotor",
-    "RelativePath": "api/Motor",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "motorDto",
-        "Type": "FaiscaSync.DTO.MotorDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.Motor",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.MotorController",
     "Method": "GetMotor",
-    "RelativePath": "api/Motor/{id}",
+    "RelativePath": "api/Motor/mostrar-motor-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1994,30 +2168,9 @@
     ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.MotorController",
-    "Method": "PutMotor",
-    "RelativePath": "api/Motor/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "motorDto",
-        "Type": "FaiscaSync.DTO.MotorDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.MotorController",
-    "Method": "DeleteMotor",
-    "RelativePath": "api/Motor/{id}",
+    "ContainingType": "FaiscaSync.Controllers.PagamentoController",
+    "Method": "DeletePagamento",
+    "RelativePath": "api/Pagamento/apagar-pagamento-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -2032,28 +2185,29 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.PagamentoController",
-    "Method": "GetPagamentos",
-    "RelativePath": "api/Pagamento",
-    "HttpMethod": "GET",
+    "Method": "PutPagamento",
+    "RelativePath": "api/Pagamento/atualizar-pagamento-{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Pagamento, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pagamento",
+        "Type": "FaiscaSync.Models.Pagamento",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FaiscaSync.Controllers.PagamentoController",
     "Method": "PostPagamento",
-    "RelativePath": "api/Pagamento",
+    "RelativePath": "api/Pagamento/criar-pagamento",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -2079,7 +2233,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.PagamentoController",
     "Method": "GetPagamento",
-    "RelativePath": "api/Pagamento/{id}",
+    "RelativePath": "api/Pagamento/mostrar-pagamento-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -2104,29 +2258,28 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.PagamentoController",
-    "Method": "PutPagamento",
-    "RelativePath": "api/Pagamento/{id}",
-    "HttpMethod": "PUT",
+    "Method": "GetPagamentos",
+    "RelativePath": "api/Pagamento/mostrar-todos-pagamentos",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
+    "Parameters": [],
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "pagamento",
-        "Type": "FaiscaSync.Models.Pagamento",
-        "IsRequired": true
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Pagamento, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.PagamentoController",
-    "Method": "DeletePagamento",
-    "RelativePath": "api/Pagamento/{id}",
+    "ContainingType": "FaiscaSync.Controllers.PosVendaController",
+    "Method": "DeletePosVenda",
+    "RelativePath": "api/PosVenda/apagar-pos-venda-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -2141,8 +2294,97 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.PosVendaController",
+    "Method": "PutPosVenda",
+    "RelativePath": "api/PosVenda/atualizar-pos-venda-{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "posVenda",
+        "Type": "FaiscaSync.Models.PosVenda",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.PosVendaController",
+    "Method": "PostPosVenda",
+    "RelativePath": "api/PosVenda/criar-pos-venda",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "posVenda",
+        "Type": "FaiscaSync.Models.PosVenda",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.PosVenda",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.PosVendaController",
+    "Method": "CriarSolicitacao",
+    "RelativePath": "api/PosVenda/criar-solicitacao",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "FaiscaSync.DTO.CriarPosVendaDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.PosVendaController",
     "Method": "GetPosVenda",
-    "RelativePath": "api/PosVenda",
+    "RelativePath": "api/PosVenda/mostrar-pos-venda-{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.PosVenda",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.PosVendaController",
+    "Method": "GetPosVenda",
+    "RelativePath": "api/PosVenda/mostrar-todos-pos-vendas",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -2160,82 +2402,9 @@
     ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.PosVendaController",
-    "Method": "PostPosVenda",
-    "RelativePath": "api/PosVenda",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "posVenda",
-        "Type": "FaiscaSync.Models.PosVenda",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.PosVenda",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.PosVendaController",
-    "Method": "GetPosVenda",
-    "RelativePath": "api/PosVenda/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.PosVenda",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.PosVendaController",
-    "Method": "PutPosVenda",
-    "RelativePath": "api/PosVenda/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "posVenda",
-        "Type": "FaiscaSync.Models.PosVenda",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.PosVendaController",
-    "Method": "DeletePosVenda",
-    "RelativePath": "api/PosVenda/{id}",
+    "ContainingType": "FaiscaSync.Controllers.TipoContatoController",
+    "Method": "DeleteTipoContato",
+    "RelativePath": "api/TipoContato/apagar-tipo-contacto-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -2250,35 +2419,36 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.TipoContatoController",
-    "Method": "GetTipoContatos",
-    "RelativePath": "api/TipoContato",
-    "HttpMethod": "GET",
+    "Method": "PutTipoContato",
+    "RelativePath": "api/TipoContato/atualizar-tipo-contacto-{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.TipoContato, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "tipoContato",
+        "Type": "FaiscaSync.Models.TipoContato",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FaiscaSync.Controllers.TipoContatoController",
     "Method": "PostTipoContato",
-    "RelativePath": "api/TipoContato",
+    "RelativePath": "api/TipoContato/criar-tipo-contacto",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "tipoContatoDto",
-        "Type": "FaiscaSync.DTO.TipoContatoDTO",
+        "Name": "tipoContato",
+        "Type": "FaiscaSync.Models.TipoContato",
         "IsRequired": true
       }
     ],
@@ -2297,7 +2467,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.TipoContatoController",
     "Method": "GetTipoContato",
-    "RelativePath": "api/TipoContato/{id}",
+    "RelativePath": "api/TipoContato/mostrar-tipo-contacto-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -2322,29 +2492,28 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.TipoContatoController",
-    "Method": "PutTipoContato",
-    "RelativePath": "api/TipoContato/{id}",
-    "HttpMethod": "PUT",
+    "Method": "GetTipoContatos",
+    "RelativePath": "api/TipoContato/mostrar-tipos-contacto",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
+    "Parameters": [],
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "tipoContatoDto",
-        "Type": "FaiscaSync.DTO.TipoContatoDTO",
-        "IsRequired": true
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.TipoContato, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.TipoContatoController",
-    "Method": "DeleteTipoContato",
-    "RelativePath": "api/TipoContato/{id}",
+    "ContainingType": "FaiscaSync.Controllers.TipoPagamentoController",
+    "Method": "DeleteTipoPagamento",
+    "RelativePath": "api/TipoPagamento/apagar-tipo-pagamento{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -2359,28 +2528,29 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.TipoPagamentoController",
-    "Method": "GetTipoPagamentos",
-    "RelativePath": "api/TipoPagamento",
-    "HttpMethod": "GET",
+    "Method": "PutTipoPagamento",
+    "RelativePath": "api/TipoPagamento/atualizar-pagamento-{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.TipoPagamento, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "tipoPagamento",
+        "Type": "FaiscaSync.Models.TipoPagamento",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "FaiscaSync.Controllers.TipoPagamentoController",
     "Method": "PostTipoPagamento",
-    "RelativePath": "api/TipoPagamento",
+    "RelativePath": "api/TipoPagamento/criar-tipo-pagamento",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -2406,7 +2576,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.TipoPagamentoController",
     "Method": "GetTipoPagamento",
-    "RelativePath": "api/TipoPagamento/{id}",
+    "RelativePath": "api/TipoPagamento/mostrar-tipo-pagamento-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -2431,29 +2601,28 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.TipoPagamentoController",
-    "Method": "PutTipoPagamento",
-    "RelativePath": "api/TipoPagamento/{id}",
-    "HttpMethod": "PUT",
+    "Method": "GetTipoPagamentos",
+    "RelativePath": "api/TipoPagamento/mostrat-tipos-pagamento",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
+    "Parameters": [],
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "tipoPagamento",
-        "Type": "FaiscaSync.Models.TipoPagamento",
-        "IsRequired": true
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.TipoPagamento, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.TipoPagamentoController",
-    "Method": "DeleteTipoPagamento",
-    "RelativePath": "api/TipoPagamento/{id}",
+    "ContainingType": "FaiscaSync.Controllers.TipoVeiculoController",
+    "Method": "DeleteTipoVeiculo",
+    "RelativePath": "api/TipoVeiculo/apagar-tipo-pagamento{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -2468,8 +2637,55 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.TipoVeiculoController",
+    "Method": "PutTipoVeiculo",
+    "RelativePath": "api/TipoVeiculo/atualizar-tipo-pagamento{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "tipoVeiculo",
+        "Type": "FaiscaSync.Models.TipoVeiculo",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.TipoVeiculoController",
+    "Method": "PostTipoVeiculo",
+    "RelativePath": "api/TipoVeiculo/criar-tipo-pagamento",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tipoVeiculo",
+        "Type": "FaiscaSync.Models.TipoVeiculo",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.TipoVeiculo",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.TipoVeiculoController",
     "Method": "GetTipoVeiculos",
-    "RelativePath": "api/TipoVeiculo",
+    "RelativePath": "api/TipoVeiculo/mostar-tipos-veiculos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -2488,34 +2704,8 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.TipoVeiculoController",
-    "Method": "PostTipoVeiculo",
-    "RelativePath": "api/TipoVeiculo",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "tipoVeiculoDto",
-        "Type": "FaiscaSync.DTO.TipoVeiculoDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.TipoVeiculo",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.TipoVeiculoController",
     "Method": "GetTipoVeiculo",
-    "RelativePath": "api/TipoVeiculo/{id}",
+    "RelativePath": "api/TipoVeiculo/mostrar-tipo-veiculo-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -2539,30 +2729,19 @@
     ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.TipoVeiculoController",
-    "Method": "PutTipoVeiculo",
-    "RelativePath": "api/TipoVeiculo/{id}",
-    "HttpMethod": "PUT",
+    "ContainingType": "FaiscaSync.Controllers.VeiculoController",
+    "Method": "GetVeiculosEmDestaque",
+    "RelativePath": "api/Veiculo/adicionado-recente",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "tipoVeiculoDto",
-        "Type": "FaiscaSync.DTO.TipoVeiculoDTO",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.TipoVeiculoController",
-    "Method": "DeleteTipoVeiculo",
-    "RelativePath": "api/TipoVeiculo/{id}",
+    "ContainingType": "FaiscaSync.Controllers.VeiculoController",
+    "Method": "DeleteVeiculo",
+    "RelativePath": "api/Veiculo/apagar-veiculo-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -2577,8 +2756,29 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.VeiculoController",
-    "Method": "GetVeiculos",
-    "RelativePath": "api/Veiculo",
+    "Method": "PutVeiculo",
+    "RelativePath": "api/Veiculo/atualizar-veiculo-{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "veiculo",
+        "Type": "FaiscaSync.Models.Veiculo",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.VeiculoController",
+    "Method": "GetVeiculosDisponiveis",
+    "RelativePath": "api/Veiculo/catalogo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -2598,14 +2798,14 @@
   {
     "ContainingType": "FaiscaSync.Controllers.VeiculoController",
     "Method": "PostVeiculo",
-    "RelativePath": "api/Veiculo",
+    "RelativePath": "api/Veiculo/criar-veiculo",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "veiculoDto",
-        "Type": "FaiscaSync.DTO.VeiculoDTO",
+        "Name": "veiculo",
+        "Type": "FaiscaSync.Models.Veiculo",
         "IsRequired": true
       }
     ],
@@ -2624,7 +2824,7 @@
   {
     "ContainingType": "FaiscaSync.Controllers.VeiculoController",
     "Method": "GetVeiculo",
-    "RelativePath": "api/Veiculo/{id}",
+    "RelativePath": "api/Veiculo/mostrar-veiculo-{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -2649,29 +2849,54 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.VeiculoController",
-    "Method": "PutVeiculo",
-    "RelativePath": "api/Veiculo/{id}",
-    "HttpMethod": "PUT",
+    "Method": "GetVeiculos",
+    "RelativePath": "api/Veiculo/mostrar-veiculos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Veiculo, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.VeiculoController",
+    "Method": "PesquisaAvancada",
+    "RelativePath": "api/Veiculo/pesquisa-avancada",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "veiculoDto",
-        "Type": "FaiscaSync.DTO.VeiculoDTO",
+        "Name": "filtro",
+        "Type": "FaiscaSync.DTO.PesquisaVeiculoDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FaiscaSync.Models.Veiculo, FaiscaSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
-    "ContainingType": "FaiscaSync.Controllers.VeiculoController",
-    "Method": "DeleteVeiculo",
-    "RelativePath": "api/Veiculo/{id}",
+    "ContainingType": "FaiscaSync.Controllers.VendaController",
+    "Method": "DeleteVenda",
+    "RelativePath": "api/Venda/apagar-venda-{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -2686,8 +2911,103 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.VendaController",
+    "Method": "AprovarFinanceiro",
+    "RelativePath": "api/Venda/aprovar-financeiro/{vendaId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vendaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.VendaController",
+    "Method": "UpdateVenda",
+    "RelativePath": "api/Venda/atualizar-venda-{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "venda",
+        "Type": "FaiscaSync.Models.Venda",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.VendaController",
+    "Method": "PostVenda",
+    "RelativePath": "api/Venda/criar-venda",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "venda",
+        "Type": "FaiscaSync.Models.Venda",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.VendaController",
+    "Method": "FinalizarVenda",
+    "RelativePath": "api/Venda/finalizar-venda/{vendaId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vendaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.VendaController",
+    "Method": "Getvenda",
+    "RelativePath": "api/Venda/mostrar-venda-{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FaiscaSync.Models.Venda",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FaiscaSync.Controllers.VendaController",
     "Method": "GetVendas",
-    "RelativePath": "api/Venda",
+    "RelativePath": "api/Venda/mostrar-vendas",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -2706,62 +3026,20 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.VendaController",
-    "Method": "PostVenda",
-    "RelativePath": "api/Venda",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "venda",
-        "Type": "FaiscaSync.Models.Venda",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.VendaController",
-    "Method": "Getvenda",
-    "RelativePath": "api/Venda/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FaiscaSync.Models.Venda",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FaiscaSync.Controllers.VendaController",
-    "Method": "UpdateVenda",
-    "RelativePath": "api/Venda/{id}",
+    "Method": "ReservarVeiculo",
+    "RelativePath": "api/Venda/reservar/{veiculoId}/{funcionarioId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "veiculoId",
         "Type": "System.Int32",
         "IsRequired": true
       },
       {
-        "Name": "venda",
-        "Type": "FaiscaSync.Models.Venda",
+        "Name": "funcionarioId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -2769,14 +3047,19 @@
   },
   {
     "ContainingType": "FaiscaSync.Controllers.VendaController",
-    "Method": "DeleteVenda",
-    "RelativePath": "api/Venda/{id}",
-    "HttpMethod": "DELETE",
+    "Method": "SubmeterVenda",
+    "RelativePath": "api/Venda/submeter-venda/{veiculoId}/{funcionarioId}",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "veiculoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "funcionarioId",
         "Type": "System.Int32",
         "IsRequired": true
       }

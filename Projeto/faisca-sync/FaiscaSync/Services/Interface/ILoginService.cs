@@ -1,4 +1,5 @@
-﻿using FaiscaSync.Models;
+﻿using FaiscaSync.DTO;
+using FaiscaSync.Models;
 namespace FaiscaSync.Services.Interface
 {
     public interface ILoginService
@@ -8,7 +9,8 @@ namespace FaiscaSync.Services.Interface
         Task<Login?> GetLoginByIdAsync(int id);                           // Buscar por ID
         Task<ResultadoOperacao> UpdateLoginAsync(Login login);                        // Atualizar
         Task<ResultadoOperacao> RemoverAsync(int id);                             // Remover
-        Task CreateLoginAsync(Login login);                              //Criar
+        Task<ResultadoOperacao> CriarLoginAsync(NovoLoginDTO novoLogin);
+        //Criar
 
     }
 }

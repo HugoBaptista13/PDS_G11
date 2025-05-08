@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FaiscaSync.csproj": {}
+    "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v7\\FaiscaSync\\FaiscaSync.csproj": {}
   },
   "projects": {
-    "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FaiscaSync.csproj": {
+    "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v7\\FaiscaSync\\FaiscaSync.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FaiscaSync.csproj",
+        "projectUniqueName": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v7\\FaiscaSync\\FaiscaSync.csproj",
         "projectName": "FaiscaSync",
-        "projectPath": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FaiscaSync.csproj",
-        "packagesPath": "C:\\Users\\Baptista\\.nuget\\packages\\",
-        "outputPath": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\obj\\",
+        "projectPath": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v7\\FaiscaSync\\FaiscaSync.csproj",
+        "packagesPath": "C:\\Users\\luisf\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v7\\FaiscaSync\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Baptista\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\luisf\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -80,6 +81,18 @@
               "target": "Package",
               "version": "[8.0.7, )"
             },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Serilog.Extensions.Logging.File": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
@@ -104,7 +117,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

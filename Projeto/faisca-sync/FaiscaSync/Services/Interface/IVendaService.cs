@@ -9,6 +9,11 @@ namespace FaiscaSync.Services.Interface
         Task CriarAsync(Venda venda);
         Task<ResultadoOperacao> AtualizarAsync(Venda venda);
         Task<ResultadoOperacao> RemoverAsync(int id);
+        Task<ResultadoOperacao> ReservarVeiculoAsync(int veiculoId, int funcionarioId);
+        Task<ResultadoOperacao> SubmeterVendaAsync(int veiculoId, int funcionarioId);
+        Task<ResultadoOperacao> AprovarFinanceiroAsync(int vendaId);
+        Task<ResultadoOperacao> FinalizarVendaAdminAsync(int vendaId, int funcionarioId);
+
     }
 }
 

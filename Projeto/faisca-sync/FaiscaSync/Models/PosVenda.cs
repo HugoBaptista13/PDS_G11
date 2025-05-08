@@ -10,9 +10,10 @@ public partial class PosVenda
     public int IdVendas { get; set; }
 
     public int IdGarantia { get; set; }
+    public int IdVeiculo { get; set; }
 
     public virtual Garantia IdGarantiaNavigation { get; set; } = null!;
-
+    public virtual Veiculo IdVeiculoNavigation { get; set; } = null!;
     public virtual Venda IdVendasNavigation { get; set; } = null!;
 
     public virtual ICollection<Manutencao> Manutencaos { get; set; } = new List<Manutencao>();

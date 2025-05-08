@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -23,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Pagamento
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpGet("mostrar-todos-pagamentos")]
         public async Task<ActionResult<IEnumerable<Pagamento>>> GetPagamentos()
         {
             var pagamento = await _pagamentoService.ObterTodosAsync();
@@ -31,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Pagamento/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpGet("mostrar-pagamento-{id}")]
         public async Task<ActionResult<Pagamento>> GetPagamento(int id)
         {
             var pagamento = await _pagamentoService.ObterPorIdAsync(id);
@@ -46,7 +49,8 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/Pagamento/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPut("atualizar-pagamento-{id}")]
         public async Task<IActionResult> PutPagamento(int id,[FromBody] Pagamento pagamento)
         {
             if (id != pagamento.IdPagamento)
@@ -62,7 +66,8 @@ namespace FaiscaSync.Controllers
 
         // POST: api/Pagamento
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPost("criar-pagamento")]
         public async Task<ActionResult<Pagamento>> PostPagamento([FromBody]Pagamento pagamento)
         {
             if (!ModelState.IsValid)
@@ -73,7 +78,8 @@ namespace FaiscaSync.Controllers
         }
 
         // DELETE: api/Pagamento/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("apagar-pagamento-{id}")]
         public async Task<IActionResult> DeletePagamento(int id)
         {
             var deleted = await _pagamentoService.RemoverAsync(id);
@@ -85,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao>PagamentoExists(int id)
-        {
-            var pagamento = await _pagamentoService.ObterPorIdAsync(id);
-            return pagamento != null
-                ? ResultadoOperacao.Ok("Pagamento encontrado.")
-        : ResultadoOperacao.Falha("Pagamento não encontrado.");
-        }
     }
 }

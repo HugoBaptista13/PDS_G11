@@ -68,10 +68,6 @@ public partial class FsContext : DbContext
 
     public virtual DbSet<Venda> Vendas { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=LAPTOP-0HDG436U;Initial Catalog=fs;Integrated Security=True;Encrypt=False");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Aquisicao>(entity =>
@@ -453,7 +449,7 @@ public partial class FsContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("rua");
 
-            entity.HasOne(d => d.IdCpostalNavigation).WithMany(d => d.Morada)
+            entity.HasOne(d => d.IdCpostalNavigation).WithMany(p => p.Morada)
                 .HasForeignKey(d => d.IdCpostal)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FKMorada112888");

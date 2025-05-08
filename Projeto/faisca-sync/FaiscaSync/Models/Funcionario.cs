@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FaiscaSync.Models;
 
@@ -19,7 +20,10 @@ public partial class Funcionario
 
     public virtual ICollection<HistoricoEstadoVeiculo> HistoricoEstadoVeiculos { get; set; } = new List<HistoricoEstadoVeiculo>();
 
+    [ForeignKey("IdCargo")]
     public virtual Cargo IdCargoNavigation { get; set; } = null!;
+
+
 
     public virtual ICollection<Login> Logins { get; set; } = new List<Login>();
 

@@ -14,4 +14,8 @@ public partial class Login
     public int IdFuncionario { get; set; }
 
     public virtual Funcionario IdFuncionarioNavigation { get; set; } = null!;
+
+    
+
+
 }

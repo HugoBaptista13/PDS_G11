@@ -1,5 +1,4 @@
-﻿using FaiscaSync.DTO;
-using FaiscaSync.Models;
+﻿using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
@@ -29,45 +28,31 @@ namespace FaiscaSync.Services
             return await _context.Contatos.FindAsync(id);
         }
 
-        public async Task CriarAsync(ContatoDTO contatoDto)
+        public async Task CriarAsync(Contato contato)
         {
-            var contato = new Contato
-            {
-                Detalhescontato = contatoDto.Contato,
-                IdCliente = contatoDto.IdCliente,
-                IdTipoContato = contatoDto.IdTipoContato,
-                IdFuncionario = contatoDto.IdFuncionario
-            };
-
             _context.Contatos.Add(contato);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync(int id, ContatoDTO contatoDto)
+        public async Task<ResultadoOperacao> AtualizarAsync(Contato contatos)
         {
-            var contatoExistente = await _context.Contatos.FindAsync(id);
+            var exists = await _context.Contatos.AnyAsync(c => c.Idcontato == contatos.Idcontato);
+            if (!exists)
+                return ResultadoOperacao.Falha("Falha na atualização da Aquisição!");
 
-            if (contatoExistente == null)
-                return ResultadoOperacao.Falha("Falha na atualização do Contato! Contato não encontrado.");
-
-            contatoExistente.Detalhescontato = contatoDto.Contato;
-            contatoExistente.IdCliente = contatoDto.IdCliente;
-            contatoExistente.IdTipoContato = contatoDto.IdTipoContato;
-            contatoExistente.IdFuncionario = contatoDto.IdFuncionario;
-
-            _context.Entry(contatoExistente).State = EntityState.Modified;
+            _context.Entry(contatos).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return ResultadoOperacao.Ok("Contato atualizado com Sucesso!");
+            return ResultadoOperacao.Ok("Aquisição atualizada com Sucesso!");
         }
 
         public async Task<ResultadoOperacao> RemoverAsync(int id)
         {
             var contato = await _context.Contatos.FindAsync(id);
             if (contato == null)
-                return ResultadoOperacao.Falha("Falha na remoção do contato");
+                return ResultadoOperacao.Falha("Falha na remoção da aquisição");
             _context.Contatos.Remove(contato);
             await _context.SaveChangesAsync();
-            return ResultadoOperacao.Ok("Contato removido com sucesso");
+            return ResultadoOperacao.Ok("Aquisição removida com sucesso");
         }
     }
 }

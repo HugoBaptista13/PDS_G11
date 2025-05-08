@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -23,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/EstadoGarantia
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet ("mostrar-estados-garantia")]
         public async Task<ActionResult<IEnumerable<EstadoGarantia>>> GetEstadoGarantia()
         {
             var estadoGarantium = await _estadoGarantiumService.ObterTodosAsync();
@@ -31,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/EstadoGarantia/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-estado-garantia-{id}")]
         public async Task<ActionResult<EstadoGarantia>> GetEstadoGarantium(int id)
         {
             var estadoGarantium = await _estadoGarantiumService.ObterPorIdAsync(id);
@@ -46,7 +49,8 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/EstadoGarantia/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpPut("atualizar-estado-garantia-{id}")]
         public async Task<IActionResult> PutEstadoGarantium(int id,[FromBody] EstadoGarantia estadoGarantium)
         {
             if (id != estadoGarantium.IdEstadoGarantia)
@@ -62,7 +66,8 @@ namespace FaiscaSync.Controllers
 
         // POST: api/EstadoGarantia
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPost("criar-estado-garantia")]
         public async Task<ActionResult<EstadoGarantia>> PostEstadoGarantium([FromBody] EstadoGarantia estadoGarantium)
         {
             if (!ModelState.IsValid)
@@ -71,10 +76,11 @@ namespace FaiscaSync.Controllers
             await _estadoGarantiumService.CriarAsync(estadoGarantium);
             return CreatedAtAction(nameof(GetEstadoGarantia), new { id = estadoGarantium.IdEstadoGarantia }, estadoGarantium);
         }
-        
+
 
         // DELETE: api/EstadoGarantia/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("apagar-estado-garantia-{id}")]
         public async Task<IActionResult> DeleteEstadoGarantium(int id)
         {
             var deleted = await _estadoGarantiumService.RemoverAsync(id);
@@ -84,14 +90,6 @@ namespace FaiscaSync.Controllers
             }
 
             return NotFound(new { mensagem = deleted.Mensagem });
-        }
-
-        private async Task<ResultadoOperacao> EstadoGarantiumExists(int id)
-        {
-            var estadoGarantia = await _estadoGarantiumService.ObterPorIdAsync(id);
-            return estadoGarantia != null
-                ? ResultadoOperacao.Ok("Aquisição encontrada.")
-        : ResultadoOperacao.Falha("Aquisição não encontrada.");
         }
     }
 }

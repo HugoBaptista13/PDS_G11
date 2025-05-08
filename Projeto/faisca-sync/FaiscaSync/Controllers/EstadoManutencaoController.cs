@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -23,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/EstadoManutencao
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-estados-manutencao")]
         public async Task<ActionResult<IEnumerable<EstadoManutencao>>> GetEstadoManutencaos()
         {
             var estadoManutencao = await _estadoManutencaoService.ObterTodosAsync();
@@ -31,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/EstadoManutencao/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-estado-manutencao-{id}")]
         public async Task<ActionResult<EstadoManutencao>> GetEstadoManutencao(int id)
         {
             var estadoManutencao = await _estadoManutencaoService.ObterPorIdAsync(id);
@@ -46,7 +49,8 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/EstadoManutencao/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpPut("atualizar-estado-manutencao-{id}")]
         public async Task<IActionResult> PutEstadoManutencao(int id, [FromBody]EstadoManutencao estadoManutencao)
         {
             if (id != estadoManutencao.IdEstadoManutencao)
@@ -62,7 +66,8 @@ namespace FaiscaSync.Controllers
 
         // POST: api/EstadoManutencao
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpPost("criar-estado-manutencao")]
         public async Task<ActionResult<EstadoManutencao>> PostEstadoManutencao([FromBody]EstadoManutencao estadoManutencao)
         {
             if (!ModelState.IsValid)
@@ -73,7 +78,8 @@ namespace FaiscaSync.Controllers
         }
 
         // DELETE: api/EstadoManutencao/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("apagar-estado-manutencao{id}")]
         public async Task<IActionResult> DeleteEstadoManutencao(int id)
         {
             var deleted = await _estadoManutencaoService.RemoverAsync(id);
@@ -85,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> EstadoManutencaoExists(int id)
-        {
-            var estadoManutencao = await _estadoManutencaoService.ObterPorIdAsync(id);
-            return estadoManutencao != null
-                ? ResultadoOperacao.Ok("Estado Manutenção encontrado.")
-        : ResultadoOperacao.Falha("Estado Manutenção não encontrado.");
-        }
     }
 }

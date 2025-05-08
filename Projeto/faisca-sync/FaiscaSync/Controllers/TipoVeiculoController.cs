@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
-using FaiscaSync.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -24,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/TipoVeiculo
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostar-tipos-veiculos")]
         public async Task<ActionResult<IEnumerable<TipoVeiculo>>> GetTipoVeiculos()
         {
             var tipoVeiculo = await _tipoVeiculoService.ObterTodosAsync();
@@ -32,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/TipoVeiculo/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-tipo-veiculo-{id}")]
         public async Task<ActionResult<TipoVeiculo>> GetTipoVeiculo(int id)
         {
             var tipoVeiculo = await _tipoVeiculoService.ObterPorIdAsync(id);
@@ -47,13 +49,14 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/TipoVeiculo/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTipoVeiculo(int id, [FromBody]TipoVeiculoDTO tipoVeiculoDto)
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPut("atualizar-tipo-pagamento{id}")]
+        public async Task<IActionResult> PutTipoVeiculo(int id, [FromBody]TipoVeiculo tipoVeiculo)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (id != tipoVeiculo.IdTipoVeiculo)
+                return BadRequest("ID no URL e ID no objeto não coincidem.");
 
-            var updated = await _tipoVeiculoService.AtualizarAsync(id, tipoVeiculoDto);
+            var updated = await _tipoVeiculoService.AtualizarAsync(tipoVeiculo);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,23 +66,20 @@ namespace FaiscaSync.Controllers
 
         // POST: api/TipoVeiculo
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<TipoVeiculo>> PostTipoVeiculo([FromBody]TipoVeiculoDTO tipoVeiculoDto)
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPost("criar-tipo-pagamento")]
+        public async Task<ActionResult<TipoVeiculo>> PostTipoVeiculo([FromBody]TipoVeiculo tipoVeiculo)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var tipoVeiculo = new TipoVeiculo
-            {
-                Descricaotveiculo = tipoVeiculoDto.Tipo
-            };
-
-            await _tipoVeiculoService.CriarAsync(tipoVeiculoDto);
+            await _tipoVeiculoService.CriarAsync(tipoVeiculo);
             return CreatedAtAction(nameof(GetTipoVeiculo), new { id = tipoVeiculo.IdTipoVeiculo }, tipoVeiculo);
         }
 
         // DELETE: api/TipoVeiculo/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("apagar-tipo-pagamento{id}")]
         public async Task<IActionResult> DeleteTipoVeiculo(int id)
         {
             var deleted = await _tipoVeiculoService.RemoverAsync(id);
@@ -91,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> TipoVeiculoExists(int id)
-        {
-            var tipoVeiculo = await _tipoVeiculoService.ObterPorIdAsync(id);
-            return tipoVeiculo != null
-                ? ResultadoOperacao.Ok("Tipo de Veiculo encontrado.")
-        : ResultadoOperacao.Falha("Tipo de Veiculo não encontrado."); ;
-        }
     }
 }

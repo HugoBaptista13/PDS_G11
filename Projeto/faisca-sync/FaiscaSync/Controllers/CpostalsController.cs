@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
-using FaiscaSync.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -24,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Cpostals
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-codigos-postais")]
         public async Task<ActionResult<IEnumerable<Cpostal>>> GetCpostals()
         {
             var cPostal = await _cPostalService.ObterTodosAsync();
@@ -32,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Cpostals/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-codigo-postal-{id}")]
         public async Task<ActionResult<Cpostal>> GetCpostal(int id)
         {
             var cPostal = await _cPostalService.ObterPorIdAsync(id);
@@ -47,13 +49,14 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/Cpostals/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCpostal(int id, [FromBody]CpostalDTO cpostalDto)
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpPut("atualizar-codigo-postal-{id}")]
+        public async Task<IActionResult> PutCpostal(int id, [FromBody]Cpostal cpostal)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (id != cpostal.IdCpostal)
+                return BadRequest("ID no URL e ID no objeto não coincidem.");
 
-            var updated = await _cPostalService.AtualizarAsync(id, cpostalDto);
+            var updated = await _cPostalService.AtualizarAsync(cpostal);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,26 +66,20 @@ namespace FaiscaSync.Controllers
 
         // POST: api/Cpostals
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Cpostal>> PostCpostal([FromBody] CpostalDTO cpostalDto)
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpPost("criar-codigo-postal")]
+        public async Task<ActionResult<Cpostal>> PostCpostal([FromBody]Cpostal cpostal)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            // Cria o objeto no banco de dados
-            var cpostal = new Cpostal
-            {
-                Localidade = cpostalDto.Localidade
-            };
-
-            await _cPostalService.CriarAsync(cpostalDto);
-
-            // Retorna o objeto criado com o ID gerado
+            await _cPostalService.CriarAsync(cpostal);
             return CreatedAtAction(nameof(GetCpostal), new { id = cpostal.IdCpostal }, cpostal);
         }
 
         // DELETE: api/Cpostals/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("apagar-codigo-postal-{id}")]
         public async Task<IActionResult> DeleteCpostal(int id)
         {
             var deleted = await _cPostalService.RemoverAsync(id);
@@ -94,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> CpostalExists(int id)
-        {
-            var cpostal = await _cPostalService.ObterPorIdAsync(id);
-            return cpostal != null
-                ? ResultadoOperacao.Ok("Código Postal encontrado.")
-        : ResultadoOperacao.Falha("Código Postal não encontrado.");
-        }
     }
 }

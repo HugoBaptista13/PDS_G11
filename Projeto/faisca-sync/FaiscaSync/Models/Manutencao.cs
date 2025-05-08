@@ -13,14 +13,14 @@ public partial class Manutencao
 
     public decimal Custo { get; set; }
 
-    public int Descricaomanutencao { get; set; }
+    public string Descricaomanutencao { get; set; } = string.Empty;
 
     public int IdVeiculo { get; set; }
 
     public int IdPosVenda { get; set; }
 
     public int IdEstadoManutencao { get; set; }
-
+    public DateTime? DataAgendada { get; set; }
     public int FaturaIdFatura { get; set; }
 
     public virtual ICollection<CoberturaGarantia> CoberturaGarantia { get; set; } = new List<CoberturaGarantia>();

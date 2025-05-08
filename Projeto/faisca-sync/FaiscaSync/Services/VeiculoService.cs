@@ -26,48 +26,19 @@ namespace FaiscaSync.Services
             return await _context.Veiculos.FindAsync(id);
         }
 
-        public async Task CriarAsync(VeiculoDTO veiculoDto)
+        public async Task CriarAsync(Veiculo veiculo)
         {
-            var veiculo = new Veiculo
-            {
-                Matricula = veiculoDto.Matricula,
-                Chassi = veiculoDto.Chassi,
-                Anofabrico = veiculoDto.AnoFabrico,
-                Cor = veiculoDto.Cor,
-                Quilometros = veiculoDto.Quilometragem,
-                Preco = veiculoDto.Preco,
-                IdMotor = veiculoDto.IdMotor,
-                IdEstadoVeiculo = veiculoDto.IdEstadoVeiculo,
-                IdTipoVeiculo = veiculoDto.IdTipoVeiculo,
-                IdModelo = veiculoDto.IdModelo,
-                IdAquisicao = veiculoDto.IdAquisicao
-
-            };
-
             _context.Veiculos.Add(veiculo);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync(int id, VeiculoDTO veiculoDto)
+        public async Task<ResultadoOperacao> AtualizarAsync( Veiculo veiculo)
         {
-            var veiculoExistente = await _context.Veiculos.FindAsync(id);
+            var exists = await _context.Veiculos.AnyAsync(a => a.IdVeiculo == veiculo.IdVeiculo);
+            if (!exists)
+                return ResultadoOperacao.Falha("Falha na atualização do Veiculo!");
 
-            if (veiculoExistente == null)
-                return ResultadoOperacao.Falha("Falha na atualização do Veiculo! Veiculo não encontrado.");
-
-            veiculoExistente.Matricula = veiculoDto.Matricula;
-            veiculoExistente.Chassi = veiculoDto.Chassi;
-            veiculoExistente.Anofabrico = veiculoDto.AnoFabrico;
-            veiculoExistente.Cor = veiculoDto.Cor;
-            veiculoExistente.Quilometros = veiculoDto.Quilometragem;
-            veiculoExistente.Preco = veiculoDto.Preco;
-            veiculoExistente.IdMotor = veiculoDto.IdMotor;
-            veiculoExistente.IdEstadoVeiculo = veiculoDto.IdEstadoVeiculo;
-            veiculoExistente.IdTipoVeiculo = veiculoDto.IdTipoVeiculo;
-            veiculoExistente.IdModelo = veiculoDto.IdModelo;
-            veiculoExistente.IdAquisicao = veiculoDto.IdAquisicao;
-
-            _context.Entry(veiculoExistente).State = EntityState.Modified;
+            _context.Entry(veiculo).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Veiculo atualizado com Sucesso!");
         }
@@ -81,5 +52,68 @@ namespace FaiscaSync.Services
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Veiculo removido com sucesso");
         }
+
+        public async Task<IEnumerable<Veiculo>> PesquisaAvancadaAsync(PesquisaVeiculoDTO filtro)
+        {
+            var query = _context.Veiculos
+                .Include(v => v.IdModeloNavigation)
+                    .ThenInclude(m => m.IdMarcaNavigation)
+                .Include(v => v.IdTipoVeiculoNavigation)
+                .Include(v => v.IdMotorNavigation)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(filtro.Marca))
+                query = query.Where(v => v.IdModeloNavigation.IdMarcaNavigation.Descricaomarca.Contains(filtro.Marca));
+
+            if (!string.IsNullOrWhiteSpace(filtro.Modelo))
+                query = query.Where(v => v.IdModeloNavigation.Nomemodelo.Contains(filtro.Modelo));
+
+            if (!string.IsNullOrWhiteSpace(filtro.TipoVeiculo))
+                query = query.Where(v => v.IdTipoVeiculoNavigation.Descricaotveiculo.Contains(filtro.TipoVeiculo));
+
+            if (!string.IsNullOrWhiteSpace(filtro.Combustivel))
+                query = query.Where(v => v.IdMotorNavigation.Combustivel.Contains(filtro.Combustivel));
+
+            if (filtro.AnoDe.HasValue)
+                query = query.Where(v => v.Anofabrico >= filtro.AnoDe);
+
+            if (filtro.AnoAte.HasValue)
+                query = query.Where(v => v.Anofabrico <= filtro.AnoAte);
+
+            if (filtro.PrecoDe.HasValue)
+                query = query.Where(v => v.Preco >= filtro.PrecoDe);
+
+            if (filtro.PrecoAte.HasValue)
+                query = query.Where(v => v.Preco <= filtro.PrecoAte);
+
+            if (filtro.QuilometrosDe.HasValue)
+                query = query.Where(v => v.Quilometros >= filtro.QuilometrosDe);
+
+            if (filtro.QuilometrosAte.HasValue)
+                query = query.Where(v => v.Quilometros <= filtro.QuilometrosAte);
+
+            return await query.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Veiculo>> ObterVeiculosEmDestaqueAsync()
+        {
+            return await _context.Veiculos
+                .Include(v => v.Aquisicao)
+                .Where(v => v.Aquisicao != null)
+                .OrderByDescending(v => v.Aquisicao.Dataaquisicao)
+                .Take(5)
+                .ToListAsync();
+        }
+
+        public async Task<List<Veiculo>> ObterVeiculosDisponiveisAsync()
+        {
+            return await _context.Veiculos
+                .Include(v => v.IdModeloNavigation)
+                .Include(v => v.IdEstadoVeiculoNavigation)
+                .Where(v => v.IdEstadoVeiculoNavigation.Descricaoestadoveiculo == "Disponível")
+                .ToListAsync();
+        }
+
+
     }
 }

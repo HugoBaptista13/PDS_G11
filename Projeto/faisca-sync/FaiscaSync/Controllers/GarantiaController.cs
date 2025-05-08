@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -23,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Garantia
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpGet("mostrar-todas-garantias")]
         public async Task<ActionResult<IEnumerable<Garantia>>> GetGarantia()
         {
             var garantia = await _garantiaService.ObterTodosAsync();
@@ -31,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Garantia/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpGet("mostrar-garantia-{id}")]
         public async Task<ActionResult<Garantia>> GetGarantia(int id)
         {
             var garantia = await _garantiaService.ObterPorIdAsync(id);
@@ -46,7 +49,8 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/Garantia/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPut("atualizar-garantia-{id}")]
         public async Task<IActionResult> PutGarantia(int id, [FromBody]Garantia garantia)
         {
             if (id != garantia.IdGarantia)
@@ -62,7 +66,8 @@ namespace FaiscaSync.Controllers
 
         // POST: api/Garantia
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPost("criar-garantia")]
         public async Task<ActionResult<Garantia>> PostGarantia(Garantia garantia)
         {
             if (!ModelState.IsValid)
@@ -73,7 +78,8 @@ namespace FaiscaSync.Controllers
         }
 
         // DELETE: api/Garantia/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("apagar-garantia-{id}")]
         public async Task<IActionResult> DeleteGarantia(int id)
         {
             var deleted = await _garantiaService.RemoverAsync(id);
@@ -85,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> GarantiaExists(int id)
-        {
-            var garantia = await _garantiaService.ObterPorIdAsync(id);
-            return garantia != null
-                ? ResultadoOperacao.Ok("Garantia encontrada.")
-        : ResultadoOperacao.Falha("Garantia não encontrada.");
-        }
     }
 }

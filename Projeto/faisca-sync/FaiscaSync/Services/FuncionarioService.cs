@@ -1,5 +1,4 @@
-﻿using FaiscaSync.DTO;
-using FaiscaSync.Models;
+﻿using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,32 +26,19 @@ namespace FaiscaSync.Services
             return await _context.Funcionarios.FindAsync(id);
         }
 
-        public async Task CriarAsync(FuncionarioDTO funcionarioDto)
+        public async Task CriarAsync(Funcionario funcionario)
         {
-            var funcionario = new Funcionario
-            {
-                Nome = funcionarioDto.Nome,
-                Datacontratacao = funcionarioDto.DataContrato,
-                Datanascimento = funcionarioDto.DataNasc,
-                IdCargo = funcionarioDto.IdCargo
-            };
             _context.Funcionarios.Add(funcionario);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync(int id, FuncionarioDTO funcionarioDto)
+        public async Task<ResultadoOperacao> AtualizarAsync(Funcionario funcionario)
         {
-            var funcionarioExistente = await _context.Funcionarios.FindAsync(id);
+            var exists = await _context.Funcionarios.AnyAsync(a => a.IdFuncionario == funcionario.IdFuncionario);
+            if (!exists)
+                return ResultadoOperacao.Falha("Falha na atualização do Funcionário!");
 
-            if (funcionarioExistente == null)
-                return ResultadoOperacao.Falha("Falha na atualização do Funcionário! Funcionário não encontrado.");
-
-            funcionarioExistente.Nome = funcionarioDto.Nome;
-            funcionarioExistente.Datacontratacao = funcionarioDto.DataContrato;
-            funcionarioExistente.Datanascimento = funcionarioDto.DataNasc;
-            funcionarioExistente.IdCargo = funcionarioDto.IdCargo;
-
-            _context.Entry(funcionarioExistente).State = EntityState.Modified;
+            _context.Entry(funcionario).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Funcionário atualizado com Sucesso!");
         }

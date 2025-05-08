@@ -1,5 +1,4 @@
-﻿using FaiscaSync.DTO;
-using FaiscaSync.Models;
+﻿using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,26 +25,19 @@ namespace FaiscaSync.Services
             return await _context.Marcas.FindAsync(id);
         }
 
-        public async Task CriarAsync(MarcaDTO marcaDto)
+        public async Task CriarAsync(Marca marca)
         {
-            var marca = new Marca
-            {
-                Descricaomarca = marcaDto.Marca
-            };
             _context.Marcas.Add(marca);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync(int id, MarcaDTO marcaDto)
+        public async Task<ResultadoOperacao> AtualizarAsync( Marca marca)
         {
-            var marcaExistente = await _context.Marcas.FindAsync(id);
+            var exists = await _context.Marcas.AnyAsync(a => a.IdMarca == marca.IdMarca);
+            if (!exists)
+                return ResultadoOperacao.Falha("Falha na atualização da Marca!");
 
-            if (marcaExistente == null)
-                return ResultadoOperacao.Falha("Falha na atualização da Marca! Marca não encontrada.");
-
-            marcaExistente.Descricaomarca = marcaDto.Marca;
-
-            _context.Entry(marcaExistente).State = EntityState.Modified;
+            _context.Entry(marca).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Marca atualizada com Sucesso!");
         }

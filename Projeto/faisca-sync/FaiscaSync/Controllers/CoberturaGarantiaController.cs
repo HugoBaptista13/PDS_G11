@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -23,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/CoberturaGarantia
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-coberturas-garantia")]
         public async Task<ActionResult<IEnumerable<CoberturaGarantia>>> GetCoberturaGarantium()
         {
             var coberturaGarantium = await _coberturagarantiaService.ObterTodosAsync();
@@ -31,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/CoberturaGarantia/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-cobertura-garantia-{id}")]
         public async Task<ActionResult<CoberturaGarantia>> GetCoberturaGarantium(int id)
         {
             var coberturaGarantium = await _coberturagarantiaService.ObterPorIdAsync(id);
@@ -46,7 +49,8 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/CoberturaGarantia/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPut("atualizar-cobertura-{id}")]
         public async Task<IActionResult> PutCoberturaGarantium(int id, [FromBody] CoberturaGarantia coberturaGarantium)
         {
             if (id != coberturaGarantium.IdCoberturaGarantia)
@@ -62,7 +66,8 @@ namespace FaiscaSync.Controllers
 
         // POST: api/CoberturaGarantia
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPost ("Criar Cobertura Garantia")]
         public async Task<ActionResult<CoberturaGarantia>> PostCoberturaGarantium(CoberturaGarantia coberturaGarantium)
         {
             if (!ModelState.IsValid)
@@ -73,7 +78,8 @@ namespace FaiscaSync.Controllers
         }
 
         // DELETE: api/CoberturaGarantia/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("apagar-cobertura-{id}")]
         public async Task<IActionResult> DeleteCoberturaGarantium(int id)
         {
             var deleted = await _coberturagarantiaService.RemoverAsync(id);
@@ -85,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> CoberturaGarantiumExists(int id)
-        {
-            var coberturaGarantium = await _coberturagarantiaService.ObterPorIdAsync(id);
-            return coberturaGarantium != null
-                ? ResultadoOperacao.Ok("Cobertura Garantia encontrada.")
-        : ResultadoOperacao.Falha("Cobertura Garantia não encontrada.");
-        }
     }
 }

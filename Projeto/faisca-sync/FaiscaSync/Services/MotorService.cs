@@ -1,5 +1,4 @@
-﻿using FaiscaSync.DTO;
-using FaiscaSync.Models;
+﻿using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,31 +25,19 @@ namespace FaiscaSync.Services
             return await _context.Motors.FindAsync(id);
         }
 
-        public async Task CriarAsync(MotorDTO motorDto)
+        public async Task CriarAsync(Motor motor)
         {
-            var motor = new Motor
-            {
-                Tipomotor = motorDto.TipoMotor,
-                Potencia = motorDto.Potencia,
-                Combustivel = motorDto.Combustivel
-            };
-
             _context.Motors.Add(motor);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync(int id, MotorDTO motorDto)
+        public async Task<ResultadoOperacao> AtualizarAsync( Motor motor)
         {
-            var motorExistente = await _context.Motors.FindAsync(id);
+            var exists = await _context.Motors.AnyAsync(a => a.IdMotor == motor.IdMotor);
+            if (!exists)
+                return ResultadoOperacao.Falha("Falha na atualização do Motor!");
 
-            if (motorExistente == null)
-                return ResultadoOperacao.Falha("Falha na atualização do Motor! Motor não encontrado.");
-
-            motorExistente.Tipomotor = motorDto.TipoMotor;
-            motorExistente.Potencia = motorDto.Potencia;
-            motorExistente.Combustivel = motorDto.Combustivel;
-
-            _context.Entry(motorExistente).State = EntityState.Modified;
+            _context.Entry(motor).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Motor atualizado com Sucesso!");
         }

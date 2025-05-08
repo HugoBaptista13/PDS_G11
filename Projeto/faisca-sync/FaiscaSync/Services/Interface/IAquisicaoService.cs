@@ -6,9 +6,19 @@ namespace FaiscaSync.Services.Interface
     {
         Task<List<Aquisicao>> ObterTodosAsync();
         Task<Aquisicao?> ObterPorIdAsync(int id);
-        Task CriarAsync(AquisicaoDTO aquisicaoDto);
-        Task<ResultadoOperacao> AtualizarAsync(int id, AquisicaoDTO aquisicaoDto);
+        Task CriarAsync(Aquisicao aquisicao);
+        Task<ResultadoOperacao> AtualizarAsync(Aquisicao aquisicao);
         Task<ResultadoOperacao> RemoverAsync(int id);
+
+
+        /// <summary>
+        /// Processo de negócio Aquisicao
+        /// </summary>
+        /// <param name="funcionarioId"></param>
+        /// <returns></returns>
+        Task<ResultadoOperacao> SubmeterPedidoAsync(int funcionarioId);
+        Task<ResultadoOperacao> RejeitarFinanceiroAsync(int aquisicaoId);
+        Task<ResultadoOperacao> AprovarAdminAsync(int aquisicaoId, NovoVeiculoDTO dto);
     }
 }
 

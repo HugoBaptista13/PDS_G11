@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
-using FaiscaSync.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -24,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Motor
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostar-todos-motores")]
         public async Task<ActionResult<IEnumerable<Motor>>> GetMotors()
         {
             var motor = await _motorService.ObterTodosAsync();
@@ -32,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Motor/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-motor-{id}")]
         public async Task<ActionResult<Motor>> GetMotor(int id)
         {
             var motor = await _motorService.ObterPorIdAsync(id);
@@ -47,13 +49,14 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/Motor/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutMotor(int id,[FromBody] MotorDTO motorDto)
+        [Authorize(Roles = "Administrador, Funcionário")]
+        [HttpPut("atualizar-motor-{id}")]
+        public async Task<IActionResult> PutMotor(int id,[FromBody] Motor motor)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (id != motor.IdMotor)
+                return BadRequest("ID no URL e ID no objeto não coincidem.");
 
-            var updated = await _motorService.AtualizarAsync(id, motorDto);
+            var updated = await _motorService.AtualizarAsync(motor);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,25 +66,20 @@ namespace FaiscaSync.Controllers
 
         // POST: api/Motor
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Motor>> PostMotor([FromBody]MotorDTO motorDto)
+        [Authorize(Roles = "Administrador")]
+        [HttpPost("criar-motor")]
+        public async Task<ActionResult<Motor>> PostMotor([FromBody]Motor motor)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var motor = new Motor
-            {
-                Tipomotor = motorDto.TipoMotor,
-                Potencia = motorDto.Potencia,
-                Combustivel = motorDto.Combustivel
-            };
-
-            await _motorService.CriarAsync(motorDto);
+            await _motorService.CriarAsync(motor);
             return CreatedAtAction(nameof(GetMotor), new { id = motor.IdMotor }, motor);
         }
 
         // DELETE: api/Motor/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("eliminar-motor-{id}")]
         public async Task<IActionResult> DeleteMotor(int id)
         {
             var deleted = await _motorService.RemoverAsync(id);
@@ -93,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> MotorExists(int id)
-        {
-            var motor = await _motorService.ObterPorIdAsync(id);
-            return motor != null
-                ? ResultadoOperacao.Ok("Motor encontrado.")
-        : ResultadoOperacao.Falha("Motor não encontrado.");
-        }
     }
 }

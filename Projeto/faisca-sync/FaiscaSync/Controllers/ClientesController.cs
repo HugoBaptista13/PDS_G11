@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
-using FaiscaSync.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -24,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Clientes
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet ("mostrar-todos-clientes")]
         public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes()
         {
             var cliente = await _clienteService.ObterTodosAsync();
@@ -32,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Clientes/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-cliente-{id}")]
         public async Task<ActionResult<Cliente>> GetCliente(int id)
         {
             var cliente = await _clienteService.ObterPorIdAsync(id);
@@ -47,13 +49,14 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/Clientes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCliente(int id,[FromBody] ClienteDTO clienteDto)
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpPut("atualizar-cliente-{id}")]
+        public async Task<IActionResult> PutCliente(int id,[FromBody] Cliente cliente)
         {
-            if(!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (id != cliente.IdCliente)
+                return BadRequest("ID no URL e ID no objeto não coincidem.");
 
-            var updated = await _clienteService.AtualizarAsync(id, clienteDto);
+            var updated = await _clienteService.AtualizarAsync(cliente);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,27 +66,20 @@ namespace FaiscaSync.Controllers
 
         // POST: api/Clientes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<IActionResult> PostCliente([FromBody] ClienteDTO clienteDto)
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpPost("criar-cliente")]
+        public async Task<ActionResult<Cliente>> PostCliente([FromBody] Cliente cliente)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            // Converter o DTO para a entidade Cliente
-            var cliente = new Cliente
-            {
-                Nome = clienteDto.Nome,
-                Datanasc = clienteDto.Datanasc,
-                Nif = clienteDto.Nif,
-                IdMorada = clienteDto.IdMorada
-            };
-
-            await _clienteService.CriarAsync(clienteDto);
+            await _clienteService.CriarAsync(cliente);
             return CreatedAtAction(nameof(GetCliente), new { id = cliente.IdCliente }, cliente);
         }
 
         // DELETE: api/Clientes/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("apagar-cliente-{id}")]
         public async Task<IActionResult> DeleteCliente(int id)
         {
             var deleted = await _clienteService.RemoverAsync(id);
@@ -95,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> ClienteExists(int id)
-        {
-            var cliente = await _clienteService.ObterPorIdAsync(id);
-            return cliente != null
-                ? ResultadoOperacao.Ok("Cliente encontrado.")
-        : ResultadoOperacao.Falha("Cliente não encontrado.");
-        }
     }
 }

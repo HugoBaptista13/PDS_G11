@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -23,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Fatura
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-todas-faturas")]
         public async Task<ActionResult<IEnumerable<Fatura>>> GetFaturas()
         {
             var fatura = await _faturaService.ObterTodosAsync();
@@ -31,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Fatura/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-fatura-{id}")]
         public async Task<ActionResult<Fatura>> GetFatura(int id)
         {
             var fatura = await _faturaService.ObterPorIdAsync(id);
@@ -46,7 +49,8 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/Fatura/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPut("atualizar-fatura-{id}")]
         public async Task<IActionResult> PutFatura(int id, Fatura fatura)
         {
             if (id != fatura.IdFatura)
@@ -62,7 +66,8 @@ namespace FaiscaSync.Controllers
 
         // POST: api/Fatura
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPost("criar-fatura")]
         public async Task<ActionResult<Fatura>> PostFatura(Fatura fatura)
         {
             if (!ModelState.IsValid)
@@ -73,7 +78,8 @@ namespace FaiscaSync.Controllers
         }
 
         // DELETE: api/Fatura/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("eliminar-fatura-{id}")]
         public async Task<IActionResult> DeleteFatura(int id)
         {
             var deleted = await _faturaService.RemoverAsync(id);
@@ -85,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> FaturaExists(int id)
-        {
-            var fatura = await _faturaService.ObterPorIdAsync(id);
-            return fatura != null
-                ? ResultadoOperacao.Ok("Fatura foi encontrada.")
-        : ResultadoOperacao.Falha("Fatura não encontrada.");
-        }
     }
 }

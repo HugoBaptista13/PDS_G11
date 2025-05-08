@@ -1,13 +1,12 @@
-﻿using FaiscaSync.DTO;
-using FaiscaSync.Models;
+﻿using FaiscaSync.Models;
 namespace FaiscaSync.Services.Interface
 {
     public interface IMotorService
     {
         Task<List<Motor>> ObterTodosAsync();
         Task<Motor?> ObterPorIdAsync(int id);
-        Task CriarAsync(MotorDTO motorDto);
-        Task<ResultadoOperacao> AtualizarAsync(int id, MotorDTO motorDto);
+        Task CriarAsync(Motor motor);
+        Task<ResultadoOperacao> AtualizarAsync(Motor motor);
         Task<ResultadoOperacao> RemoverAsync(int id);
     }
 }

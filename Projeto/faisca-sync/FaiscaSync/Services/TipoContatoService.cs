@@ -1,5 +1,4 @@
-﻿using FaiscaSync.DTO;
-using FaiscaSync.Models;
+﻿using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,27 +25,19 @@ namespace FaiscaSync.Services
             return await _context.TipoContatos.FindAsync(id);
         }
 
-        public async Task CriarAsync(TipoContatoDTO tipoContatoDto)
+        public async Task CriarAsync(TipoContato tipoContato)
         {
-            var tipoContato = new TipoContato
-            {
-                Descricaotipocontato = tipoContatoDto.TipoContato,
-            };
-
             _context.TipoContatos.Add(tipoContato);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync(int id, TipoContatoDTO tipoContatoDto)
+        public async Task<ResultadoOperacao> AtualizarAsync(TipoContato tipoContato)
         {
-            var tipoContatoExistente = await _context.TipoContatos.FindAsync(id);
+            var exists = await _context.TipoContatos.AnyAsync(a => a.IdTipoContato == tipoContato.IdTipoContato);
+            if (!exists)
+                return ResultadoOperacao.Falha("Falha na atualização do Tipo de Contactos!");
 
-            if (tipoContatoExistente == null)
-                return ResultadoOperacao.Falha("Falha na atualização do Tipo de Contacto! Tipo de Contacto não encontrado.");
-
-            tipoContatoExistente.Descricaotipocontato = tipoContatoDto.TipoContato;
-
-            _context.Entry(tipoContatoExistente).State = EntityState.Modified;
+            _context.Entry(tipoContato).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Tipo de Contato atualizado com Sucesso!");
         }
@@ -58,7 +49,7 @@ namespace FaiscaSync.Services
                 return ResultadoOperacao.Falha("Falha na remoção do Tipo Contactos");
             _context.TipoContatos.Remove(tipoContato);
             await _context.SaveChangesAsync();
-            return ResultadoOperacao.Ok("Tipo de Contactos removido com sucesso");
+            return ResultadoOperacao.Ok("Tipo de Contactos removida com sucesso");
         }
     }
 }

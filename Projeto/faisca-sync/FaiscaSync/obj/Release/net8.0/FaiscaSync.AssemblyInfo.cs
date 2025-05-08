@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FaiscaSync")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ba4331eb2562fb5e97a751e4f3b6cf53bc513f0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("FaiscaSync")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FaiscaSync")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

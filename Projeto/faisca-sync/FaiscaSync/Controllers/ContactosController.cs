@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
-using FaiscaSync.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -24,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Contactos
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-todos-contactos")]
         public async Task<ActionResult<IEnumerable<Contato>>> GetContatos()
         {
             var contato = await _contactoService.ObterTodosAsync();
@@ -32,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/Contactos/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpGet("mostrar-contacto-{id}")]
         public async Task<ActionResult<Contato>> GetContato(int id)
         {
             var contato = await _contactoService.ObterPorIdAsync(id);
@@ -47,13 +49,14 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/Contactos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutContato(int id, [FromBody]ContatoDTO contatoDto)
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpPut("atualizar-contacto-{id}")]
+        public async Task<IActionResult> PutContato(int id, [FromBody]Contato contato)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (id != contato.Idcontato)
+                return BadRequest("ID no URL e ID no objeto não coincidem.");
 
-            var updated = await _contactoService.AtualizarAsync(id, contatoDto);
+            var updated = await _contactoService.AtualizarAsync(contato);
 
             if (!updated.Sucesso)
                 return NotFound(new { mensagem = updated.Mensagem });
@@ -63,26 +66,20 @@ namespace FaiscaSync.Controllers
 
         // POST: api/Contactos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Contato>> PostContato(ContatoDTO contatoDto)
+        [Authorize(Roles = "Administrador, Financeiro, Funcionário")]
+        [HttpPost("criar-contacto")]
+        public async Task<ActionResult<Contato>> PostContato(Contato contato)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var contato = new Contato
-            {
-                Detalhescontato = contatoDto.Contato,
-                IdCliente = contatoDto.IdCliente,
-                IdTipoContato = contatoDto.IdTipoContato,
-                IdFuncionario = contatoDto.IdFuncionario
-            };
-
-            await _contactoService.CriarAsync(contatoDto);
+            await _contactoService.CriarAsync(contato);
             return CreatedAtAction(nameof(GetContato), new { id = contato.Idcontato }, contato);
         }
 
         // DELETE: api/Contactos/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpDelete("apagar-contacto-{id}")]
         public async Task<IActionResult> DeleteContato(int id)
         {
             var deleted = await _contactoService.RemoverAsync(id);
@@ -94,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> ContatoExists(int id)
-        {
-            var contato = await _contactoService.ObterPorIdAsync(id);
-            return contato != null
-                ? ResultadoOperacao.Ok("Contato encontrado.")
-        : ResultadoOperacao.Falha("Contato não encontrado.");
-        }
     }
 }

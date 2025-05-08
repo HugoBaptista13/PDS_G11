@@ -1,5 +1,4 @@
-﻿using FaiscaSync.DTO;
-using FaiscaSync.Models;
+﻿using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,28 +25,19 @@ namespace FaiscaSync.Services
             return await _context.Modelos.FindAsync(id);
         }
 
-        public async Task CriarAsync(ModeloDTO modeloDto)
+        public async Task CriarAsync(Modelo modelo)
         {
-            var modelo = new Modelo
-            {
-                Nomemodelo = modeloDto.NomeModelo,
-                IdMarca = modeloDto.IdMarca
-            };
             _context.Modelos.Add(modelo);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ResultadoOperacao> AtualizarAsync(int id, ModeloDTO modeloDto)
+        public async Task<ResultadoOperacao> AtualizarAsync(Modelo modelo)
         {
-            var modeloExistente = await _context.Modelos.FindAsync(id);
+            var exists = await _context.Modelos.AnyAsync(a => a.IdModelo == modelo.IdModelo);
+            if (!exists)
+                return ResultadoOperacao.Falha("Falha na atualização do Modelo!");
 
-            if (modeloExistente == null)
-                return ResultadoOperacao.Falha("Falha na atualização do Modelo! Modelo não encontrado.");
-
-            modeloExistente.Nomemodelo = modeloDto.NomeModelo;
-            modeloExistente.IdMarca = modeloDto.IdMarca;
-
-            _context.Entry(modeloExistente).State = EntityState.Modified;
+            _context.Entry(modelo).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return ResultadoOperacao.Ok("Modelo atualizado com Sucesso!");
         }
@@ -59,7 +49,7 @@ namespace FaiscaSync.Services
                 return ResultadoOperacao.Falha("Falha na remoção da modelo");
             _context.Modelos.Remove(modelo);
             await _context.SaveChangesAsync();
-            return ResultadoOperacao.Ok("Modelo removido com sucesso"); ;
+            return ResultadoOperacao.Ok("Modelo removida com sucesso"); ;
         }
     }
 }

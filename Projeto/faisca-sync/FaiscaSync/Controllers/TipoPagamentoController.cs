@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FaiscaSync.Models;
 using FaiscaSync.Services.Interface;
 using FaiscaSync.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FaiscaSync.Controllers
 {
@@ -23,7 +24,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/TipoPagamento
-        [HttpGet]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpGet("mostrat-tipos-pagamento")]
         public async Task<ActionResult<IEnumerable<TipoPagamento>>> GetTipoPagamentos()
         {
             var tipoPagamento = await _tipoPagamentoService.ObterTodosAsync();
@@ -31,7 +33,8 @@ namespace FaiscaSync.Controllers
         }
 
         // GET: api/TipoPagamento/5
-        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpGet("mostrar-tipo-pagamento-{id}")]
         public async Task<ActionResult<TipoPagamento>> GetTipoPagamento(int id)
         {
             var tipoPagamento = await _tipoPagamentoService.ObterPorIdAsync(id);
@@ -46,7 +49,8 @@ namespace FaiscaSync.Controllers
 
         // PUT: api/TipoPagamento/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPut("atualizar-pagamento-{id}")]
         public async Task<IActionResult> PutTipoPagamento(int id,[FromBody] TipoPagamento tipoPagamento)
         {
             if (id != tipoPagamento.IdTipoPagamento)
@@ -62,7 +66,8 @@ namespace FaiscaSync.Controllers
 
         // POST: api/TipoPagamento
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpPost("criar-tipo-pagamento")]
         public async Task<ActionResult<TipoPagamento>> PostTipoPagamento(TipoPagamento tipoPagamento)
         {
             if (!ModelState.IsValid)
@@ -73,7 +78,8 @@ namespace FaiscaSync.Controllers
         }
 
         // DELETE: api/TipoPagamento/5
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrador")]
+        [HttpDelete("apagar-tipo-pagamento{id}")]
         public async Task<IActionResult> DeleteTipoPagamento(int id)
         {
             var deleted = await _tipoPagamentoService.RemoverAsync(id);
@@ -85,12 +91,5 @@ namespace FaiscaSync.Controllers
             return NotFound(new { mensagem = deleted.Mensagem });
         }
 
-        private async Task<ResultadoOperacao> TipoPagamentoExists(int id)
-        {
-            var tipoPagamento = await _tipoPagamentoService.ObterPorIdAsync(id);
-            return tipoPagamento != null
-                ? ResultadoOperacao.Ok("Tipo Pagamento encontrado.")
-        : ResultadoOperacao.Falha("Tipo de Pagamento não encontrado.");
-        }
     }
 }
