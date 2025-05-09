@@ -7945,11 +7945,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\Novo FaiscaSync\\FaiscaSync\\FaiscaSync\\FaiscaSync.csproj",
+      "projectUniqueName": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync v2\\FaiscaSync\\FaiscaSync.csproj",
       "projectName": "FaiscaSync",
-      "projectPath": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\Novo FaiscaSync\\FaiscaSync\\FaiscaSync\\FaiscaSync.csproj",
+      "projectPath": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync v2\\FaiscaSync\\FaiscaSync.csproj",
       "packagesPath": "C:\\Users\\luisf\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\Novo FaiscaSync\\FaiscaSync\\FaiscaSync\\obj\\",
+      "outputPath": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync v2\\FaiscaSync\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

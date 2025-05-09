@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using FaiscaSync.DTO;
 using FaiscaSync.Models;
 using FaiscaSync.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace FaiscaSync.Controllers
 {
@@ -13,10 +14,13 @@ namespace FaiscaSync.Controllers
     public class VendasController : ControllerBase
     {
         private readonly VendaServices _service;
+        private readonly FsContext _context;
 
-        public VendasController(VendaServices service)
+
+        public VendasController(VendaServices service, FsContext context)
         {
             _service = service;
+            _context = context;
         }
 
         // GET: api/Vendas
@@ -26,6 +30,16 @@ namespace FaiscaSync.Controllers
         {
             var vendas = await _service.GetAllAsync();
             return Ok(vendas);
+        }
+        [Authorize(Roles = "Administrador, Financeiro, Funcionario")]
+        [HttpGet("nao-faturadas")]
+        public async Task<ActionResult<IEnumerable<Venda>>> GetVendasNaoFaturadas()
+        {
+            var vendasNaoFaturadas = await _context.Vendas
+                .Where(v => !_context.Faturas.Any(f => f.IdVendas == v.IdVendas))
+                .ToListAsync();
+
+            return Ok(vendasNaoFaturadas);
         }
 
         // GET: api/Vendas/5
@@ -79,7 +93,7 @@ namespace FaiscaSync.Controllers
                 IdFuncionario = vendaDto.IdFuncionario
             };
 
-            var created = await _service.CreateAsync(venda);
+            var created = await _service.CreateAsync(vendaDto);
 
             return CreatedAtAction(nameof(GetVenda), new { id = created.IdVendas }, created);
         }

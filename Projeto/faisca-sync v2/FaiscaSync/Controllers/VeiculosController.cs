@@ -44,7 +44,7 @@ namespace FaiscaSync.Controllers
         }
 
         // PUT: api/Veiculos/5
-        [Authorize(Roles = "Administrador, Financeiro")]
+        [Authorize(Roles = "Administrador, Financeiro, Funcionario")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutVeiculo(int id, Veiculo veiculo)
         {
@@ -62,11 +62,31 @@ namespace FaiscaSync.Controllers
 
         // POST: api/Veiculos
         [Authorize(Roles = "Administrador, Financeiro, Funcionario")]
-        [HttpPost]
-        public async Task<ActionResult<Veiculo>> PostVeiculo(Veiculo veiculo)
+        [HttpPost("criar")]
+        public async Task<ActionResult<Veiculo>> CriarVeiculoCompleto([FromBody] VeiculoDTO  dto)
         {
-            var created = await _veiculoService.CreateAsync(veiculo);
+            var funcionarioIdClaim = User.Claims.FirstOrDefault(c => c.Type == "IdFuncionario");
+            if (funcionarioIdClaim == null)
+            {
+                return Unauthorized("IdFuncionario não encontrado no token.");
+            }
+
+            int idFuncionario = int.Parse(funcionarioIdClaim.Value);
+
+            var created = await _veiculoService.CriarVeiculoCompletoAsync(dto, idFuncionario);
             return CreatedAtAction(nameof(GetVeiculo), new { id = created.IdVeiculo }, created);
+        }
+
+
+        [Authorize(Roles = "Administrador")]
+        [HttpPut("{id}/aprovar")]
+        public async Task<IActionResult> AprovarVeiculo(int id)
+        {
+            var result = await _veiculoService.AprovarVeiculoAsync(id);
+            if (!result)
+                return NotFound(new { message = "Veículo não encontrado ou erro ao aprovar." });
+
+            return Ok(new { message = "Veículo aprovado e agora está disponível." });
         }
 
         // DELETE: api/Veiculos/5
@@ -83,11 +103,12 @@ namespace FaiscaSync.Controllers
 
         [AllowAnonymous]
         [HttpPost("pesquisa-avancada")]
-        public async Task<ActionResult<IEnumerable<Veiculo>>> PesquisaAvancada([FromBody] PesquisaVeiculoDTO filtro)
+        public async Task<ActionResult<IEnumerable<VeiculoPesquisaResultadoDTO>>> PesquisaAvancada([FromBody] PesquisaVeiculoDTO filtro)
         {
             var resultado = await _veiculoService.PesquisaAvancadaAsync(filtro);
             return Ok(resultado);
         }
+
 
         [AllowAnonymous]
         [HttpGet("adicionados-recentes")]
@@ -102,6 +123,14 @@ namespace FaiscaSync.Controllers
         public async Task<ActionResult<IEnumerable<Veiculo>>> GetVeiculosDisponiveis()
         {
             var veiculos = await _veiculoService.GetVeiculosDisponiveis();
+            return Ok(veiculos);
+        }
+
+        [Authorize(Roles = "Administrador")]
+        [HttpGet("por-aprovar")]
+        public async Task<ActionResult<IEnumerable<Veiculo>>> GetVeiculosPorAprovar()
+        {
+            var veiculos = await _veiculoService.GetVeiculosPorAprovar();
             return Ok(veiculos);
         }
     }

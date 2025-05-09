@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qtp+Sf/VEyM=",
+  "dgSpecHash": "IlElxfX04/E=",
   "success": true,
-  "projectFilePath": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\Novo FaiscaSync\\FaiscaSync\\FaiscaSync\\FaiscaSync.csproj",
+  "projectFilePath": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync v2\\FaiscaSync\\FaiscaSync.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\luisf\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\luisf\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

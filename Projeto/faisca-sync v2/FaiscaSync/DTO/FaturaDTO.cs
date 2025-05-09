@@ -21,5 +21,7 @@ namespace FaiscaSync.DTO
         public int IdVendas { get; set; }
 
         public int IdManutencao { get; set; }
+
+        public bool IsVenda { get; set; }
     }
 }

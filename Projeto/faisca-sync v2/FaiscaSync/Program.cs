@@ -9,7 +9,6 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 // JWT CONFIG
 var jwtKey = builder.Configuration["Jwt:Key"];
 var jwtIssuer = builder.Configuration["Jwt:Issuer"];
@@ -69,17 +68,46 @@ builder.Services.AddSwaggerGen(
     });
     });
 
-
+builder.Services.AddScoped<FaturaServices>();
+builder.Services.AddScoped<ManutencaoServices>();
+builder.Services.AddScoped<CargoServices>();
+builder.Services.AddScoped<EstadoGarantiaServices>();
+builder.Services.AddScoped<EstadoVeiculoServices>();
+builder.Services.AddScoped<EstadoManutencaoServices>();
+builder.Services.AddScoped<CpostalServices>();
+builder.Services.AddScoped<MoradaServices>();
+builder.Services.AddScoped<MotorServices>();
+builder.Services.AddScoped<ModeloServices>();
+builder.Services.AddScoped<TipoVeiculoServices>();
+builder.Services.AddScoped<GarantiaServices>();
+builder.Services.AddScoped<ClienteService>();
 builder.Services.AddScoped<VeiculoServices>();
 builder.Services.AddScoped<VendaServices>();
 builder.Services.AddScoped<FuncionarioServices>();
 builder.Services.AddAuthorization();
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddControllers().AddJsonOptions(x =>
+    x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
+
+// Configuração do CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://localhost:53458") // Porta do seu front-end
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials());
+});
+
+// Configuração do DbContext
 builder.Services.AddDbContext<FsContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("fs")));
+
 var app = builder.Build();
+
 app.UseAuthentication();
+
+// Adiciona o middleware para CORS
+app.UseCors("AllowSpecificOrigin");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

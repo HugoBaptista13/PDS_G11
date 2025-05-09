@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using FaiscaSync.Models;
 using Microsoft.AspNetCore.Authorization;
+using FaiscaSync.DTO;
+using FaiscaSync.Models;
+using FaiscaSync.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace FaiscaSync.Controllers
 {
@@ -14,11 +14,11 @@ namespace FaiscaSync.Controllers
     [ApiController]
     public class FaturasController : ControllerBase
     {
-        private readonly FsContext _context;
+        private readonly FaturaServices _faturaService;
 
-        public FaturasController(FsContext context)
+        public FaturasController(FaturaServices faturaService)
         {
-            _context = context;
+            _faturaService = faturaService;
         }
 
         // GET: api/Faturas
@@ -26,7 +26,8 @@ namespace FaiscaSync.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Fatura>>> GetFaturas()
         {
-            return await _context.Faturas.ToListAsync();
+            var faturas = await _faturaService.GetAllAsync();
+            return Ok(faturas);
         }
 
         // GET: api/Faturas/5
@@ -34,58 +35,55 @@ namespace FaiscaSync.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Fatura>> GetFatura(int id)
         {
-            var fatura = await _context.Faturas.FindAsync(id);
+            var fatura = await _faturaService.GetByIdAsync(id);
 
             if (fatura == null)
             {
                 return NotFound();
             }
 
-            return fatura;
+            return Ok(fatura);
         }
 
         // PUT: api/Faturas/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [Authorize(Roles = "Administrador, Financeiro")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFatura(int id, Fatura fatura)
+        public async Task<IActionResult> PutFatura(int id, [FromBody] FaturaDTO faturaDto)
         {
-            if (id != fatura.IdFatura)
+            var existing = await _faturaService.GetByIdAsync(id);
+            if (existing == null)
+                return NotFound();
+
+            // Atualiza os campos da fatura com os dados do DTO
+            existing.Dataemissao = faturaDto.DataEmissao;
+            existing.Valorfatura = faturaDto.ValorFatura;
+            existing.TipoPagamento = faturaDto.TipoPagamento;
+            existing.IdCliente = faturaDto.IdCliente;
+
+            if (faturaDto.IsVenda)
             {
-                return BadRequest();
+                existing.IdVendas = faturaDto.IdVendas;
+                existing.IdManutencao = null;
+            }
+            else
+            {
+                existing.IdManutencao = faturaDto.IdManutencao;
+                existing.IdVendas = null; 
             }
 
-            _context.Entry(fatura).State = EntityState.Modified;
+            await _faturaService.UpdateAsync(id, existing);  // Só esta linha grava.
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FaturaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
 
             return NoContent();
         }
 
         // POST: api/Faturas
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [Authorize(Roles = "Administrador, Financeiro")]
         [HttpPost]
-        public async Task<ActionResult<Fatura>> PostFatura(Fatura fatura)
+        public async Task<ActionResult<Fatura>> PostFatura([FromBody] FaturaDTO faturaDto)
         {
-            _context.Faturas.Add(fatura);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetFatura", new { id = fatura.IdFatura }, fatura);
+            var created = await _faturaService.CreateAsync(faturaDto);
+            return CreatedAtAction(nameof(GetFatura), new { id = created.IdFatura }, created);
         }
 
         // DELETE: api/Faturas/5
@@ -93,21 +91,13 @@ namespace FaiscaSync.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFatura(int id)
         {
-            var fatura = await _context.Faturas.FindAsync(id);
-            if (fatura == null)
+            var deleted = await _faturaService.DeleteAsync(id);
+            if (!deleted)
             {
                 return NotFound();
             }
 
-            _context.Faturas.Remove(fatura);
-            await _context.SaveChangesAsync();
-
             return NoContent();
-        }
-
-        private bool FaturaExists(int id)
-        {
-            return _context.Faturas.Any(e => e.IdFatura == id);
         }
     }
 }

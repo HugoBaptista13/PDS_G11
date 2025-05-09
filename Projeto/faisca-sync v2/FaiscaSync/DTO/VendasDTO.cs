@@ -19,5 +19,7 @@ namespace FaiscaSync.DTO
 
         [Required]
         public int IdFuncionario { get; set; }
+
+        public bool CriarGarantia { get; set; }
     }
 }

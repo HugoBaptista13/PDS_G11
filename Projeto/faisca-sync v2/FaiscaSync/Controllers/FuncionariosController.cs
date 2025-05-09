@@ -42,6 +42,14 @@ namespace FaiscaSync.Controllers
             return Ok(funcionario);
         }
 
+        [Authorize(Roles = "Administrador, Financeiro")]
+        [HttpGet("pesquisar-funcionario-cargo")]
+        public async Task<ActionResult<Funcionario>> GetFuncionarioByCargo(int id)
+        {
+            var funcionarios = await _service.GetByCargo(id);
+            return Ok(funcionarios);
+        }
+
         // PUT: api/Funcionarios/5
         [Authorize(Roles = "Administrador")]
         [HttpPut("atualizar-funcionario-{id}")]

@@ -1,4 +1,5 @@
-﻿using FaiscaSync.Models;
+﻿using FaiscaSync.DTO;
+using FaiscaSync.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FaiscaSync.Services
@@ -25,10 +26,44 @@ namespace FaiscaSync.Services
         }
 
         // Cria uma nova Fatura
-        public async Task<Fatura> CreateAsync(Fatura fatura)
+        public async Task<Fatura> CreateAsync(FaturaDTO faturaDto)
         {
+            var fatura = new Fatura
+            {
+                Dataemissao = faturaDto.DataEmissao,
+                Valorfatura = faturaDto.ValorFatura,
+                TipoPagamento = faturaDto.TipoPagamento,
+                IdCliente = faturaDto.IdCliente,
+            };
+
+            if (faturaDto.IsVenda)
+            {
+                if (faturaDto.IdVendas == 0)
+                    throw new InvalidOperationException("IdVendas deve ser fornecido para faturas de venda.");
+
+                // Verifica se a venda existe
+                var vendaExiste = await _context.Vendas.AnyAsync(v => v.IdVendas == faturaDto.IdVendas);
+                if (!vendaExiste)
+                    throw new InvalidOperationException($"Venda com ID {faturaDto.IdVendas} não encontrada.");
+
+                fatura.IdVendas = faturaDto.IdVendas;
+            }
+            else
+            {
+                if (faturaDto.IdManutencao == 0)
+                    throw new InvalidOperationException("IdManutencao deve ser fornecido para faturas de manutenção.");
+
+                // Verifica se a manutenção existe
+                var manutencaoExiste = await _context.Manutencaos.AnyAsync(m => m.IdManutencao == faturaDto.IdManutencao);
+                if (!manutencaoExiste)
+                    throw new InvalidOperationException($"Manutenção com ID {faturaDto.IdManutencao} não encontrada.");
+
+                fatura.IdManutencao = faturaDto.IdManutencao;
+            }
+
             _context.Faturas.Add(fatura);
             await _context.SaveChangesAsync();
+
             return fatura;
         }
 

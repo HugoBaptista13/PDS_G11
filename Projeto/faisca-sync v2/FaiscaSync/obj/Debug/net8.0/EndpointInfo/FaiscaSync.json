@@ -235,17 +235,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cliente"
+                "$ref": "#/components/schemas/CriarClienteDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cliente"
+                "$ref": "#/components/schemas/CriarClienteDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Cliente"
+                "$ref": "#/components/schemas/CriarClienteDTO"
               }
             }
           }
@@ -332,17 +332,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cliente"
+                "$ref": "#/components/schemas/ClienteDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Cliente"
+                "$ref": "#/components/schemas/ClienteDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Cliente"
+                "$ref": "#/components/schemas/ClienteDTO"
               }
             }
           }
@@ -1160,17 +1160,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Fatura"
+                "$ref": "#/components/schemas/FaturaDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Fatura"
+                "$ref": "#/components/schemas/FaturaDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Fatura"
+                "$ref": "#/components/schemas/FaturaDTO"
               }
             }
           }
@@ -1257,17 +1257,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Fatura"
+                "$ref": "#/components/schemas/FaturaDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Fatura"
+                "$ref": "#/components/schemas/FaturaDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Fatura"
+                "$ref": "#/components/schemas/FaturaDTO"
               }
             }
           }
@@ -1348,6 +1348,45 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Funcionario"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Funcionario"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Funcionario"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Funcionarios/pesquisar-funcionario-cargo": {
+      "get": {
+        "tags": [
+          "Funcionarios"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -1784,6 +1823,44 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Manutencao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Manutencoes/nao-faturadas": {
+      "get": {
+        "tags": [
+          "Manutencoes"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Manutencao"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Manutencao"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Manutencao"
+                  }
                 }
               }
             }
@@ -2853,52 +2930,6 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Veiculos"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Veiculo"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Veiculo"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Veiculo"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Veiculo"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Veiculo"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Veiculo"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/api/Veiculos/{id}": {
@@ -3002,6 +3033,77 @@
         }
       }
     },
+    "/api/Veiculos/criar": {
+      "post": {
+        "tags": [
+          "Veiculos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VeiculoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VeiculoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/VeiculoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Veiculos/{id}/aprovar": {
+      "put": {
+        "tags": [
+          "Veiculos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Veiculos/pesquisa-avancada": {
       "post": {
         "tags": [
@@ -3026,6 +3128,56 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VeiculoPesquisaResultadoDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VeiculoPesquisaResultadoDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VeiculoPesquisaResultadoDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Veiculos/adicionados-recentes": {
+      "get": {
+        "tags": [
+          "Veiculos"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Veiculos/catalogo": {
+      "get": {
+        "tags": [
+          "Veiculos"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -3059,19 +3211,7 @@
         }
       }
     },
-    "/api/Veiculos/adicionados-recentes": {
-      "get": {
-        "tags": [
-          "Veiculos"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Veiculos/catalogo": {
+    "/api/Veiculos/por-aprovar": {
       "get": {
         "tags": [
           "Veiculos"
@@ -3186,6 +3326,44 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Venda"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Vendas/nao-faturadas": {
+      "get": {
+        "tags": [
+          "Vendas"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Venda"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Venda"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Venda"
+                  }
                 }
               }
             }
@@ -3365,6 +3543,42 @@
         },
         "additionalProperties": false
       },
+      "ClienteDTO": {
+        "required": [
+          "contato",
+          "datanasc",
+          "idMorada",
+          "nif",
+          "nome"
+        ],
+        "type": "object",
+        "properties": {
+          "nome": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "datanasc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "nif": {
+            "maxLength": 9,
+            "minLength": 0,
+            "type": "string"
+          },
+          "contato": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "idMorada": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "Cpostal": {
         "type": "object",
         "properties": {
@@ -3381,6 +3595,44 @@
             "items": {
               "$ref": "#/components/schemas/Morada"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CriarClienteDTO": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "datanasc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "contato": {
+            "type": "string",
+            "nullable": true
+          },
+          "nif": {
+            "type": "string",
+            "nullable": true
+          },
+          "rua": {
+            "type": "string",
+            "nullable": true
+          },
+          "numero": {
+            "type": "string",
+            "nullable": true
+          },
+          "andar": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoPostal": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -3490,6 +3742,47 @@
           },
           "idVendasNavigation": {
             "$ref": "#/components/schemas/Venda"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FaturaDTO": {
+        "required": [
+          "dataEmissao",
+          "idCliente",
+          "tipoPagamento",
+          "valorFatura"
+        ],
+        "type": "object",
+        "properties": {
+          "dataEmissao": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "valorFatura": {
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "tipoPagamento": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "idCliente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idVendas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idManutencao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isVenda": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -4017,6 +4310,156 @@
         },
         "additionalProperties": false
       },
+      "VeiculoDTO": {
+        "required": [
+          "anoFabrico",
+          "chassi",
+          "combustivel",
+          "cor",
+          "dataAquisicao",
+          "descricaoMarca",
+          "fornecedor",
+          "idTipoVeiculo",
+          "matricula",
+          "nomeModelo",
+          "origemVeiculo",
+          "potencia",
+          "precoVenda",
+          "quilometragem",
+          "tipoMotor",
+          "valorPago"
+        ],
+        "type": "object",
+        "properties": {
+          "matricula": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string"
+          },
+          "chassi": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "anoFabrico": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cor": {
+            "maxLength": 30,
+            "minLength": 0,
+            "type": "string"
+          },
+          "quilometragem": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "precoVenda": {
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "fornecedor": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "valorPago": {
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "dataAquisicao": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "origemVeiculo": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "foto": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "descricao": {
+            "maxLength": 300,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "tipoMotor": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "potencia": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "combustivel": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "descricaoMarca": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "nomeModelo": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "idTipoVeiculo": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VeiculoPesquisaResultadoDTO": {
+        "type": "object",
+        "properties": {
+          "idVeiculo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "matricula": {
+            "type": "string",
+            "nullable": true
+          },
+          "modelo": {
+            "type": "string",
+            "nullable": true
+          },
+          "marca": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoVeiculo": {
+            "type": "string",
+            "nullable": true
+          },
+          "combustivel": {
+            "type": "string",
+            "nullable": true
+          },
+          "quilometragem": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "precoVenda": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
       "Venda": {
         "type": "object",
         "properties": {
@@ -4100,6 +4543,9 @@
           "idFuncionario": {
             "type": "integer",
             "format": "int32"
+          },
+          "criarGarantia": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false

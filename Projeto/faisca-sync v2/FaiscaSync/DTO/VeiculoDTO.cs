@@ -42,24 +42,36 @@ namespace FaiscaSync.DTO
         public string OrigemVeiculo { get; set; } = null!;
 
         [StringLength(200)]
-        public string Foto { get; set; }
+        public string? Foto { get; set; }
 
         [StringLength(300)]
-        public string Descricao { get; set; }
+        public string? Descricao { get; set; }
+
+
+        //Dados motor
+        [Required]
+        [StringLength(20)]
+        public string TipoMotor { get; set; } = null!;
 
         [Required]
-        public int IdMotor { get; set; }
+        [StringLength(20)]
+        public string Potencia { get; set; } = null!;
 
         [Required]
-        public int IdEstadoVeiculo { get; set; }
+        [StringLength(20)]
+        public string Combustivel { get; set; } = null!;
+
+        //Dados Marca
+        [Required]
+        [StringLength(50)]
+        public string DescricaoMarca { get; set; } = null!;
+
+        //Dados Modelo
+        [Required]
+        [StringLength(50)]
+        public string NomeModelo { get; set; } = null!;
 
         [Required]
         public int IdTipoVeiculo { get; set; }
-
-        [Required]
-        public int IdModelo { get; set; }
-
-        [Required]
-        public int IdFuncionario { get; set; }
     }
 }

@@ -28,6 +28,17 @@ namespace FaiscaSync.Controllers
         {
             return await _context.Manutencaos.ToListAsync();
         }
+        [Authorize(Roles = "Administrador, Financeiro, Funcionario")]
+        [HttpGet("nao-faturadas")]
+        public async Task<ActionResult<IEnumerable<Manutencao>>> GetManutencoesNaoFaturadas()
+        {
+            var manutencoesNaoFaturadas = await _context.Manutencaos
+                .Where(m => !_context.Faturas.Any(f => f.IdManutencao == m.IdManutencao))
+                .ToListAsync();
+
+            return Ok(manutencoesNaoFaturadas);
+        }
+
 
         // GET: api/Manutencoes/5
         [Authorize(Roles = "Administrador, Financeiro, Funcionario, Mecanico")]

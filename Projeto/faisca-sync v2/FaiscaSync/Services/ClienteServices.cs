@@ -1,4 +1,6 @@
-﻿using FaiscaSync.Models;
+﻿using FaiscaSync.DTO;
+using FaiscaSync.Models;
+using Humanizer;
 using Microsoft.EntityFrameworkCore;
 
 namespace FaiscaSync.Services
@@ -25,10 +27,43 @@ namespace FaiscaSync.Services
         }
 
         // Cria novo cliente
-        public async Task<Cliente> CreateClienteAsync(Cliente cliente)
+        public async Task<Cliente> CriarClienteCompletoAsync(CriarClienteDTO dto)
         {
+            // 1️⃣ Verifica/Criar Código Postal
+            var codigoPostal = await _context.Cpostals
+                .FirstOrDefaultAsync(cp => cp.Localidade == dto.CodigoPostal);
+
+            if (codigoPostal == null)
+            {
+                codigoPostal = new Cpostal
+                {
+                    Localidade = dto.CodigoPostal
+                };
+                _context.Cpostals.Add(codigoPostal);
+                await _context.SaveChangesAsync(); // gera IdCodigoPostal
+            }
+
+            var morada = new Morada
+            {
+                Rua = dto.Rua,
+                Numero = dto.Numero,
+                Andar = dto.Andar,
+                IdCpostal = codigoPostal.IdCpostal
+            };
+            _context.Morada.Add(morada);
+            await _context.SaveChangesAsync(); // gera IdMorada
+
+            var cliente = new Cliente
+            {
+                Nome = dto.Nome,
+                Datanasc = dto.Datanasc,
+                Contato = dto.Contato,
+                Nif = dto.Nif,
+                IdMorada = morada.IdMorada
+            };
             _context.Clientes.Add(cliente);
             await _context.SaveChangesAsync();
+
             return cliente;
         }
 

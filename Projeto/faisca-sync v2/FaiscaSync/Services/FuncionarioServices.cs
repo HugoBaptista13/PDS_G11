@@ -29,6 +29,14 @@ namespace FaiscaSync.Services
             return await _context.Funcionarios.FindAsync(id);
         }
 
+        public async Task<List<Funcionario>> GetByCargo(int id)
+        {
+            return await _context.Funcionarios
+                .Include(v => v.IdCargoNavigation)
+                .Where(v => v.IdCargoNavigation.IdCargo == id)
+                .ToListAsync();
+        }
+
         public async Task<Funcionario> CreateAsync(Funcionario funcionario)
         {
             _context.Funcionarios.Add(funcionario);
@@ -60,9 +68,9 @@ namespace FaiscaSync.Services
         {
             // Busca o funcionario e inclui o Cargo (para saber o nome do cargo)
             var funcionario = await _context.Funcionarios
-     .FirstOrDefaultAsync(f =>
-         f.Username == loginRequest.Username &&
-         f.Password == loginRequest.Password);
+            .FirstOrDefaultAsync(f =>
+                f.Username == loginRequest.Username &&
+                f.Password == loginRequest.Password);
 
             if (funcionario == null)
             {
@@ -85,11 +93,11 @@ namespace FaiscaSync.Services
             // 4️⃣ Claims
             var claims = new[]
             {
-    new Claim(ClaimTypes.Name, funcionario.Nome),
-    new Claim("IdFuncionario", funcionario.IdFuncionario.ToString()),
-    new Claim("Username", funcionario.Username),
-    new Claim(ClaimTypes.Role, role)
-};
+                new Claim(ClaimTypes.Name, funcionario.Nome),
+                new Claim("IdFuncionario", funcionario.IdFuncionario.ToString()),
+                new Claim("Username", funcionario.Username),
+                new Claim(ClaimTypes.Role, role)
+            };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

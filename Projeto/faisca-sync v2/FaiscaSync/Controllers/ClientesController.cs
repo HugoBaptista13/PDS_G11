@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using FaiscaSync.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using FaiscaSync.DTO;
+using FaiscaSync.Models;
+using FaiscaSync.Services;
 
 namespace FaiscaSync.Controllers
 {
@@ -14,11 +12,11 @@ namespace FaiscaSync.Controllers
     [ApiController]
     public class ClientesController : ControllerBase
     {
-        private readonly FsContext _context;
+        private readonly ClienteService _clienteService;
 
-        public ClientesController(FsContext context)
+        public ClientesController(ClienteService clienteService)
         {
-            _context = context;
+            _clienteService = clienteService;
         }
 
         // GET: api/Clientes
@@ -26,7 +24,8 @@ namespace FaiscaSync.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes()
         {
-            return await _context.Clientes.ToListAsync();
+            var clientes = await _clienteService.GetClientesAsync();
+            return Ok(clientes);
         }
 
         // GET: api/Clientes/5
@@ -34,58 +33,48 @@ namespace FaiscaSync.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Cliente>> GetCliente(int id)
         {
-            var cliente = await _context.Clientes.FindAsync(id);
+            var cliente = await _clienteService.GetClienteByIdAsync(id);
 
             if (cliente == null)
             {
                 return NotFound();
             }
 
-            return cliente;
+            return Ok(cliente);
         }
 
         // PUT: api/Clientes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [Authorize(Roles = "Administrador, Financeiro, Funcionario")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCliente(int id, Cliente cliente)
+        public async Task<IActionResult> PutCliente(int id, [FromBody] ClienteDTO clienteDTO)
         {
-            if (id != cliente.IdCliente)
+            var cliente = new Cliente
             {
-                return BadRequest();
-            }
+                IdCliente = id,
+                Nome = clienteDTO.Nome,
+                Datanasc = clienteDTO.Datanasc,
+                Nif = clienteDTO.Nif,
+                Contato = clienteDTO.Contato,
+                IdMorada = clienteDTO.IdMorada
+            };
 
-            _context.Entry(cliente).State = EntityState.Modified;
+            var updated = await _clienteService.UpdateClienteAsync(id, cliente);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClienteExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            if (!updated)
+                return NotFound();
 
             return NoContent();
         }
 
         // POST: api/Clientes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [Authorize(Roles = "Administrador, Financeiro, Funcionario")]
         [HttpPost]
-        public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
+        public async Task<ActionResult<Cliente>> PostCliente([FromBody] CriarClienteDTO dto)
         {
-            _context.Clientes.Add(cliente);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCliente", new { id = cliente.IdCliente }, cliente);
+            var created = await _clienteService.CriarClienteCompletoAsync(dto);
+
+            return CreatedAtAction(nameof(GetCliente), new { id = created.IdCliente }, created);
         }
 
         // DELETE: api/Clientes/5
@@ -93,21 +82,12 @@ namespace FaiscaSync.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCliente(int id)
         {
-            var cliente = await _context.Clientes.FindAsync(id);
-            if (cliente == null)
-            {
-                return NotFound();
-            }
+            var deleted = await _clienteService.DeleteClienteAsync(id);
 
-            _context.Clientes.Remove(cliente);
-            await _context.SaveChangesAsync();
+            if (!deleted)
+                return NotFound();
 
             return NoContent();
-        }
-
-        private bool ClienteExists(int id)
-        {
-            return _context.Clientes.Any(e => e.IdCliente == id);
         }
     }
 }
