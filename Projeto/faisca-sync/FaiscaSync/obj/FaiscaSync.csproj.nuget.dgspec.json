@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v7\\FaiscaSync\\FaiscaSync.csproj": {}
+    "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FaiscaSync.csproj": {}
   },
   "projects": {
-    "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v7\\FaiscaSync\\FaiscaSync.csproj": {
+    "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FaiscaSync.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v7\\FaiscaSync\\FaiscaSync.csproj",
+        "projectUniqueName": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FaiscaSync.csproj",
         "projectName": "FaiscaSync",
-        "projectPath": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v7\\FaiscaSync\\FaiscaSync.csproj",
+        "projectPath": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FaiscaSync.csproj",
         "packagesPath": "C:\\Users\\luisf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\luisf\\OneDrive\\Ambiente de Trabalho\\FaiscaSync\\FaiscaSync v7\\FaiscaSync\\obj\\",
+        "outputPath": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

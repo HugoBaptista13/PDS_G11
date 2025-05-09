@@ -51,7 +51,7 @@ namespace FaiscaSync.Controllers
             return Ok(aquisicao);
         }
 
-        [Authorize(Roles = "Administrador, Financeiro")]
+        [Authorize(Roles = "Administrador, Financeiro")]    
         [HttpPut("atualizar-{id}")]
         public async Task<IActionResult> UpdateAquisicao(int id, [FromBody] Aquisicao aquisicao)
         {

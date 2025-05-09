@@ -1,41 +1,61 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\",
+  "WorkspaceRootPath": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\icpa\\ficheiros\\pds_g11\\projeto\\faisca-sync\\faiscasync\\services\\clienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\clienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\controllers\\aquisicaoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\controllers\\aquisicaoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\icpa\\ficheiros\\pds_g11\\projeto\\faisca-sync\\faiscasync\\services\\veiculoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\veiculoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\services\\interface\\iaquisicaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\interface\\iaquisicaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\icpa\\ficheiros\\pds_g11\\projeto\\faisca-sync\\faiscasync\\services\\modeloservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\modeloservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\services\\aquisicaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\aquisicaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\icpa\\ficheiros\\pds_g11\\projeto\\faisca-sync\\faiscasync\\controllers\\veiculocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\controllers\\veiculocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\controllers\\historicoestadoveiculocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\controllers\\historicoestadoveiculocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\icpa\\ficheiros\\pds_g11\\projeto\\faisca-sync\\faiscasync\\dto\\veiculodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\services\\interface\\ihistoricoestadoveiculoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\interface\\ihistoricoestadoveiculoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\dto\\veiculodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\dto\\veiculodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\icpa\\ficheiros\\pds_g11\\projeto\\faisca-sync\\faiscasync\\services\\interface\\iveiculoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\services\\clienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\clienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\services\\veiculoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\veiculoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\services\\modeloservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\modeloservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\controllers\\veiculocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\controllers\\veiculocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\services\\interface\\iveiculoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\interface\\iveiculoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\icpa\\ficheiros\\pds_g11\\projeto\\faisca-sync\\faiscasync\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\icpa\\ficheiros\\pds_g11\\projeto\\faisca-sync\\faiscasync\\services\\interface\\iclienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\services\\interface\\iclienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\services\\interface\\iclienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\icpa\\ficheiros\\pds_g11\\projeto\\faisca-sync\\faiscasync\\fscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|c:\\pds\\pds_g11\\projeto\\faisca-sync\\faiscasync\\fscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{448C5C87-B884-4CF7-8A7D-34AB78D7C2F2}|FaiscaSync\\FaiscaSync.csproj|solutionrelative:faiscasync\\fscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -46,28 +66,92 @@
       "DocumentGroups": [
         {
           "DockedWidth": 352,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ModeloService.cs",
-              "DocumentMoniker": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\ModeloService.cs",
-              "RelativeDocumentMoniker": "FaiscaSync\\Services\\ModeloService.cs",
-              "ToolTip": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\ModeloService.cs",
-              "RelativeToolTip": "FaiscaSync\\Services\\ModeloService.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAowC8AAAA4AAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "AquisicaosController.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Controllers\\AquisicaosController.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Controllers\\AquisicaosController.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Controllers\\AquisicaosController.cs",
+              "RelativeToolTip": "FaiscaSync\\Controllers\\AquisicaosController.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAwwDUAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T23:27:25.425Z",
+              "WhenOpened": "2025-05-08T14:13:48.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AquisicaoService.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\AquisicaoService.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Services\\AquisicaoService.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\AquisicaoService.cs",
+              "RelativeToolTip": "FaiscaSync\\Services\\AquisicaoService.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAmwDAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T13:41:17.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HistoricoEstadoVeiculoController.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Controllers\\HistoricoEstadoVeiculoController.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Controllers\\HistoricoEstadoVeiculoController.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Controllers\\HistoricoEstadoVeiculoController.cs",
+              "RelativeToolTip": "FaiscaSync\\Controllers\\HistoricoEstadoVeiculoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T13:29:49.136Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "IHistoricoEstadoVeiculoService.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\Interface\\IHistoricoEstadoVeiculoService.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Services\\Interface\\IHistoricoEstadoVeiculoService.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\Interface\\IHistoricoEstadoVeiculoService.cs",
+              "RelativeToolTip": "FaiscaSync\\Services\\Interface\\IHistoricoEstadoVeiculoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T13:29:30.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IAquisicaoService.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\Interface\\IAquisicaoService.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Services\\Interface\\IAquisicaoService.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\Interface\\IAquisicaoService.cs",
+              "RelativeToolTip": "FaiscaSync\\Services\\Interface\\IAquisicaoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T13:26:33.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ModeloService.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\ModeloService.cs",
+              "RelativeDocumentMoniker": "FaiscaSync\\Services\\ModeloService.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\ModeloService.cs",
+              "RelativeToolTip": "FaiscaSync\\Services\\ModeloService.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowC8AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T23:27:25.425Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "VeiculoDTO.cs",
-              "DocumentMoniker": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\DTO\\VeiculoDTO.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\DTO\\VeiculoDTO.cs",
               "RelativeDocumentMoniker": "FaiscaSync\\DTO\\VeiculoDTO.cs",
-              "ToolTip": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\DTO\\VeiculoDTO.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\DTO\\VeiculoDTO.cs",
               "RelativeToolTip": "FaiscaSync\\DTO\\VeiculoDTO.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -76,63 +160,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "VeiculoService.cs",
-              "DocumentMoniker": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\VeiculoService.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\VeiculoService.cs",
               "RelativeDocumentMoniker": "FaiscaSync\\Services\\VeiculoService.cs",
-              "ToolTip": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\VeiculoService.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\VeiculoService.cs",
               "RelativeToolTip": "FaiscaSync\\Services\\VeiculoService.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAIwD0AAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T23:14:19.443Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T23:14:19.443Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "IVeiculoService.cs",
-              "DocumentMoniker": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\Interface\\IVeiculoService.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\Interface\\IVeiculoService.cs",
               "RelativeDocumentMoniker": "FaiscaSync\\Services\\Interface\\IVeiculoService.cs",
-              "ToolTip": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\Interface\\IVeiculoService.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\Interface\\IVeiculoService.cs",
               "RelativeToolTip": "FaiscaSync\\Services\\Interface\\IVeiculoService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T23:14:15.982Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T23:14:15.982Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "VeiculoController.cs",
-              "DocumentMoniker": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Controllers\\VeiculoController.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Controllers\\VeiculoController.cs",
               "RelativeDocumentMoniker": "FaiscaSync\\Controllers\\VeiculoController.cs",
-              "ToolTip": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Controllers\\VeiculoController.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Controllers\\VeiculoController.cs",
               "RelativeToolTip": "FaiscaSync\\Controllers\\VeiculoController.cs",
               "ViewState": "AgIAADwAAAAAAAAAAAAswF8AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T23:14:09.227Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T23:14:09.227Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "IClienteService.cs",
-              "DocumentMoniker": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\Interface\\IClienteService.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\Interface\\IClienteService.cs",
               "RelativeDocumentMoniker": "FaiscaSync\\Services\\Interface\\IClienteService.cs",
-              "ToolTip": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\Interface\\IClienteService.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\Interface\\IClienteService.cs",
               "RelativeToolTip": "FaiscaSync\\Services\\Interface\\IClienteService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T20:43:43.355Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T20:43:43.355Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "ClienteService.cs",
-              "DocumentMoniker": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\ClienteService.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\ClienteService.cs",
               "RelativeDocumentMoniker": "FaiscaSync\\Services\\ClienteService.cs",
-              "ToolTip": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\ClienteService.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Services\\ClienteService.cs",
               "RelativeToolTip": "FaiscaSync\\Services\\ClienteService.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAIwDMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -141,29 +221,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "ClientesController.cs",
-              "DocumentMoniker": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Controllers\\ClientesController.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Controllers\\ClientesController.cs",
               "RelativeDocumentMoniker": "FaiscaSync\\Controllers\\ClientesController.cs",
-              "ToolTip": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Controllers\\ClientesController.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\Controllers\\ClientesController.cs",
               "RelativeToolTip": "FaiscaSync\\Controllers\\ClientesController.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAwwGYAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T20:43:34.903Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T20:43:34.903Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "FsContext.cs",
-              "DocumentMoniker": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FsContext.cs",
+              "DocumentMoniker": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FsContext.cs",
               "RelativeDocumentMoniker": "FaiscaSync\\FsContext.cs",
-              "ToolTip": "C:\\ICPA\\Ficheiros\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FsContext.cs",
+              "ToolTip": "C:\\PDS\\PDS_G11\\Projeto\\faisca-sync\\FaiscaSync\\FsContext.cs",
               "RelativeToolTip": "FaiscaSync\\FsContext.cs",
               "ViewState": "AgIAAJUBAAAAAAAAAAAUwMABAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T13:53:55.444Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T13:53:55.444Z"
             }
           ]
         }
